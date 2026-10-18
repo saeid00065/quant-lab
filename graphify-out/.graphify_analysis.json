@@ -1,0 +1,284 @@
+{
+  "communities": {
+    "0": [
+      "callable",
+      "enum",
+      "json",
+      "pages_9_monitoring",
+      "pathlib",
+      "sqlite3",
+      "src_modules_monitoring",
+      "src_modules_monitoring_acknowledge_alert",
+      "src_modules_monitoring_add_health_check",
+      "src_modules_monitoring_alert",
+      "src_modules_monitoring_alerttype",
+      "src_modules_monitoring_create_alert",
+      "src_modules_monitoring_error",
+      "src_modules_monitoring_get_active_alerts",
+      "src_modules_monitoring_get_alerts_df",
+      "src_modules_monitoring_get_critical_alerts",
+      "src_modules_monitoring_get_logs_df",
+      "src_modules_monitoring_get_portfolio_summary",
+      "src_modules_monitoring_get_positions_dataframe",
+      "src_modules_monitoring_get_system_health",
+      "src_modules_monitoring_get_transactions_df",
+      "src_modules_monitoring_info",
+      "src_modules_monitoring_init",
+      "src_modules_monitoring_log",
+      "src_modules_monitoring_logentry",
+      "src_modules_monitoring_loglevel",
+      "src_modules_monitoring_portfoliotracker",
+      "src_modules_monitoring_py_dataframe",
+      "src_modules_monitoring_record_daily_pnl",
+      "src_modules_monitoring_run_health_check",
+      "src_modules_monitoring_warning"
+    ],
+    "1": [
+      "os",
+      "src_modules_risk_management",
+      "src_modules_risk_management_position",
+      "src_modules_risk_management_position_cost_basis",
+      "src_modules_risk_management_position_market_value",
+      "src_modules_risk_management_position_unrealized_pnl",
+      "src_modules_risk_management_position_unrealized_pnl_pct",
+      "src_modules_risk_management_riskconfig",
+      "src_modules_risk_management_riskmanager",
+      "src_modules_risk_management_riskmanager_add_position",
+      "src_modules_risk_management_riskmanager_calculate_position_size",
+      "src_modules_risk_management_riskmanager_check_daily_loss",
+      "src_modules_risk_management_riskmanager_check_position_size",
+      "src_modules_risk_management_riskmanager_get_cash_available",
+      "src_modules_risk_management_riskmanager_get_risk_metrics",
+      "src_modules_risk_management_riskmanager_get_sector_exposure",
+      "src_modules_risk_management_riskmanager_get_total_exposure",
+      "src_modules_risk_management_riskmanager_init",
+      "src_modules_risk_management_riskmanager_remove_position",
+      "src_modules_risk_management_riskmanager_update_portfolio_value",
+      "src_modules_risk_management_riskmanager_update_prices",
+      "static_fix_modules",
+      "static_write_modules"
+    ],
+    "2": [
+      "app",
+      "pages_5_optimization",
+      "pandas",
+      "src_backtest",
+      "src_backtest_apply_costs",
+      "src_backtest_backtest_from_positions",
+      "src_backtest_backtestconfig",
+      "src_backtest_compute_metrics",
+      "src_backtest_py_dataframe",
+      "src_backtest_py_series",
+      "src_backtest_rationale_31",
+      "src_optimization",
+      "src_optimization_grid_search_sma_crossover",
+      "src_optimization_gridresult",
+      "src_optimization_py_dataframe",
+      "src_strategy",
+      "src_strategy_py_dataframe",
+      "src_strategy_py_series",
+      "src_strategy_rationale_13",
+      "src_strategy_signals_to_positions",
+      "src_strategy_sma_crossover_signals"
+    ],
+    "3": [
+      "dataclasses",
+      "io",
+      "numpy",
+      "pages_1_data",
+      "src_data_loader",
+      "src_data_loader_fetch_yfinance_ohlcv",
+      "src_data_loader_generate_synthetic_ohlcv",
+      "src_data_loader_guess_columns",
+      "src_data_loader_guess_columns_pick",
+      "src_data_loader_load_csv_bytes",
+      "src_data_loader_normalize_ohlcv",
+      "src_data_loader_ohlcvcolumns",
+      "src_data_loader_py_dataframe",
+      "src_data_loader_rationale_135",
+      "src_data_loader_rationale_58",
+      "src_data_loader_rationale_82",
+      "src_data_loader_rationale_97",
+      "src_modules_data_sources",
+      "typing"
+    ],
+    "4": [
+      "any",
+      "pages_10_portfolio",
+      "pages_2_indicators",
+      "pages_3_signals",
+      "pages_4_backtesting",
+      "pages_6_reports",
+      "pages_7_risk_management",
+      "pages_common",
+      "pages_common_ensure_df",
+      "pages_common_load_from_session",
+      "pages_common_py_dataframe",
+      "pages_common_save_to_session",
+      "plotly_express",
+      "plotly_graph_objects",
+      "streamlit"
+    ],
+    "5": [
+      "src_modules_data_sources_marketdata",
+      "src_modules_data_sources_marketdata_latest",
+      "src_modules_data_sources_marketdataprovider",
+      "src_modules_data_sources_marketdataprovider_clear_cache",
+      "src_modules_data_sources_marketdataprovider_fetch",
+      "src_modules_data_sources_marketdataprovider_fetch_csv",
+      "src_modules_data_sources_marketdataprovider_fetch_synthetic",
+      "src_modules_data_sources_marketdataprovider_fetch_yfinance",
+      "src_modules_data_sources_marketdataprovider_get_latest_prices",
+      "src_modules_data_sources_marketdataprovider_init",
+      "src_modules_data_sources_py_dataframe"
+    ],
+    "6": [
+      "datetime",
+      "pages_8_execution",
+      "src_modules_execution",
+      "src_modules_execution_executionmanager",
+      "src_modules_execution_executionmanager_create_order",
+      "src_modules_execution_executionmanager_get_execution_stats",
+      "src_modules_execution_executionmanager_init",
+      "src_modules_execution_executionmanager_simulate_fill",
+      "src_modules_execution_order",
+      "src_modules_execution_order_post_init"
+    ],
+    "7": [
+      "src_indicators",
+      "src_indicators_add_indicators",
+      "src_indicators_ema",
+      "src_indicators_macd",
+      "src_indicators_py_dataframe",
+      "src_indicators_py_series",
+      "src_indicators_rsi",
+      "src_indicators_sma"
+    ],
+    "8": [
+      "pages_init",
+      "pages_init_rationale_1"
+    ],
+    "9": [
+      "src_init",
+      "src_init_rationale_1"
+    ],
+    "10": [
+      "src_modules_init"
+    ]
+  },
+  "cohesion": {
+    "0": 0.11397849462365592,
+    "1": 0.1383399209486166,
+    "2": 0.2,
+    "3": 0.2222222222222222,
+    "4": 0.3523809523809524,
+    "5": 0.23636363636363636,
+    "6": 0.28888888888888886,
+    "7": 0.5714285714285714,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0
+  },
+  "gods": [
+    {
+      "id": "src_modules_risk_management_riskmanager",
+      "label": "RiskManager",
+      "degree": 15
+    },
+    {
+      "id": "src_backtest_backtest_from_positions",
+      "label": "backtest_from_positions()",
+      "degree": 11
+    },
+    {
+      "id": "src_data_loader_normalize_ohlcv",
+      "label": "normalize_ohlcv()",
+      "degree": 9
+    },
+    {
+      "id": "src_data_loader_load_csv_bytes",
+      "label": "load_csv_bytes()",
+      "degree": 9
+    },
+    {
+      "id": "pages_common_load_from_session",
+      "label": "load_from_session()",
+      "degree": 8
+    },
+    {
+      "id": "pages_common_save_to_session",
+      "label": "save_to_session()",
+      "degree": 8
+    },
+    {
+      "id": "src_data_loader_generate_synthetic_ohlcv",
+      "label": "generate_synthetic_ohlcv()",
+      "degree": 8
+    },
+    {
+      "id": "src_data_loader_fetch_yfinance_ohlcv",
+      "label": "fetch_yfinance_ohlcv()",
+      "degree": 8
+    },
+    {
+      "id": "src_indicators_add_indicators",
+      "label": "add_indicators()",
+      "degree": 8
+    },
+    {
+      "id": "src_modules_data_sources_marketdataprovider",
+      "label": "MarketDataProvider",
+      "degree": 8
+    }
+  ],
+  "surprises": [
+    {
+      "source": "sma_crossover_signals()",
+      "target": "sma()",
+      "source_files": [
+        "src/strategy.py",
+        "src/indicators.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "bridges separate communities"
+    },
+    {
+      "source": "grid_search_sma_crossover()",
+      "target": "BacktestConfig",
+      "source_files": [
+        "src/optimization.py",
+        "src/backtest.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "grid_search_sma_crossover()",
+      "target": "backtest_from_positions()",
+      "source_files": [
+        "src/optimization.py",
+        "src/backtest.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    },
+    {
+      "source": "grid_search_sma_crossover()",
+      "target": "sma_crossover_signals()",
+      "source_files": [
+        "src/optimization.py",
+        "src/strategy.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "cross-file semantic connection"
+    }
+  ],
+  "tokens": {
+    "input": 0,
+    "output": 0
+  }
+}
