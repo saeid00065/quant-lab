@@ -18,39 +18,39 @@ class MarketData:
             return {}
         row = self.data.iloc[-1]
         return {
-            \"date\": row.get(\"date\"),
-            \"open\": row.get(\"open\"),
-            \"high\": row.get(\"high\"),
-            \"low\": row.get(\"low\"),
-            \"close\": row.get(\"close\"),
-            \"volume\": row.get(\"volume\"),
+            "date": row.get("date"),
+            "open": row.get("open"),
+            "high": row.get("high"),
+            "low": row.get("low"),
+            "close": row.get("close"),
+            "volume": row.get("volume"),
         }
 
 class MarketDataProvider:
-    \"\"\"Unified market data provider supporting multiple sources.\"\"\"
+    """Unified market data provider supporting multiple sources."""
     
     def __init__(self):
         self._cache: dict[str, MarketData] = {}
         self._providers: dict[str, callable] = {
-            \"synthetic\": self._fetch_synthetic,
-            \"yfinance\": self._fetch_yfinance,
-            \"csv\": self._fetch_csv,
+            "synthetic": self._fetch_synthetic,
+            "yfinance": self._fetch_yfinance,
+            "csv": self._fetch_csv,
         }
     
     def fetch(
         self,
         symbol: str,
-        source: str = \"synthetic\",
+        source: str = "synthetic",
         start: Optional[str] = None,
         end: Optional[str] = None,
-        interval: str = \"1d\",
+        interval: str = "1d",
         **kwargs,
     ) -> MarketData:
-        \"\"\"Fetch market data from specified source.\"\"\"
+        """Fetch market data from specified source."""
         if source not in self._providers:
-            raise ValueError(f\"Unknown source: {source}\")
+            raise ValueError(f"Unknown source: {source}")
         
-        cache_key = f\"{symbol}_{source}_{start}_{end}\"
+        cache_key = f"{symbol}_{source}_{start}_{end}"
         if cache_key in self._cache:
             return self._cache[cache_key]
         
@@ -72,15 +72,15 @@ class MarketDataProvider:
         interval: str,
         **kwargs,
     ) -> pd.DataFrame:
-        \"\"\"Generate synthetic market data.\"\"\"
+        """Generate synthetic market data."""
         from src.data_loader import generate_synthetic_ohlcv
         
         return generate_synthetic_ohlcv(
-            start=start or \"2020-01-01\",
-            periods=kwargs.get(\"periods\", 1000),
-            seed=kwargs.get(\"seed\", 42),
-            volatility=kwargs.get(\"volatility\", 0.02),
-            drift=kwargs.get(\"drift\", 0.0002),
+            start=start or "2020-01-01",
+            periods=kwargs.get("periods", 1000),
+            seed=kwargs.get("seed", 42),
+            volatility=kwargs.get("volatility", 0.02),
+            drift=kwargs.get("drift", 0.0002),
         )
     
     def _fetch_yfinance(
@@ -91,12 +91,12 @@ class MarketDataProvider:
         interval: str,
         **kwargs,
     ) -> pd.DataFrame:
-        \"\"\"Fetch from Yahoo Finance.\"\"\"
+        """Fetch from Yahoo Finance."""
         from src.data_loader import fetch_yfinance_ohlcv
         
         return fetch_yfinance_ohlcv(
             symbol,
-            start=start or \"2020-01-01\",
+            start=start or "2020-01-01",
             end=end,
             interval=interval,
         )
@@ -109,27 +109,27 @@ class MarketDataProvider:
         interval: str,
         **kwargs,
     ) -> pd.DataFrame:
-        \"\"\"Load from CSV.\"\"\"
+        """Load from CSV."""
         from src.data_loader import load_csv_bytes
         
-        if \"content\" not in kwargs:
-            raise ValueError(\"CSV source requires 'content' parameter\")
+        if "content" not in kwargs:
+            raise ValueError("CSV source requires 'content' parameter")
         
-        return load_csv_bytes(kwargs[\"content\"])
+        return load_csv_bytes(kwargs["content"])
     
     def get_latest_prices(self, symbols: list[str]) -> dict[str, float]:
-        \"\"\"Get latest prices for multiple symbols.\"\"\"
+        """Get latest prices for multiple symbols."""
         prices = {}
         for symbol in symbols:
             try:
                 data = self.fetch(symbol)
                 latest = data.latest
-                if \"close\" in latest:
-                    prices[symbol] = float(latest[\"close\"])
+                if "close" in latest:
+                    prices[symbol] = float(latest["close"])
             except Exception:
                 prices[symbol] = 0.0
         return prices
     
     def clear_cache(self):
-        \"\"\"Clear the data cache.\"\"\"
+        """Clear the data cache."""
         self._cache.clear()

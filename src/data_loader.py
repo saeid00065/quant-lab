@@ -161,3 +161,42 @@ def fetch_yfinance_ohlcv(
     )
     return normalize_ohlcv(data, columns=columns)
 
+
+
+def resample_bars(df: pd.DataFrame, rule: str, *, sides: tuple[str, ...] = ("bid", "ask", "mid")) -> pd.DataFrame:
+    """Resample 1-minute bid/ask/mid bars to a higher timeframe without look-ahead.
+
+    - Uses only minutes that had ticks (filler bars are excluded, not forward-filled).
+    - Bars are left-closed and left-labelled: `date` is the bar start (UTC) and
+      `available_at` = start + rule is the earliest time the finished bar may be used.
+    - Intraday rules are anchored to the UTC grid; rule "1D" uses the trading day
+      that rolls at 17:00 New York (see data_quality.trading_day).
+    - Empty buckets (closures) produce no row.
+    """
+    from src.data_quality import trading_day
+
+    t = df[df["has_ticks"]].set_index("date") if "has_ticks" in df else df.set_index("date")
+    agg = {}
+    for s in sides:
+        agg |= {f"{s}_open": "first", f"{s}_high": "max", f"{s}_low": "min", f"{s}_close": "last"}
+    vol_cols = [c for c in ("bid_volume", "ask_volume") if c in t]
+    agg |= {c: "sum" for c in vol_cols}
+    agg = {k: v for k, v in agg.items() if k in t}
+
+    if rule.upper() == "1D":
+        keys = pd.Index(trading_day(t.index.to_series()).to_numpy(), name="trading_day")
+        g = t.groupby(keys)
+        out = g.agg(agg)
+        out["minutes"] = g.size()
+        out["date"] = g.apply(lambda x: x.index.min())
+        out["available_at"] = g.apply(lambda x: x.index.max()) + pd.Timedelta("1min")
+        return out.reset_index()
+
+    r = t.resample(rule, closed="left", label="left")
+    out = r.agg(agg)
+    out["minutes"] = r.size()
+    out = out[out["minutes"] > 0]
+    out.index.name = "date"
+    out = out.reset_index()
+    out["available_at"] = out["date"] + pd.Timedelta(rule)
+    return out

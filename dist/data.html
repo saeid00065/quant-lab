@@ -1,1 +1,199 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="pages.css"><title>Quant Lab — Data</title><style>.download-card{border:2px solid #145c72;background:#e3eff0;padding:24px;margin:24px 0}.cta{display:inline-block;background:#10212b;color:#fffefa;text-decoration:none;padding:11px 16px;font-family:'Trebuchet MS',Arial,sans-serif;margin:8px 0}.cta:hover{background:#145c72}.steps{margin:18px 0 0;padding-left:22px}.steps li{padding:5px 0}</style></head><body><div class="shell"><header><div class="brand">QUANT <span>LAB</span></div><div class="status"><span class="dot"></span>Data selection guide</div></header><nav><a href="index.html">Overview</a><a class="active" href="data.html">Data</a><a href="edge.html">EDGE</a><a href="equity.html">Equity</a><a href="risk.html">Risk</a><a href="trades.html">Trades</a><a href="method.html">Method</a></nav><h1>Use data that matches how you will trade.</h1><p class="lede">The best feed is from the same venue, instrument, and timeframe where you intend to execute.</p><section class="download-card"><h2>Get XAUUSD data now</h2><p>Start with 1-minute XAUUSD historical data from Dukascopy. The provider page lets you select the instrument, date range, timeframe, and download format.</p><a class="cta" href="https://www.dukascopy.com/api/data/get/historical-data-export" target="_blank" rel="noopener">Open Dukascopy data export</a><ol class="steps"><li>Select <b>XAUUSD</b>.</li><li>Set timeframe to <b>1 minute</b>.</li><li>Set the date range from <b>2019-01-01</b> to today.</li><li>Download as <b>CSV</b>.</li><li>Upload the CSV here in chat when finished.</li></ol></section><section class="panel"><h2>What Quant Lab accepts</h2><table><thead><tr><th>Input</th><th>Use it for</th><th>Verdict</th></tr></thead><tbody><tr><td><b>CSV OHLCV</b></td><td>Your exchange or broker export</td><td class="pos">Best current option</td></tr><tr><td><b>Yahoo Finance</b></td><td>Daily or swing-strategy prototypes</td><td>Useful, but not execution-grade</td></tr><tr><td><b>Synthetic OHLCV</b></td><td>Checking that the app works</td><td class="neg">Never validate an edge with it</td></tr></tbody></table></section><section class="panel"><h2>Choose data by strategy</h2><table><thead><tr><th>Strategy</th><th>Minimum data</th><th>Best choice</th></tr></thead><tbody><tr><td>4h / daily swing</td><td>OHLCV candles</td><td>Exchange or broker candles</td></tr><tr><td>5m–1h intraday</td><td>1-minute OHLCV + volume</td><td>Resample from the execution venue</td></tr><tr><td>Scalping</td><td>Trades + bid/ask quotes</td><td>Tick data from the execution venue</td></tr><tr><td>Order flow</td><td>Tick data + Level 2 book</td><td>Full order-book history</td></tr><tr><td>Perpetual futures</td><td>Price + funding + open interest</td><td>Venue-specific derivatives data</td></tr></tbody></table></section><section class="panel"><h2>Recommended starting point</h2><p>For most new strategies, download real <b>1-minute OHLCV</b> from the exact exchange or broker where you plan to trade. Store UTC timestamp, open, high, low, close, and volume; then model spread, commission, and slippage.</p><p>For crypto, begin with the exchange's public market-data API. For forex, use bid/ask data. For US equities, use a broker-grade feed with split/dividend adjustments.</p></section><section class="notice"><b>Do not mix venues.</b> A BTCUSDT strategy intended for Binance should be tested with Binance BTCUSDT data and Binance-like fees—not another exchange's data.</section><footer>Next step: download the XAUUSD CSV, then upload it here for validation and normalization.</footer></div><script src="nav.js"></script></body></html>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="pages.css"><title>Quant Lab — Data</title>
+<style>
+.split{display:grid;grid-template-columns:1fr 1fr;gap:24px}.split .panel{margin-top:0}
+code,pre{font:13px/1.5 Consolas,'Courier New',monospace}pre{background:#10212b;color:#e3eff0;padding:14px 16px;overflow-x:auto;margin:10px 0}
+.st{font:700 11px 'Trebuchet MS',Arial,sans-serif;padding:3px 7px;letter-spacing:.4px;white-space:nowrap}.st.pass{background:#dcefe5;color:#1f805e}.st.warn{background:#f8ead2;color:#8a5a12}.st.fail{background:#f6dcd5;color:#b34c38}.st.info{background:var(--sky);color:var(--blue)}
+.scroll{max-height:420px;overflow:auto;border:1px solid #dde4e1}.scroll table th{position:sticky;top:0;background:#fffefa}
+.chart{width:100%;height:auto;display:block}.chart text{font:11px 'Trebuchet MS',Arial,sans-serif;fill:#60737a}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font:12px 'Trebuchet MS',Arial,sans-serif;color:var(--muted);margin-top:8px}.legend i{display:inline-block;width:12px;height:10px;margin-right:5px;vertical-align:middle}
+details summary{cursor:pointer;font:700 15px 'Trebuchet MS',Arial,sans-serif;padding:4px 0}
+.kv td:first-child{color:var(--muted);width:30%;font:13px 'Trebuchet MS',Arial,sans-serif}
+.warnbox{background:#f8ead2;border:1px solid #e3c48f;padding:14px 16px;color:#6d4810;margin-top:24px}
+.metric strong.small{font-size:20px}
+@media(max-width:700px){.panel{overflow-x:auto}.panel>table{min-width:520px}.split{grid-template-columns:1fr}.scroll{max-height:360px}td,th{padding:8px 5px}}
+</style></head><body><div class="shell">
+<header><div class="brand">QUANT <span>LAB</span></div><div class="status" id="status"><span class="dot"></span>Data</div></header>
+<nav></nav>
+<h1>XAUUSD data: where it comes from and how to check it.</h1>
+<p class="lede">Every number below comes from the generated quality report. Raw files are kept unchanged. Every correction is logged with a row count, and anything that fails a check is shown here, not hidden.</p>
+
+<div id="missing" class="warnbox" hidden><b>No report yet.</b> Double-click <code>Download Data.cmd</code> (see <i>How to download</i>), then reload this page.</div>
+
+<section class="metric-grid" id="kpis"></section>
+
+<section class="panel"><h2>Where the data comes from</h2>
+<p class="sub">XAUUSD is spot gold traded over the counter. There is no single exchange, so every feed is one dealer's view of the price. Pick the feed that fits the job.</p>
+<table><thead><tr><th>Source</th><th>What you get</th><th>Use it for</th><th>Verdict</th></tr></thead><tbody>
+<tr><td><b>Dukascopy datafeed</b><br><span class="tag">in use</span></td><td>Free 1-minute <b>bid and ask</b> candles since 2003, plus tick data. UTC timestamps.</td><td>Intraday backtests with a measured (not assumed) spread</td><td class="pos">Main research source</td></tr>
+<tr><td><b>Your broker (MT5 export)</b></td><td>The broker's own M1 bars, usually bid only, timestamps in server time (often UTC+2/+3)</td><td>Checking results on the feed you will actually trade</td><td class="pos">Required before going live</td></tr>
+<tr><td><b>Dukascopy ticks</b></td><td>Every bid/ask quote change (very large files)</td><td>Deciding whether the stop or the target was hit first inside a 1-minute bar; scalping</td><td>Add when a strategy needs it</td></tr>
+<tr><td><b>TradingView</b> (connected here)</td><td>Live chart, quotes, and a limited window of recent bars</td><td>Live monitoring, visual checks, Pine prototypes</td><td>Not a backtest archive</td></tr>
+<tr><td><b>Yahoo Finance</b></td><td>GC=F futures (not spot), daily bars; intraday covers only recent days</td><td>Rough daily sanity checks</td><td class="neg">Not for intraday gold</td></tr>
+<tr><td><b>Synthetic</b></td><td>Random-walk bars</td><td>Testing the code</td><td class="neg">Never evidence of an edge</td></tr>
+</tbody></table>
+<p class="sub" style="margin-top:12px"><b>Timeframes:</b> we download only 1-minute bars and build 5m, 15m, 1h, 4h and daily bars from them, so every timeframe agrees with the others. <b>Live data</b> for paper trading comes from TradingView or your broker's MT5 terminal, not from this archive.</p>
+</section>
+
+<section class="panel"><h2>How to download</h2>
+<p class="sub"><b>Easiest:</b> double-click <code>Download Data.cmd</code> in the project folder. No questions: it downloads XAUUSD bid and ask from 2019 to yesterday, does everything below, retries by itself if Dukascopy blocks it, and opens this page when finished.</p>
+<ol class="checklist">
+<li><b>Download:</b> fetches BID and ASK files, one per day. Days already downloaded are skipped, so if it stops (or Dukascopy blocks it), just run it again.</li>
+<li><b>Combine:</b> joins BID and ASK on the same UTC minute, sorts by time, and adds mid price and spread.</li>
+<li><b>Check:</b> runs every quality check on this page. Nothing is deleted or filled silently.</li>
+<li><b>Export:</b> writes clean files for every timeframe, optional yearly CSVs, and this page's report.</li>
+</ol>
+<p class="sub">Same thing from a terminal. Dukascopy blocks fast downloads, so files are fetched one at a time; 2019 to today takes roughly 1–2 hours.</p>
+<pre>py -3 -u scripts/get_data.py --start 2019-01-01 --csv
+py -3 -u scripts/get_data.py --skip-download
+py -3 -m pytest tests -q</pre>
+<table class="kv"><tbody>
+<tr><td>Raw files (never edited)</td><td><code>data/raw/dukascopy/XAUUSD/{BID,ASK}/YYYY/YYYY-MM-DD.bi5</code> (one file per UTC day per side)</td></tr>
+<tr><td>Clean 1-minute bars</td><td><code>data/processed/XAUUSD_1m.parquet</code>: bid, ask and mid OHLC, tick volume, spread, and a <code>has_ticks</code> flag</td></tr>
+<tr><td>Higher timeframes</td><td><code>data/processed/XAUUSD_{5m,15m,1h,4h,1D}.parquet</code>, each with <code>available_at</code> (when the bar is complete)</td></tr>
+<tr><td>CSV (optional)</td><td><code>data/processed/csv/XAUUSD_1m_YYYY.csv</code>, one file per year: time (UTC bar start), bid OHLC, ask OHLC, volumes, spread. Only minutes that had ticks</td></tr>
+<tr><td>Full report</td><td><code>results/data_qc/XAUUSD_qc.json</code> (includes the SHA-256 hash of every raw file)</td></tr>
+<tr><td>Manual alternative</td><td><a href="https://www.dukascopy.com/swiss/english/marketwatch/historical/" target="_blank" rel="noopener">Dukascopy historical data page</a>: XAUUSD, 1 minute, bid <i>and</i> ask, UTC, CSV</td></tr>
+</tbody></table>
+</section>
+
+<section class="panel"><h2>Dataset specification</h2><table class="kv"><tbody id="spec"></tbody></table></section>
+
+<section class="panel"><h2>Price history (daily mid close)</h2><p class="sub">Shaded bands are the proposed research / validation / final-test periods.</p><div id="chart"></div><div class="legend" id="chartLegend"></div></section>
+
+<section class="panel"><h2>Quality checks</h2><p class="sub">Each row shows what we expected, what we measured, and the result. <span class="st warn">WARN</span> means it needs a look but does not block use. <span class="st fail">FAIL</span> blocks backtesting until it is resolved.</p>
+<table><thead><tr><th>Check</th><th>Expected</th><th>Measured</th><th>Status</th></tr></thead><tbody id="checks"></tbody></table></section>
+
+<div class="split">
+<section class="panel"><h2>Spread by session</h2><p class="sub">ask − bid at bar close, USD per ounce, minutes with ticks only.</p><table><thead><tr><th>Session</th><th>Median</th><th>p95</th><th>p99</th><th>Max</th></tr></thead><tbody id="spread"></tbody></table>
+<p class="sub" style="margin-top:12px">Median spread by year</p><table><tbody id="spreadYear"></tbody></table></section>
+<section class="panel"><h2>Timeframes built</h2><p class="sub">Bars start on the bar's open time. A bar can only be used at <code>available_at</code> (when it closes). Daily bars roll at 17:00 New York time.</p><table><thead><tr><th>Timeframe</th><th>Bars</th></tr></thead><tbody id="tfs"></tbody></table></section>
+</div>
+
+<section class="panel"><h2>Gaps and the trading calendar</h2><p class="sub" id="calSub"></p>
+<div class="split" style="margin-top:12px">
+<div><b>Longest unexpected gaps</b> (no ticks while the market should be open)<div class="scroll" style="max-height:300px"><table><thead><tr><th>Start (UTC)</th><th>Minutes</th></tr></thead><tbody id="gaps"></tbody></table></div></div>
+<div><b>Low-activity days</b> (holidays, under 50% of open minutes have ticks)<div class="scroll" style="max-height:300px"><table><thead><tr><th>Trading day</th><th>Coverage</th></tr></thead><tbody id="lowdays"></tbody></table></div></div>
+</div></section>
+
+<section class="panel"><h2>Price jumps</h2><p class="sub" id="outSub"></p><div class="scroll" style="max-height:320px"><table><thead><tr><th>Time (UTC)</th><th>Move</th><th>Size (× typical)</th><th>Minutes since previous tick bar</th></tr></thead><tbody id="outliers"></tbody></table></div></section>
+
+<section class="panel"><details><summary>Monthly coverage</summary><p class="sub">Share of scheduled open minutes that have ticks. London = 08:00–17:00 London time, New York = 08:00–17:00 New York time, both adjusted for daylight saving.</p>
+<div class="scroll"><table><thead><tr><th>Month</th><th>Open min</th><th>Coverage</th><th>London</th><th>New York</th><th>Median spread</th><th>Close</th></tr></thead><tbody id="monthly"></tbody></table></div></details></section>
+
+<section class="panel"><h2>Corrections log</h2><p class="sub">Every change from raw files to the clean dataset.</p><table><thead><tr><th>Step</th><th>Rows</th><th>Effect</th></tr></thead><tbody id="corr"></tbody></table></section>
+
+<section class="panel"><h2>Time split</h2><p class="sub" id="splitSub"></p><table><thead><tr><th>Segment</th><th>From</th><th>To</th><th>Minutes with ticks</th></tr></thead><tbody id="split"></tbody></table></section>
+
+<section class="panel"><h2>Reproduce</h2><table class="kv"><tbody id="repro"></tbody></table></section>
+
+<section class="panel"><h2>Known limits</h2><ul class="checklist">
+<li>Dukascopy is one dealer. Your broker's prices and especially its spreads will differ, so re-run the key results on broker data before going live.</li>
+<li>Volume is Dukascopy's own tick count, not total gold market volume. Treat volume-based signals with caution.</li>
+<li>Mid high and low are averages of the bid and ask highs and lows. A long trade's stop is hit by the <b>bid</b> and a short trade's stop by the <b>ask</b>, so the backtest must use the right side, not the mid.</li>
+<li>1-minute bars can't show whether the high or the low came first. If a stop and a target are both inside one bar, the backtest needs a stated rule (or tick data).</li>
+<li>Price jumps are reported, never removed. Most are real (news releases, Sunday opens).</li>
+</ul></section>
+
+<footer id="foot">Research only.</footer>
+</div>
+<script src="nav.js"></script>
+<script src="data_report.js"></script>
+<script>
+(function(){
+const R = window.DATA_REPORT;
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "—").replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+const n = (x, d=0) => x == null || Number.isNaN(x) ? "—" : Number(x).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const pct = (x, d=2) => x == null ? "—" : (x*100).toFixed(d) + "%";
+const st = s => `<span class="st ${s}">${s.toUpperCase()}</span>`;
+const rows = (id, arr) => { $(id).innerHTML = arr.join("") || `<tr><td colspan="9" class="sub">None</td></tr>`; };
+if (!R) { $("missing").hidden = false; return; }
+
+const q = R.qc, I = q.integrity, V = q.values, C = q.calendar, S = q.spread, O = q.outliers;
+$("status").innerHTML = `<span class="dot"></span>Report ${esc(R.generated_at.slice(0,16).replace("T"," "))} UTC · data hash ${esc(R.reproduce.dataset_sha256.slice(0,12))}`;
+
+const tick = R.timeframes["1m_with_ticks"];
+$("kpis").innerHTML = [
+  ["Range", `${esc(I.first?.slice(0,10))} → ${esc(I.last?.slice(0,10))}`, "small"],
+  ["1-min bars with ticks", n(tick), ""],
+  ["Coverage of open hours", pct(C.coverage_open_hours,1), C.coverage_open_hours > .97 ? "pos" : "neg"],
+  ["Median spread", "$" + n(S.all.median, 3), ""],
+].map(([k,v,c]) => `<div class="metric"><small>${k}</small><strong class="${c}">${v}</strong></div>`).join("");
+
+rows("spec", Object.entries(R.spec).map(([k,v]) => `<tr><td>${esc(k.replace(/_/g," "))}</td><td>${esc(Array.isArray(v) ? v.join(" → ") : v)}</td></tr>`));
+
+// ---- checks
+const sides = ["bid","ask","mid"], sum = f => sides.reduce((a,s)=>a+(V.by_side[s][f]||0),0);
+const F = R.files, weekdayHoles = [...new Set([...F.BID.missing_or_empty_weekdays, ...F.ASK.missing_or_empty_weekdays])];
+const closedPct = C.ticks_in_scheduled_closure / Math.max(C.scheduled_closed_minutes,1);
+const ohlcBad = sum("high_below_low") + sum("open_outside_range") + sum("close_outside_range");
+const bigGaps = C.unexpected_gaps_top.filter(g => g.minutes >= 60).length;
+const unexplained = O.flagged - O.flagged_after_gap;
+const checks = [
+  ["Raw files present", "every day, both sides", `BID ${F.BID.ok}/${F.BID.files}, ASK ${F.ASK.ok}/${F.ASK.files}; missing ${F.BID.missing + F.ASK.missing}`, F.BID.missing + F.ASK.missing ? "fail" : "pass"],
+  ["Weekday files empty or missing", "0 (except market holidays)", weekdayHoles.length ? weekdayHoles.slice(0,8).join(", ") + (weekdayHoles.length > 8 ? ` … (${weekdayHoles.length})` : "") : "0", weekdayHoles.length ? "warn" : "pass"],
+  ["Timestamps unique", "0 duplicates", n(I.duplicate_timestamps), I.duplicate_timestamps ? "fail" : "pass"],
+  ["Timestamps in order", "always increasing", I.monotonic_increasing && !I.non_positive_steps ? "yes" : `no (${I.non_positive_steps})`, I.monotonic_increasing && !I.non_positive_steps ? "pass" : "fail"],
+  ["Timestamps on the minute", "0 off the 1-min grid", n(I.off_grid_timestamps), I.off_grid_timestamps ? "fail" : "pass"],
+  ["Minutes missing from grid", "0 (Dukascopy writes 1440 per day)", n(I.missing_grid_minutes), I.missing_grid_minutes ? "warn" : "pass"],
+  ["Empty or infinite prices", "0", `${n(sum("nan"))} empty, ${n(sum("inf"))} infinite`, sum("nan")+sum("inf") ? "fail" : "pass"],
+  ["Zero or negative prices", "0", n(sum("non_positive")), sum("non_positive") ? "fail" : "pass"],
+  ["OHLC consistent", "low ≤ open, close ≤ high", n(ohlcBad) + " violations", ohlcBad ? "fail" : "pass"],
+  ["Bid and ask both present", "0 rows with one side", `bid only ${V.side_missing.bid_only}, ask only ${V.side_missing.ask_only}`, V.side_missing.bid_only + V.side_missing.ask_only ? "warn" : "pass"],
+  ["Ask above bid", "0 crossed quotes", `close ${n(V.crossed_close)}, any field ${n(V.crossed_any)}`, V.crossed_close ? "warn" : "pass"],
+  ["Negative volume", "0", n(V.by_side.bid.volume_negative + V.by_side.ask.volume_negative), V.by_side.bid.volume_negative + V.by_side.ask.volume_negative ? "fail" : "pass"],
+  ["Filler bars (no ticks)", "flagged, kept, not traded", n(q.filler_bars), "info"],
+  ["Calendar matches data", "≈0 ticks when market is closed", `${n(C.ticks_in_scheduled_closure)} of ${n(C.scheduled_closed_minutes)} closed minutes (${pct(closedPct,2)})`, closedPct < .005 ? "pass" : "warn"],
+  ["Unexpected gaps ≥ 5 min", "few, short", `${n(C.unexpected_gaps_count)} gaps, ${n(C.unexpected_gap_minutes)} min; ${bigGaps} of the top list are ≥ 60 min`, bigGaps ? "warn" : "pass"],
+  ["Price jumps", "explained by news or weekend gaps", `${n(O.flagged)} flagged, ${n(O.flagged_after_gap)} after a gap`, unexplained > 25 ? "warn" : "info"],
+];
+rows("checks", checks.map(([a,b,c,d]) => `<tr><td>${a}</td><td class="sub">${b}</td><td>${esc(c)}</td><td>${st(d)}</td></tr>`));
+
+// ---- spread
+const label = {all:"All minutes", asia:"Asia (09–15 Tokyo)", london:"London (08–17)", new_york:"New York (08–17)"};
+rows("spread", ["all","asia","london","new_york"].map(k => `<tr><td>${label[k]}</td><td>$${n(S[k].median,3)}</td><td>$${n(S[k].p95,3)}</td><td>$${n(S[k].p99,3)}</td><td>$${n(S[k].max,2)}</td></tr>`));
+rows("spreadYear", Object.entries(S.median_by_year).map(([y,v]) => `<tr><td>${y}</td><td>$${n(v,3)}</td></tr>`));
+rows("tfs", Object.entries(R.timeframes).map(([k,v]) => `<tr><td>${k.replace("_"," ")}</td><td>${n(v)}</td></tr>`));
+
+// ---- calendar
+$("calSub").textContent = `Schedule assumed: ${C.schedule}. ${n(C.trading_days)} trading days. ${n(C.quiet_minutes_short)} short quiet minutes (1–4 min with no ticks) are normal in slow hours and are not counted as gaps.`;
+rows("gaps", C.unexpected_gaps_top.map(g => `<tr><td>${esc(g.start.slice(0,16).replace("T"," "))}</td><td>${n(g.minutes)}</td></tr>`));
+rows("lowdays", C.low_activity_days.map(d => `<tr><td>${esc(d.day)}</td><td>${pct(d.coverage,1)}</td></tr>`));
+
+// ---- outliers
+$("outSub").textContent = `1-minute mid-price moves larger than ${O.threshold_sigma}× the typical move (median absolute move over the last ${O.window_bars} bars). Largest single-bar range: ${O.largest_bar_range_pct}% at ${O.largest_bar_range_at?.slice(0,16).replace("T"," ")} UTC. Flagged, not removed.`;
+rows("outliers", O.top.map(o => `<tr><td>${esc(o.date.slice(0,16).replace("T"," "))}</td><td class="${o.ret_pct>0?"pos":"neg"}">${o.ret_pct>0?"+":""}${o.ret_pct}%</td><td>${o.z}</td><td>${o.gap_minutes}</td></tr>`));
+
+// ---- monthly
+rows("monthly", q.monthly.map(m => `<tr><td>${m.month}</td><td>${n(m.open_minutes)}</td><td>${pct(m.coverage,1)}</td><td>${pct(m.london_cov,1)}</td><td>${pct(m.ny_cov,1)}</td><td>$${n(m.spread_median,3)}</td><td>${n(m.close_last,2)}</td></tr>`));
+
+rows("corr", R.corrections.map(c => `<tr><td>${esc(c.step)}</td><td>${n(c.rows)}</td><td>${esc(c.effect)}</td></tr>`));
+$("splitSub").innerHTML = `<b>Status: ${esc(R.split.status)}.</b> Fix this split before choosing any parameters. The final-test period is not used until a setup is frozen.`;
+rows("split", R.split.segments.map(s => `<tr><td>${esc(s.name.replace("_"," "))}</td><td>${s.start}</td><td>${s.end ?? "latest"}</td><td>${n(s.tick_minutes)}</td></tr>`));
+const rp = R.reproduce;
+rows("repro", [
+  ["Dataset SHA-256", `<code>${esc(rp.dataset_sha256)}</code>`],
+  ["Commands", rp.commands.map(c => `<code>${esc(c)}</code>`).join("<br>")],
+  ["Versions", `Python ${esc(rp.python)}, pandas ${esc(rp.pandas)}, numpy ${esc(rp.numpy)}`],
+  ["Git commit", `<code>${esc(rp.git_commit)}</code>` + (rp.git_dirty_files.length ? ` + ${rp.git_dirty_files.length} uncommitted changes` : "")],
+  ["Outputs", rp.outputs.map(o => `<code>${esc(o)}</code>`).join("<br>")],
+].map(([k,v]) => `<tr><td>${k}</td><td>${v}</td></tr>`));
+
+// ---- chart
+const pts = R.daily_close; if (pts.length > 1) {
+  const W=900,H=300,L=52,Rp=10,T=10,B=26;
+  const t = pts.map(p => Date.parse(p[0])), y = pts.map(p => p[1]);
+  const t0=Math.min(...t), t1=Math.max(...t), y0=Math.min(...y)*.97, y1=Math.max(...y)*1.02;
+  const X = v => L + (v-t0)/(t1-t0)*(W-L-Rp), Y = v => T + (1-(v-y0)/(y1-y0))*(H-T-B);
+  const colors = {research:"#e3eff0", validation:"#f8ead2", final_test:"#f6dcd5"};
+  let svg = `<svg class="chart" viewBox="0 0 ${W} ${H}" role="img" aria-label="XAUUSD daily close">`;
+  R.split.segments.forEach(s => { const a=Math.max(t0,Date.parse(s.start)), b=Math.min(t1,s.end?Date.parse(s.end):t1); if(b>a) svg += `<rect x="${X(a)}" y="${T}" width="${X(b)-X(a)}" height="${H-T-B}" fill="${colors[s.name]}"/>`; });
+  for (let k=0;k<=4;k++){ const v=y0+(y1-y0)*k/4; svg += `<line x1="${L}" x2="${W-Rp}" y1="${Y(v)}" y2="${Y(v)}" stroke="#dde4e1"/><text x="${L-6}" y="${Y(v)+4}" text-anchor="end">${Math.round(v)}</text>`; }
+  for (let yr=new Date(t0).getUTCFullYear()+1; yr<=new Date(t1).getUTCFullYear(); yr++){ const x=X(Date.UTC(yr,0,1)); svg += `<text x="${x}" y="${H-8}" text-anchor="middle">${yr}</text><line x1="${x}" x2="${x}" y1="${H-B}" y2="${H-B+4}" stroke="#60737a"/>`; }
+  svg += `<polyline fill="none" stroke="#145c72" stroke-width="1.6" points="${pts.map((p,i)=>X(t[i]).toFixed(1)+","+Y(y[i]).toFixed(1)).join(" ")}"/></svg>`;
+  $("chart").innerHTML = svg;
+  $("chartLegend").innerHTML = R.split.segments.map(s => `<span><i style="background:${colors[s.name]}"></i>${s.name.replace("_"," ")}</span>`).join("") + `<span><i style="background:#145c72;height:3px"></i>mid close (USD/oz)</span>`;
+}
+$("foot").textContent = "Research only. Data checks show the data is usable, not that any strategy has an edge.";
+})();
+</script></body></html>
