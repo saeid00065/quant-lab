@@ -17,6 +17,12 @@ code { font:13px Consolas,'Courier New',monospace; background:#eef2f0; padding:1
 <dl class="meta"><dt>Rules</dt><dd><code>AGENTS.md</code></dd><dt>Works in</dt><dd>Codex and Claude Code (read automatically)</dd><dt>Will not</dt><dd>Run a market backtest while rules, data or costs are ambiguous — it asks first.</dd></dl>
 <div class="call"><code>Follow AGENTS.md and prepare a backtest of …</code><button class="copy">Copy</button></div></section>
 
+<section class="panel"><h2>Edge agent <span class="tag rw">edits code</span></h2>
+<p class="sub">Takes one trading idea from hypothesis to decision: exact rules, null benchmark, sample size, cost stress, stability and out-of-sample test. Records the result on the EDGE page.</p>
+<dl class="meta"><dt>Definition</dt><dd><code>.claude/agents/edge.md</code></dd><dt>Works in</dt><dd>Claude Code (subagent) and Codex (via AGENTS.md)</dd><dt>Will not</dt><dd>Trade live, or call an edge validated until every required test passes.</dd></dl>
+<div class="call"><code>Use the edge agent to test this idea: …</code><button class="copy">Copy</button></div>
+<div class="call"><code dir="rtl">edge را بررسی کن: این ایده را تست کن …</code><button class="copy">Copy</button></div></section>
+
 <section class="panel"><h2>Supervisor <span class="tag ro">read-only</span></h2>
 <p class="sub">Reviews what other agents did: checks claims against the diff and real test runs, applies the AGENTS.md rules, returns a verdict.</p>
 <dl class="meta"><dt>Definition</dt><dd><code>.claude/agents/supervisor.md</code></dd><dt>Works in</dt><dd>Claude Code (subagent) and Codex (via AGENTS.md)</dd><dt>Will not</dt><dd>Edit, commit or fix anything.</dd></dl>
