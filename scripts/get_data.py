@@ -18,6 +18,7 @@ Steps:
 from __future__ import annotations
 
 import argparse
+import os
 import hashlib
 import json
 import platform
@@ -35,7 +36,7 @@ import pandas as pd  # noqa: E402
 
 from src.data_loader import resample_bars  # noqa: E402
 from src.data_quality import daily_closes, run_all  # noqa: E402
-from src.modules.dukascopy import combine_bid_ask, download, load_side  # noqa: E402
+from src.modules.dukascopy import DukascopyBlocked, combine_bid_ask, download, load_side  # noqa: E402
 
 # Only instruments whose price scale and trading calendar have been checked.
 INSTRUMENTS = {
@@ -188,14 +189,21 @@ def main() -> None:
     ap.add_argument("--csv", action="store_true", help="also write yearly CSV files")
     ap.add_argument("--rounds", type=int, default=6, help="download rounds; failed days are retried after a wait")
     ap.add_argument("--wait", type=int, default=300, help="seconds to wait between rounds when Dukascopy throttles")
+    ap.add_argument("--proxy", help="proxy for the datafeed, e.g. socks5h://127.0.0.1:10808 (default: proxy.txt / QUANTLAB_PROXY)")
     a = ap.parse_args()
+    if a.proxy:
+        os.environ["QUANTLAB_PROXY"] = a.proxy
     start, end = date.fromisoformat(a.start), date.fromisoformat(a.end)
 
     if not a.skip_download:
         print(f"[1/4] downloading {a.symbol} BID + ASK {start} .. {end}", flush=True)
         print("      You can close this window any time; running it again continues where it stopped.", flush=True)
         for rnd in range(1, a.rounds + 1):
-            stats = download(a.symbol, start, end, RAW, log=print)
+            try:
+                stats = download(a.symbol, start, end, RAW, log=print)
+            except DukascopyBlocked as exc:
+                print(f"      Dukascopy is blocking this connection ({str(exc).split(' after ')[0]}).", flush=True)
+                stats = {"downloaded": 0, "cached": 0, "failed": ["blocked"]}
             print(f"      round {rnd}: {stats['downloaded']} downloaded, {stats['cached']} already had, "
                   f"{len(stats['failed'])} failed", flush=True)
             if not stats["failed"]:

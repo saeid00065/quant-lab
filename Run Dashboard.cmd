@@ -5,7 +5,7 @@ rem Always run from this project's folder, even when double-clicked elsewhere.
 cd /d "%~dp0"
 
 echo Starting Quant Lab dashboard...
-py -3 -m http.server 8502 --directory dist
+py -3 scripts\dashboard_server.py 8502 --open
 
 if errorlevel 1 (
     echo.

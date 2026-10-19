@@ -17,9 +17,9 @@ from __future__ import annotations
 
 import hashlib
 import lzma
+import os
 import struct
 import time
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import dataclass
 from datetime import date, timedelta
 from pathlib import Path
@@ -30,10 +30,49 @@ import pandas as pd
 
 BASE_URL = "https://datafeed.dukascopy.com/datafeed"
 USER_AGENT = "Mozilla/5.0 (quant-lab research downloader)"
+# Optional proxy for networks that block the datafeed host. First non-empty line of
+# proxy.txt in the project root, or the QUANTLAB_PROXY env var (env wins), e.g.
+# socks5h://127.0.0.1:10808 or http://127.0.0.1:10809. Without one, requests uses the
+# usual HTTPS_PROXY env var / Windows system proxy.
+PROXY_FILE = Path(__file__).resolve().parents[2] / "proxy.txt"
+
+
+def proxy_url() -> str | None:
+    url = os.environ.get("QUANTLAB_PROXY", "").strip()
+    if not url and PROXY_FILE.exists():
+        lines = [ln.strip() for ln in PROXY_FILE.read_text(encoding="utf-8").splitlines()]
+        url = next((ln for ln in lines if ln and not ln.startswith("#")), "")
+    return url or None
 RECORD = struct.Struct(">5if")
 
-# Price scale per instrument (prices stored as int * 1/scale).
-POINT_SCALE = {"XAUUSD": 1000, "XAGUSD": 1000, "EURUSD": 100000, "GBPUSD": 100000, "USDJPY": 1000}
+# Instruments offered for download: (label, price scale, plausible price range).
+# Prices are stored as int / scale. The range is a guard: if decoded prices fall outside it,
+# the scale is wrong and decoding stops instead of returning silently wrong prices.
+# XAUUSD scale verified against real files (2025-01: ~2623). Others follow Dukascopy's
+# point size and are protected by the range guard.
+INSTRUMENT_INFO = {
+    "XAUUSD": ("Gold spot", 1000, (200, 20000)),
+    "XAGUSD": ("Silver spot", 1000, (3, 500)),
+    "EURUSD": ("EUR/USD", 100000, (0.5, 2.5)),
+    "GBPUSD": ("GBP/USD", 100000, (0.7, 3)),
+    "AUDUSD": ("AUD/USD", 100000, (0.3, 1.5)),
+    "NZDUSD": ("NZD/USD", 100000, (0.3, 1.5)),
+    "USDCAD": ("USD/CAD", 100000, (0.8, 2)),
+    "USDCHF": ("USD/CHF", 100000, (0.5, 2)),
+    "USDJPY": ("USD/JPY", 1000, (50, 300)),
+    "EURJPY": ("EUR/JPY", 1000, (50, 300)),
+    "GBPJPY": ("GBP/JPY", 1000, (80, 350)),
+    "USATECHIDXUSD": ("Nasdaq 100 CFD", 1000, (1000, 100000)),
+    "USA500IDXUSD": ("S&P 500 CFD", 1000, (500, 30000)),
+    "USA30IDXUSD": ("Dow Jones 30 CFD", 1000, (5000, 150000)),
+}
+POINT_SCALE = {k: v[1] for k, v in INSTRUMENT_INFO.items()}
+
+
+def check_price_scale(symbol: str, df: pd.DataFrame) -> None:
+    lo, hi = INSTRUMENT_INFO[symbol][2]
+    if len(df) and not (lo <= df["close"].median() <= hi):
+        raise ValueError(f"{symbol}: decoded median price {df['close'].median():.5f} is outside {lo}..{hi}; price scale is wrong")
 
 SIDES = ("BID", "ASK")
 
@@ -80,34 +119,58 @@ def decode_candles(payload: bytes, day: date, scale: int) -> pd.DataFrame:
     )
 
 
-def _fetch(url: str, retries: int = 8, pause: float = 0.0) -> bytes:
-    """GET one file. 404 -> b"" (no file for that day). 429/5xx -> back off and retry.
+class DukascopyBlocked(RuntimeError):
+    """Dukascopy refuses every request from this connection (HTTP 503/429 or no answer)."""
 
-    Dukascopy throttles bursts with 503/429, so the backoff starts long.
+
+class Stopped(RuntimeError):
+    """The caller asked to stop."""
+
+
+def _sleep(seconds: float, should_stop) -> None:
+    end = time.monotonic() + seconds
+    while time.monotonic() < end:
+        if should_stop and should_stop():
+            raise Stopped()
+        time.sleep(min(1.0, end - time.monotonic()))
+
+
+def _fetch(url: str, retries: int = 4, pause: float = 0.0, on_wait=None, should_stop=None) -> bytes:
+    """GET one file. 404 -> b"" (no file for that day). 429/5xx/no answer -> back off and retry.
+
+    `on_wait(reason, seconds)` is told about every wait so a UI can show it; `should_stop()`
+    is checked every second, so cancelling never waits for a long backoff.
     """
     import requests
 
+    proxy = proxy_url()
+    proxies = {"http": proxy, "https": proxy} if proxy else None
     delay = 5.0
+    reason = ""
     for attempt in range(retries):
+        if should_stop and should_stop():
+            raise Stopped()
         try:
-            r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=30)
-        except requests.RequestException:
-            if attempt == retries - 1:
-                raise
-            time.sleep(delay)
-            delay = min(delay * 2, 120.0)
-            continue
-        time.sleep(pause)
-        if r.status_code == 200:
+            r = requests.get(url, headers={"User-Agent": USER_AGENT}, timeout=(10, 30), proxies=proxies)
+            code = r.status_code
+        except requests.RequestException as exc:
+            code, reason = None, f"did not respond ({type(exc).__name__})"
+        _sleep(pause, should_stop)
+        if code == 200:
             return r.content
-        if r.status_code == 404:
+        if code == 404:
             return b""
-        if r.status_code in (429, 500, 502, 503, 504) and attempt < retries - 1:
-            time.sleep(delay)
-            delay = min(delay * 2, 120.0)
-            continue
-        r.raise_for_status()
-    raise RuntimeError(f"giving up on {url}")
+        if code is not None and code not in (429, 500, 502, 503, 504):
+            r.raise_for_status()
+        if code is not None:
+            reason = f"refused the request (HTTP {code})"
+        if attempt < retries - 1:
+            if on_wait:
+                on_wait(reason, delay)
+            _sleep(delay, should_stop)
+            delay = min(delay * 2, 60.0)
+    via = f"via proxy {proxy}" if proxy else "no proxy set"
+    raise DukascopyBlocked(f"{reason}, {via} after {retries} tries: {url}")
 
 
 def download(
@@ -117,12 +180,17 @@ def download(
     raw_dir: Path,
     *,
     sides: Iterable[str] = SIDES,
-    workers: int = 1,
     pause: float = 0.5,
     log=print,
+    progress=None,
+    on_wait=None,
+    should_stop=None,
+    give_up_after: int = 2,
 ) -> dict:
-    """Download missing day files into raw_dir. Existing files are left untouched.
+    """Download missing day files into raw_dir, one at a time. Existing files are left untouched.
 
+    If the first `give_up_after` files in a row all fail, Dukascopy is blocking this connection:
+    raise DukascopyBlocked at once instead of grinding through every day.
     Returns counts: {"downloaded", "cached", "empty", "failed": [..]}.
     """
     # Day by day, both sides together, so a partial download is still usable.
@@ -131,29 +199,32 @@ def download(
     stats = {"requested": len(jobs), "cached": len(jobs) - len(todo), "downloaded": 0, "empty": 0, "failed": []}
     log(f"      {len(jobs)} day files: {stats['cached']} already downloaded, {len(todo)} to go", flush=True)
 
-    def work(job: DayFile) -> tuple[DayFile, int]:
-        payload = _fetch(job.url, pause=pause)
-        p = job.path(raw_dir)
-        p.parent.mkdir(parents=True, exist_ok=True)
-        tmp = p.with_suffix(".part")
-        tmp.write_bytes(payload)
-        tmp.replace(p)
-        return job, len(payload)
-
     t0 = time.monotonic()
-    with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = [pool.submit(work, j) for j in todo]
-        for i, fut in enumerate(as_completed(futures), 1):
-            try:
-                job, size = fut.result()
-                stats["downloaded"] += 1
-                stats["empty"] += size == 0
-            except Exception as exc:  # recorded, not swallowed
-                stats["failed"].append(str(exc))
-            if i % 20 == 0 or i == len(todo):
-                eta = (time.monotonic() - t0) / i * (len(todo) - i) / 60
-                log(f"      {i / len(todo):6.1%}  {i}/{len(todo)} files  about {eta:.0f} min left"
-                    f"  failed {len(stats['failed'])}", flush=True)
+    streak = 0
+    for i, job in enumerate(todo, 1):
+        try:
+            payload = _fetch(job.url, pause=pause, on_wait=on_wait, should_stop=should_stop)
+            p = job.path(raw_dir)
+            p.parent.mkdir(parents=True, exist_ok=True)
+            tmp = p.with_suffix(".part")
+            tmp.write_bytes(payload)
+            tmp.replace(p)
+            stats["downloaded"] += 1
+            stats["empty"] += len(payload) == 0
+            streak = 0
+        except Stopped:
+            raise
+        except Exception as exc:  # recorded, not swallowed
+            stats["failed"].append(str(exc))
+            streak += 1
+            if streak >= give_up_after and stats["downloaded"] == 0:
+                raise DukascopyBlocked(str(exc)) from exc
+        if progress is not None:
+            progress(i, len(todo), len(stats["failed"]))
+        if i % 20 == 0 or i == len(todo):
+            eta = (time.monotonic() - t0) / i * (len(todo) - i) / 60
+            log(f"      {i / len(todo):6.1%}  {i}/{len(todo)} files  about {eta:.0f} min left"
+                f"  failed {len(stats['failed'])}", flush=True)
     return stats
 
 
@@ -175,6 +246,7 @@ def load_side(symbol: str, side: str, start: date, end: date, raw_dir: Path) -> 
         if len(df):
             frames.append(df)
     bars = pd.concat(frames, ignore_index=True) if frames else decode_candles(b"", start, scale)
+    check_price_scale(symbol, bars)
     return bars, manifest
 
 

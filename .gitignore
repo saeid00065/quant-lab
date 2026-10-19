@@ -6,3 +6,5 @@ results/
 .venv/
 .env
 
+
+proxy.txt

@@ -232,3 +232,112 @@ def test_get_data_build_end_to_end(tmp_path):
     assert csv.iloc[0]["bid_close"] == 2650.0 and csv.iloc[0]["ask_close"] == 2650.25
     m5 = pd.read_parquet(tmp_path / "proc/XAUUSD_5m.parquet")
     assert len(m5) == 2 and m5["minutes"].tolist() == [5, 5]
+
+
+# ---------- dashboard export ----------
+
+def _write_raw(raw, day, ticks_minutes, base=2650000):
+    for side, off in (("BID", 0), ("ASK", 300)):
+        recs = []
+        for m in range(1440):
+            live = m in ticks_minutes
+            p = base + (m * 10 if live else 0)
+            recs.append((m * 60, p + off, p + off, p + off - 50, p + off + 50, 1.0 if live else 0.0))
+        f = DayFile("XAUUSD", side, day).path(raw)
+        f.parent.mkdir(parents=True, exist_ok=True)
+        f.write_bytes(_bi5(recs))
+
+
+def test_export_bid_ask_one_file_sorted(tmp_path):
+    from src.data_export import build_export, write_export
+    raw = tmp_path / "raw"
+    _write_raw(raw, date(2025, 1, 9), range(600, 610))
+    _write_raw(raw, date(2025, 1, 8), range(600, 605))   # written second, must still come first
+    df, s = build_export("XAUUSD", date(2025, 1, 8), date(2025, 1, 9), "1m", "bid_ask", raw)
+    assert list(df.columns) == ["date", "bid_open", "bid_high", "bid_low", "bid_close", "ask_open", "ask_high",
+                                "ask_low", "ask_close", "spread_close", "bid_volume", "ask_volume"]
+    assert len(df) == 15 and df["date"].is_monotonic_increasing and s["duplicates"] == 0
+    assert s["filler_minutes_excluded"] == 2 * 1440 - 15
+    assert np.allclose(df["spread_close"], 0.3)
+    p = write_export(df, tmp_path / "out.csv")
+    first = p.read_text().splitlines()[1].split(",")
+    assert first[0] == "2025-01-08 10:00:00" and first[4] == "2656.0" and first[8] == "2656.3"
+
+
+def test_export_5m_and_mid(tmp_path):
+    from src.data_export import build_export
+    raw = tmp_path / "raw"
+    _write_raw(raw, date(2025, 1, 8), range(600, 610))
+    df, _ = build_export("XAUUSD", date(2025, 1, 8), date(2025, 1, 8), "5m", "mid", raw)
+    assert list(df.columns) == ["date", "mid_open", "mid_high", "mid_low", "mid_close", "bid_volume"]
+    assert len(df) == 2
+    # first 5m bar: minutes 600..604, bid close of 604 = 2650 + 6.04 ; mid = bid + 0.15
+    assert df.loc[0, "mid_close"] == pytest.approx(2656.04 + 0.15)
+
+
+def test_price_scale_guard(tmp_path):
+    from src.modules.dukascopy import load_side
+    raw = tmp_path / "raw"
+    _write_raw(raw, date(2025, 1, 8), range(600, 610), base=26500)  # 26.5 USD gold -> wrong scale
+    with pytest.raises(ValueError, match="price scale"):
+        load_side("XAUUSD", "BID", date(2025, 1, 8), date(2025, 1, 8), raw)
+
+
+def test_server_rejects_bad_requests():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("srv", "scripts/dashboard_server.py")
+    srv = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(srv)
+    ok = srv.parse_request({"symbol": "xauusd", "start": "2025-01-01", "end": "2025-01-31", "timeframe": "1h", "price": "bid_ask"})
+    assert ok["symbol"] == "XAUUSD"
+    for bad in ({"symbol": "../x"}, {"timeframe": "7m"}, {"price": "last"}, {"start": "2025-02-01"},
+                {"end": "2999-01-01"}, {"start": "2001-01-01"}):
+        req = {"symbol": "XAUUSD", "start": "2025-01-01", "end": "2025-01-31", "timeframe": "1h", "price": "bid_ask"} | bad
+        with pytest.raises(ValueError):
+            srv.parse_request(req)
+
+
+# ---------- import of Dukascopy website CSV exports ----------
+
+BID_CSV = b"""Gmt time,Open,High,Low,Close,Volume
+08.01.2025 10:01:00.000,2651.0,2652.0,2650.0,2651.5,3.1
+08.01.2025 10:00:00.000,2650.0,2651.0,2649.0,2650.5,2.0
+08.01.2025 10:02:00.000,2651.5,2651.5,2651.5,2651.5,0
+"""
+ASK_CSV = b"""Gmt time,Open,High,Low,Close,Volume
+08.01.2025 10:00:00.000,2650.3,2651.3,2649.3,2650.8,2.5
+08.01.2025 10:01:00.000,2651.3,2652.3,2650.3,2651.8,3.0
+08.01.2025 10:02:00.000,2651.8,2651.8,2651.8,2651.8,0
+"""
+
+
+def test_import_combines_and_sorts():
+    from src.data_import import combine_imports
+    df, rep = combine_imports([("XAUUSD_BID.csv", BID_CSV)], [("XAUUSD_ASK.csv", ASK_CSV)])
+    assert list(df["date"].dt.strftime("%H:%M")) == ["10:00", "10:01", "10:02"]
+    assert df["spread_close"].round(6).tolist() == [0.3, 0.3, 0.3]
+    assert df["has_ticks"].tolist() == [True, True, False]
+    assert rep["bar_size"] == "0 days 00:01:00" and rep["warnings"] == []
+
+
+def test_import_gmt_offset_converted_to_utc():
+    from src.data_import import parse_candles_csv
+    csv = b"Local time,Open,High,Low,Close,Volume\n08.01.2025 13:30:00.000 GMT+0330,1,2,0.5,1.5,1\n"
+    df, info = parse_candles_csv(csv, "x.csv")
+    assert df["date"].iat[0] == pd.Timestamp("2025-01-08 10:00", tz="UTC")
+    assert "converted" in info["time_note"]
+
+
+def test_import_warns_on_swapped_and_duplicates():
+    from src.data_import import combine_imports
+    df, rep = combine_imports([("XAUUSD_ASK.csv", ASK_CSV)], [("XAUUSD_BID.csv", BID_CSV), ("again_BID.csv", BID_CSV)])
+    assert rep["ASK"]["exact_duplicates_removed"] == 3
+    assert any("name says ASK" in w for w in rep["warnings"])
+    assert any("swapped" in w for w in rep["warnings"])
+
+
+def test_import_rejects_conflicting_duplicates():
+    from src.data_import import combine_imports
+    other = BID_CSV.replace(b"2650.5,2.0", b"2999.0,2.0")
+    with pytest.raises(ValueError, match="different prices"):
+        combine_imports([("a_BID.csv", BID_CSV), ("b_BID.csv", other)], [("ASK.csv", ASK_CSV)])

@@ -51,7 +51,7 @@ class DashboardLauncher(tk.Tk):
             return
         self.status.set("Starting dashboard…")
         self.process = subprocess.Popen(
-            [sys.executable, "-m", "http.server", "8502", "--directory", str(DASHBOARD_DIR)],
+            [sys.executable, str(PROJECT_DIR / "scripts" / "dashboard_server.py"), "8502"],
             cwd=PROJECT_DIR,
             stdout=subprocess.DEVNULL,
             stderr=subprocess.DEVNULL,
@@ -62,7 +62,7 @@ class DashboardLauncher(tk.Tk):
     def _wait_for_dashboard(self) -> None:
         for _ in range(15):
             try:
-                urllib.request.urlopen(DASHBOARD_URL, timeout=1)
+                urllib.request.urlopen(DASHBOARD_URL + "/api/instruments", timeout=1)
             except OSError:
                 time.sleep(1)
             else:

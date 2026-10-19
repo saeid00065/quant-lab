@@ -10,12 +10,52 @@ details summary{cursor:pointer;font:700 15px 'Trebuchet MS',Arial,sans-serif;pad
 .kv td:first-child{color:var(--muted);width:30%;font:13px 'Trebuchet MS',Arial,sans-serif}
 .warnbox{background:#f8ead2;border:1px solid #e3c48f;padding:14px 16px;color:#6d4810;margin-top:24px}
 .metric strong.small{font-size:20px}
+.dlgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr .8fr 1.2fr auto;gap:12px;align-items:end;margin-top:14px}
+.dlgrid label{display:flex;flex-direction:column;gap:4px;font:12px 'Trebuchet MS',Arial,sans-serif;color:var(--muted)}
+.dlgrid input,.dlgrid select{font:15px 'Trebuchet MS',Arial,sans-serif;padding:8px;border:1px solid var(--line);background:#fff;color:var(--ink);min-width:0}
+.dlgrid .cta{border:0;cursor:pointer;font-size:15px;margin:0}.dlgrid .cta:disabled{opacity:.5;cursor:wait}
+.cta{display:inline-block;background:#10212b;color:#fffefa;text-decoration:none;padding:10px 16px;font-family:'Trebuchet MS',Arial,sans-serif}.cta:hover{background:#145c72}
+.quick{margin-top:10px;font:12px 'Trebuchet MS',Arial,sans-serif;color:var(--muted)}.quick button{background:none;border:1px solid var(--line);padding:4px 9px;margin:4px 4px 0 0;cursor:pointer;font:12px 'Trebuchet MS',Arial,sans-serif;color:var(--blue)}
+.linkbtn{background:none;border:0;color:var(--coral);cursor:pointer;font:13px 'Trebuchet MS',Arial,sans-serif;text-decoration:underline}
+@media(max-width:900px){.dlgrid{grid-template-columns:1fr 1fr}.dlgrid .cta{grid-column:1/-1}}
 @media(max-width:700px){.panel{overflow-x:auto}.panel>table{min-width:520px}.split{grid-template-columns:1fr}.scroll{max-height:360px}td,th{padding:8px 5px}}
 </style></head><body><div class="shell">
 <header><div class="brand">QUANT <span>LAB</span></div><div class="status" id="status"><span class="dot"></span>Data</div></header>
 <nav></nav>
 <h1>XAUUSD data: where it comes from and how to check it.</h1>
 <p class="lede">Every number below comes from the generated quality report. Raw files are kept unchanged. Every correction is logged with a row count, and anything that fails a check is shown here, not hidden.</p>
+
+<section class="panel" id="dl"><h2>Download from Dukascopy</h2>
+<p class="sub">Choose a symbol, dates and timeframe. You get <b>one CSV with bid and ask side by side</b>, sorted by time (UTC, bar start). Days you already downloaded are reused, so only new days are fetched.</p>
+<form id="dlForm" class="dlgrid">
+<label>Symbol<select name="symbol" id="fSymbol"></select></label>
+<label>From<input type="date" name="start" id="fStart" required></label>
+<label>To<input type="date" name="end" id="fEnd" required></label>
+<label>Timeframe<select name="timeframe" id="fTf"></select></label>
+<label>Prices<select name="price" id="fPrice">
+<option value="bid_ask">Bid + Ask (one file)</option><option value="mid">Mid only</option><option value="bid">Bid only</option><option value="ask">Ask only</option></select></label>
+<button type="submit" class="cta" id="fGo">Download</button>
+</form>
+<div class="quick" id="quick">Quick range:
+<button type="button" data-r="30">Last 30 days</button><button type="button" data-r="365">Last year</button><button type="button" data-y="2025">2025</button><button type="button" data-r="ytd">This year</button><button type="button" data-from="2019-01-01">2019 → now</button></div>
+<div id="job" hidden><div class="bar" style="margin:16px 0 8px"><i id="jobBar" style="width:0"></i></div>
+<div id="jobMsg" class="sub"></div><div id="jobAct" style="margin-top:8px"></div></div>
+<div id="offline" class="warnbox" hidden>The download button needs the dashboard server. Close this page and open it with <b>Run Dashboard.cmd</b> (or Dashboard Launcher), then come back here.</div>
+<details style="margin-top:14px" id="impBox"><summary>Import from Dukascopy website (when automatic download is blocked)</summary>
+<ol class="checklist">
+<li>Open the <a href="https://www.dukascopy.com/swiss/english/marketwatch/historical/" target="_blank" rel="noopener">Dukascopy historical data page</a> in your browser (a free login may be required).</li>
+<li>Choose the instrument, <b>1 minute</b> (or the bar size you want), the dates, <b>GMT/UTC</b> time, and CSV. Download once with <b>Bid</b> and once with <b>Ask</b>. Several monthly files per side are fine.</li>
+<li>Drop the bid files and ask files below. Symbol, timeframe and prices are taken from the form above.</li>
+</ol>
+<div class="dlgrid" style="grid-template-columns:1fr 1fr auto">
+<label>BID file(s)<input type="file" id="impBid" accept=".csv,text/csv" multiple></label>
+<label>ASK file(s)<input type="file" id="impAsk" accept=".csv,text/csv" multiple></label>
+<button type="button" class="cta" id="impGo">Combine</button>
+</div>
+<div id="impMsg" class="sub" style="margin-top:10px"></div><div id="impAct"></div>
+</details>
+<details style="margin-top:14px"><summary>Previous downloads</summary><table><tbody id="exports"></tbody></table></details>
+</section>
 
 <div id="missing" class="warnbox" hidden><b>No report yet.</b> Double-click <code>Download Data.cmd</code> (see <i>How to download</i>), then reload this page.</div>
 
@@ -98,6 +138,107 @@ py -3 -m pytest tests -q</pre>
 </div>
 <script src="nav.js"></script>
 <script src="data_report.js"></script>
+<script>
+(function(){
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const iso = d => d.toISOString().slice(0,10);
+const api = (path, opt) => fetch(path, opt).then(async r => { const j = await r.json().catch(() => ({})); if (!r.ok) throw new Error(j.error || r.statusText); return j; });
+let latest = iso(new Date(Date.now() - 864e5)), timer = null;
+
+function setRange(a, b) { $("fStart").value = a; $("fEnd").value = b < latest ? b : latest; }
+function loadExports() {
+  api("/api/exports").then(list => {
+    $("exports").innerHTML = list.length ? list.map(f => `<tr><td><a href="/api/exports/${encodeURIComponent(f.file)}">${esc(f.file)}</a></td><td>${f.mb} MB</td></tr>`).join("") : `<tr><td class="sub">None yet</td></tr>`;
+  }).catch(() => {});
+}
+
+api("/api/instruments").then(cfg => {
+  latest = cfg.latest;
+  $("fSymbol").innerHTML = cfg.instruments.map(i => `<option value="${i.symbol}">${esc(i.label)} — ${i.symbol}</option>`).join("");
+  $("fTf").innerHTML = cfg.timeframes.map(t => `<option${t==="1m"?" selected":""}>${t}</option>`).join("");
+  $("fStart").min = $("fEnd").min = cfg.earliest; $("fStart").max = $("fEnd").max = cfg.latest;
+  const y = new Date(Date.now() - 864e5);
+  setRange(iso(new Date(y.getTime() - 29*864e5)), cfg.latest);
+  loadExports();
+}).catch(async () => {
+  // Opened from disk or an old server: look for the running dashboard server and switch to it.
+  for (let port = 8502; port < 8512; port++) {
+    const base = `http://127.0.0.1:${port}`;
+    if (location.origin === base) continue;
+    try { const r = await fetch(base + "/api/instruments", {cache: "no-store"}); if (r.ok) { location.href = base + "/data.html#dl"; return; } } catch (e) {}
+  }
+  $("offline").hidden = false; $("dlForm").querySelectorAll("input,select,button").forEach(e => e.disabled = true);
+});
+
+$("quick").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  const end = new Date(latest);
+  if (b.dataset.r === "ytd") setRange(`${end.getUTCFullYear()}-01-01`, latest);
+  else if (b.dataset.r) setRange(iso(new Date(end.getTime() - (b.dataset.r - 1) * 864e5)), latest);
+  else if (b.dataset.y) setRange(`${b.dataset.y}-01-01`, `${b.dataset.y}-12-31`);
+  else if (b.dataset.from) setRange(b.dataset.from, latest);
+});
+
+function show(job) {
+  $("job").hidden = false;
+  const pct = job.status === "done" ? 100 : job.total ? Math.round(job.done / job.total * 100) : (job.status === "building" ? 100 : 0);
+  $("jobBar").style.width = pct + "%";
+  const files = job.total ? ` — ${job.done}/${job.total} new day files (${pct}%)` : (job.cached ? ` — all ${job.cached} day files already downloaded` : "");
+  $("jobMsg").innerHTML = `<b>${esc(job.status)}</b>: ${esc(job.message)}${job.status === "downloading" ? esc(files) : ""}`;
+  if (job.status === "done") {
+    const s = job.summary;
+    $("jobAct").innerHTML = `<a class="cta" href="/api/jobs/${job.id}/file">Save ${esc(job.file)}</a>
+      <p class="sub">${s.rows.toLocaleString()} rows · ${esc((s.first||"").slice(0,16).replace("T"," "))} → ${esc((s.last||"").slice(0,16).replace("T"," "))} UTC ·
+      ${s.filler_minutes_excluded.toLocaleString()} no-tick minutes left out · ${s.rows_one_side_only} minutes with only one side · duplicates ${s.duplicates}</p>`;
+    loadExports();
+  } else if (["queued","downloading","waiting","building"].includes(job.status)) {
+    $("jobAct").innerHTML = `<button class="linkbtn" id="cancel">Cancel</button>`;
+    $("cancel").onclick = () => api(`/api/jobs/${job.id}/cancel`, {method:"POST"});
+  } else if (job.status === "blocked") {
+    $("jobAct").innerHTML = `<button class="linkbtn" id="toImport">Use Import from Dukascopy website instead</button>`;
+    $("toImport").onclick = () => { $("impBox").open = true; $("impBox").scrollIntoView({behavior: "smooth"}); };
+  } else $("jobAct").innerHTML = "";
+  const busy = ["queued","downloading","waiting","building"].includes(job.status);
+  $("fGo").disabled = busy;
+  if (busy) timer = setTimeout(() => api(`/api/jobs/${job.id}`).then(show).catch(err => show({status:"error", message:err.message})), 1500);
+}
+
+$("impGo").addEventListener("click", async () => {
+  const bid = [...$("impBid").files], ask = [...$("impAsk").files];
+  const msg = t => $("impMsg").innerHTML = t;
+  $("impAct").innerHTML = "";
+  if (!bid.length || !ask.length) { msg("Add at least one BID file and one ASK file."); return; }
+  const token = Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  $("impGo").disabled = true;
+  try {
+    let k = 0;
+    for (const [side, list] of [["BID", bid], ["ASK", ask]]) for (const f of list) {
+      msg(`Uploading ${esc(f.name)} (${++k}/${bid.length + ask.length})…`);
+      await api(`/api/import/file?token=${token}&side=${side}&name=${encodeURIComponent(f.name)}`, {method: "POST", body: f});
+    }
+    msg("Combining BID + ASK and sorting…");
+    const f = Object.fromEntries(new FormData($("dlForm")));
+    const r = await api("/api/import/combine", {method: "POST", headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({token, symbol: f.symbol, timeframe: f.timeframe, price: f.price})});
+    msg(`<b>Ready:</b> ${r.rows.toLocaleString()} rows · ${esc(r.first.slice(0,16).replace("T"," "))} → ${esc(r.last.slice(0,16).replace("T"," "))} UTC · source bars ${esc(r.bar_size)} · ${r.filler_minutes_excluded.toLocaleString()} no-tick bars left out · duplicates ${r.duplicates}` +
+      (r.warnings.length ? `<br><span class="neg">Check: ${r.warnings.map(esc).join("<br>")}</span>` : ""));
+    $("impAct").innerHTML = `<a class="cta" href="/api/exports/${encodeURIComponent(r.file)}">Save ${esc(r.file)}</a>`;
+    loadExports();
+  } catch (err) { msg(`<span class="neg"><b>Import failed:</b> ${esc(err.message)}</span>`); }
+  $("impGo").disabled = false;
+});
+
+$("dlForm").addEventListener("submit", e => {
+  e.preventDefault(); clearTimeout(timer);
+  const body = Object.fromEntries(new FormData(e.target));
+  if (body.start > body.end) { show({status:"error", message:"Start date is after end date"}); return; }
+  $("jobAct").innerHTML = "";
+  api("/api/download", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify(body)})
+    .then(show).catch(err => show({status:"error", message:err.message}));
+});
+})();
+</script>
 <script>
 (function(){
 const R = window.DATA_REPORT;
