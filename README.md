@@ -1,6 +1,6 @@
-# Quant Lab Dashboard
+# Quant Lab
 
-This repo contains a **Streamlit** multi-page dashboard for a quantitative lab.
+This repository provides the computational components for a quantitative lab.
 
 It currently includes:
 - Data loading (CSV upload + built-in synthetic sample)
@@ -19,14 +19,8 @@ It currently includes:
 pip install -r requirements.txt
 ```
 
-3. Run:
-
-```bash
-streamlit run app.py
-```
+3. Import the modules from `src/` in your preferred Python workflow.
 
 ## Where to extend
 
 - Backend logic: `src/`
-- UI pages: `pages/`
-

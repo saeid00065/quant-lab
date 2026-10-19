@@ -42,5 +42,5 @@
       const scenarios={base:{net:'+18.4%',note:'Baseline costs',curve:'M0 230 L60 213 L120 219 L180 171 L240 185 L300 142 L360 163 L420 110 L480 132 L540 79 L600 102 L660 60 L720 74 L760 34'},high:{net:'+8.1%',note:'High-cost stress test',curve:'M0 230 L60 219 L120 226 L180 191 L240 204 L300 174 L360 191 L420 153 L480 172 L540 132 L600 151 L660 119 L720 131 L760 98'},low:{net:'+24.6%',note:'Low-cost scenario',curve:'M0 230 L60 208 L120 211 L180 157 L240 170 L300 121 L360 145 L420 91 L480 111 L540 57 L600 85 L660 39 L720 54 L760 18'}};
       document.querySelector('#run').addEventListener('click',()=>{const s=scenarios[document.querySelector('#cost').value];document.querySelector('#netReturn').textContent=s.net;document.querySelector('#scenarioNote').textContent=s.note;document.querySelector('#curve').setAttribute('d',s.curve);document.querySelector('#area').setAttribute('d',`${s.curve} L760 242 L0 242 Z`)});
     </script>
-  </body>
+  <script src="nav.js"></script></body>
 </html>
