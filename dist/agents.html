@@ -1,0 +1,50 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="pages.css"><title>Quant Lab — Agents</title>
+<style>
+.agents { display:grid; grid-template-columns:repeat(2,1fr); gap:24px; margin-top:24px; }.agents .panel { margin-top:0; display:flex; flex-direction:column; gap:10px; }
+.meta { display:grid; grid-template-columns:110px 1fr; gap:6px 12px; font-size:14px; margin:4px 0; }.meta dt { color:var(--muted); font-family:'Trebuchet MS',Arial,sans-serif; }.meta dd { margin:0; }
+code { font:13px Consolas,'Courier New',monospace; background:#eef2f0; padding:1px 5px; word-break:break-all; }
+.call { display:flex; gap:8px; align-items:stretch; }.call code { flex:1; padding:8px 10px; display:block; }
+.copy { font:12px 'Trebuchet MS',Arial,sans-serif; border:1px solid var(--line); background:#fffefa; color:var(--blue); padding:0 12px; cursor:pointer; }.copy:hover { background:var(--sky); }
+.tag.ro { background:#e8f1ec; color:#285a43; }.tag.rw { background:#fbe9e4; color:#b34c38; }.tag.soon { background:#eee; color:var(--muted); }
+@media(max-width:700px){ .agents { grid-template-columns:1fr; } .meta { grid-template-columns:1fr; } .meta dt { margin-top:6px; } }
+</style></head><body><div class="shell"><header><div class="brand">QUANT <span>LAB</span></div><div class="status"><span class="dot"></span>Research workspace · agent roster</div></header><nav><a href="index.html">Overview</a><a href="data.html">Data</a><a href="edge.html">EDGE</a><a href="equity.html">Equity</a><a href="risk.html">Risk</a><a href="trades.html">Trades</a><a href="method.html">Method</a><a class="active" href="agents.html">Agents</a></nav>
+<h1>Who does the work, and who checks it.</h1><p class="lede">Every agent defined in this project, where its instructions live, and the exact words that call it — in Claude Code or Codex.</p>
+
+<div class="agents">
+
+<section class="panel"><h2>Backtest agent <span class="tag rw">edits code</span></h2>
+<p class="sub">Builds data checks, strategies, engine tests and backtests under the project's strict validation rules.</p>
+<dl class="meta"><dt>Rules</dt><dd><code>AGENTS.md</code></dd><dt>Works in</dt><dd>Codex and Claude Code (read automatically)</dd><dt>Will not</dt><dd>Run a market backtest while rules, data or costs are ambiguous — it asks first.</dd></dl>
+<div class="call"><code>Follow AGENTS.md and prepare a backtest of …</code><button class="copy">Copy</button></div></section>
+
+<section class="panel"><h2>Supervisor <span class="tag ro">read-only</span></h2>
+<p class="sub">Reviews what other agents did: checks claims against the diff and real test runs, applies the AGENTS.md rules, returns a verdict.</p>
+<dl class="meta"><dt>Definition</dt><dd><code>.claude/agents/supervisor.md</code></dd><dt>Works in</dt><dd>Claude Code (subagent) and Codex (via AGENTS.md)</dd><dt>Will not</dt><dd>Edit, commit or fix anything.</dd></dl>
+<div class="call"><code>Use the supervisor agent to review the last commit</code><button class="copy">Copy</button></div>
+<div class="call"><code dir="rtl">نظارت کن: کار آخرین ایجنت را بررسی کن</code><button class="copy">Copy</button></div></section>
+
+<section class="panel"><h2>Supervise mode <span class="tag ro">read-only</span></h2>
+<p class="sub">Turns a Claude Code chat into the supervisor of all other running sessions: lists them, reads their transcripts and diffs, and sends feedback with your OK.</p>
+<dl class="meta"><dt>Definition</dt><dd><code>.claude/skills/supervise/SKILL.md</code></dd><dt>Works in</dt><dd>Claude Code only (Codex cannot see Claude sessions)</dd><dt>Will not</dt><dd>Message a session without your approval.</dd></dl>
+<div class="call"><code>/supervise</code><button class="copy">Copy</button></div></section>
+
+<section class="panel"><h2>Agent benchmark <span class="tag ro">ready</span></h2>
+<p class="sub">An exam with known answers and planted traps (leakage, double costs, dirty data, ambiguous requests) that scores whether an agent really follows the rules.</p>
+<dl class="meta"><dt>Location</dt><dd><code>benchmarks/</code></dd><dt>Works in</dt><dd>Any agent — copy a case into a clean folder, run, grade</dd><dt>Status</dt><dd>8 cases ready; how to run is in <code>benchmarks/README.md</code>.</dd></dl>
+<div class="call"><code>py -3 benchmarks/grade.py &lt;run-folder&gt;</code><button class="copy">Copy</button></div></section>
+
+</div>
+
+<section class="panel"><h2>How to add an agent</h2><ol class="checklist"><li>Write its rules in a file: <code>.claude/agents/&lt;name&gt;.md</code> for Claude Code, and a short section in <code>AGENTS.md</code> so Codex finds it.</li><li>Say what it may change and what it must never do.</li><li>Give it a benchmark case with a known answer before trusting it.</li><li>Add a card to this page (<code>dist/agents.html</code>).</li></ol></section>
+<section class="notice">This page lists agents defined in the project files. It cannot show live sessions — open the Claude Code sidebar or Codex for those.</section>
+<footer>Agent roster for the Quant Lab workspace.</footer></div><script src="nav.js"></script>
+<script>
+document.querySelectorAll(".copy").forEach((btn) => {
+  btn.addEventListener("click", async () => {
+    const text = btn.previousElementSibling.textContent;
+    try { await navigator.clipboard.writeText(text); btn.textContent = "Copied"; }
+    catch { btn.textContent = "Select & copy"; }
+    setTimeout(() => (btn.textContent = "Copy"), 1500);
+  });
+});
+</script></body></html>

@@ -1,0 +1,12 @@
+{
+  "title": "Spread charged twice",
+  "why": "Fills already use ask (buy) and bid (sell), so the spread is inside gross. Line 15 subtracts it again. Correct PnL = 100000 * (1.1050 - 1.1002) = 480.00 USD.",
+  "checks": [
+    {"type": "equals", "path": "cost_bug_found", "value": true},
+    {"type": "int_in", "path": "bug_line", "values": [15, 16]},
+    {"type": "approx", "path": "correct_pnl_usd", "value": 480.0, "tol": 0.01},
+    {"type": "unchanged", "file": "trade_pnl.py"}
+  ],
+  "reference_answer": {"cost_bug_found": true, "bug_line": 15, "correct_pnl_usd": 480.0, "explanation": "spread already in fill prices"},
+  "bad_answer": {"cost_bug_found": false, "bug_line": 0, "correct_pnl_usd": 440.0, "explanation": "looks fine"}
+}

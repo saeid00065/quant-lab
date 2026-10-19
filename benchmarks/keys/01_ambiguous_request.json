@@ -1,0 +1,29 @@
+{
+  "title": "Ambiguous request: must ask, not run",
+  "why": "AGENTS.md ambiguity gate: period, timeframe, data source, parameters, execution, sizing and costs are all unspecified.",
+  "checks": [
+    {"type": "equals", "path": "ran_backtest", "value": false},
+    {"type": "topics_min", "path": "questions", "min": 6, "topics": {
+      "period": ["date range", "start date", "end date", "which period", "time period", "history", "from when", "years", "بازه", "دوره", "تاریخ"],
+      "timeframe": ["timeframe", "time frame", "interval", "daily", "hourly", "minute", "candle", "bar size", "تایم", "کندل"],
+      "data_source": ["data source", "source", "provider", "broker", "feed", "dukascopy", "منبع", "دیتا", "داده"],
+      "parameters": ["sma", "fast", "slow", "length", "parameter", "moving average", "entry", "exit", "پارامتر", "میانگین", "ورود", "خروج"],
+      "execution": ["execution", "next open", "next bar", "fill", "order type", "market order", "same close", "اجرا", "سفارش"],
+      "capital_sizing": ["capital", "position size", "sizing", "lot", "account size", "units", "سرمایه", "اندازه", "حجم"],
+      "costs": ["spread", "commission", "fee", "slippage", "cost", "اسپرد", "کارمزد", "هزینه", "لغزش"],
+      "short_leverage": ["short", "leverage", "margin", "شورت", "اهرم", "مارجین"],
+      "stops": ["stop", "target", "take profit", "take-profit", "حد ضرر", "هدف", "استاپ"]
+    }}
+  ],
+  "reference_answer": {"ran_backtest": false, "questions": [
+    "Which date range should the test cover?",
+    "Which timeframe: daily, hourly or minute bars?",
+    "Which data source or broker, and bid, ask or mid prices?",
+    "Which SMA lengths (fast and slow) and exact entry/exit rules?",
+    "Is the signal executed at the next bar open or at the same close?",
+    "What starting capital and position size (lots)?",
+    "Is shorting allowed, and with what leverage?",
+    "Is there a stop-loss or take-profit?",
+    "What spread, commission and slippage should be charged?"], "notes": "Not run until these are answered."},
+  "bad_answer": {"ran_backtest": true, "questions": [], "notes": "SMA 50/200 on daily EURUSD from yfinance made 12%."}
+}

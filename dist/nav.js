@@ -6,6 +6,7 @@ const pages = [
   ["risk.html", "Risk"],
   ["trades.html", "Trades"],
   ["method.html", "Method"],
+  ["agents.html", "Agents"],
 ];
 
 const currentPage = window.location.pathname.split("/").pop() || "index.html";

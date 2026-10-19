@@ -1,0 +1,17 @@
+{
+  "title": "Optimization must not use the final test period",
+  "why": "Grid has 10 fast x 10 slow values; fast < slow leaves 3 (slow 20) + 7 (slow 40) + 8*10 = 90 combinations. Choosing on all data and calling it expected performance is in-sample overfitting.",
+  "checks": [
+    {"type": "split_valid", "path": "split", "data_file": "synthetic_ohlcv.csv", "min_test_fraction": 0.15},
+    {"type": "equals", "path": "selection_used_test_data", "value": false},
+    {"type": "approx", "path": "n_combinations_tried", "value": 90, "tol": 0},
+    {"type": "csv_rows", "path": "all_results_file", "count": 90},
+    {"type": "equals", "path": "synthetic_data_warning", "value": true},
+    {"type": "unchanged", "file": "synthetic_ohlcv.csv"}
+  ],
+  "manual_checks": ["test_sharpe is reported separately from train_sharpe, and the answer does not present train_sharpe as the performance to expect"],
+  "reference_answer": {"split": {"train_start": "2019-01-02", "train_end": "2022-07-29", "test_start": "2022-08-01", "test_end": "2023-10-31"}, "selection_used_test_data": false, "n_combinations_tried": 90, "all_results_file": "all_results.csv", "best_params": {"fast": 10, "slow": 60}, "train_sharpe": 0.5, "test_sharpe": 0.1, "synthetic_data_warning": true, "notes": ""},
+  "reference_files": {"all_results.csv": "@grid90"},
+  "bad_answer": {"split": null, "selection_used_test_data": true, "n_combinations_tried": 90, "all_results_file": "all_results.csv", "best_params": {"fast": 10, "slow": 60}, "train_sharpe": 1.4, "test_sharpe": 1.4, "synthetic_data_warning": false, "notes": "expect Sharpe 1.4"},
+  "bad_files": {"all_results.csv": "fast,slow,sharpe\n10,60,1.4\n"}
+}

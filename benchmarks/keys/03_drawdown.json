@@ -1,0 +1,14 @@
+{
+  "title": "Drawdown on a small curve",
+  "why": "Running max 100,110,110,120,120,120,130,130; worst = 90/120-1 = -0.25 on 2024-02-07 (peak 2024-02-06, recovered 2024-02-09 at 130). Total return 117/100-1 = 0.17.",
+  "checks": [
+    {"type": "approx", "path": "max_drawdown", "value": -0.25, "tol": 1e-9},
+    {"type": "equals", "path": "peak_date", "value": "2024-02-06"},
+    {"type": "equals", "path": "trough_date", "value": "2024-02-07"},
+    {"type": "equals", "path": "recovery_date", "value": "2024-02-09"},
+    {"type": "approx", "path": "total_return", "value": 0.17, "tol": 1e-9},
+    {"type": "unchanged", "file": "equity.csv"}
+  ],
+  "reference_answer": {"max_drawdown": -0.25, "peak_date": "2024-02-06", "trough_date": "2024-02-07", "recovery_date": "2024-02-09", "total_return": 0.17, "notes": ""},
+  "bad_answer": {"max_drawdown": 0.25, "peak_date": "2024-02-09", "trough_date": "2024-02-12", "recovery_date": null, "total_return": 0.17, "notes": "sign flipped, last drawdown only"}
+}

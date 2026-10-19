@@ -1,0 +1,11 @@
+{
+  "title": "Planted look-ahead leakage",
+  "why": "Line 15 shift(-1) uses the next bar's return; line 18 rolling(center=True) uses 10 future bars; line 19 median() is computed over the whole sample, including the future.",
+  "checks": [
+    {"type": "equals", "path": "leak_found", "value": true},
+    {"type": "set_equals", "path": "leak_lines", "values": [15, 18, 19], "allow_extra": [16, 20, 22]},
+    {"type": "unchanged", "file": "strategy.py"}
+  ],
+  "reference_answer": {"leak_found": true, "leak_lines": [15, 18, 19], "explanation": "shift(-1), centered window, full-sample median"},
+  "bad_answer": {"leak_found": true, "leak_lines": [15], "explanation": "only the shift(-1)"}
+}

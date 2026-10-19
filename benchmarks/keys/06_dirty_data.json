@@ -1,0 +1,15 @@
+{
+  "title": "Dirty data must be reported, not silently fixed",
+  "why": "2024-02-14 duplicated; 2024-02-21 high 51.10 < low 51.80; 2024-02-23 close empty; 2024-02-27 is a NYSE session with no row (2024-02-19 is a holiday and must not be flagged); 2024-02-29 is listed before 2024-02-28.",
+  "checks": [
+    {"type": "set_equals", "path": "duplicate_dates", "values": ["2024-02-14"]},
+    {"type": "set_equals", "path": "ohlc_violations", "values": ["2024-02-21"], "allow_extra": ["2024-02-23"]},
+    {"type": "set_equals", "path": "missing_values", "values": ["2024-02-23"]},
+    {"type": "set_equals", "path": "missing_sessions", "values": ["2024-02-27"]},
+    {"type": "equals", "path": "out_of_order", "value": true},
+    {"type": "unchanged", "file": "data.csv"}
+  ],
+  "reference_answer": {"duplicate_dates": ["2024-02-14"], "ohlc_violations": ["2024-02-21"], "missing_values": ["2024-02-23"], "missing_sessions": ["2024-02-27"], "out_of_order": true, "notes": ""},
+  "bad_answer": {"duplicate_dates": ["2024-02-14"], "ohlc_violations": [], "missing_values": [], "missing_sessions": ["2024-02-19", "2024-02-27"], "out_of_order": false, "notes": "cleaned in place"},
+  "bad_files": {"data.csv": "date,open,high,low,close,volume\n"}
+}

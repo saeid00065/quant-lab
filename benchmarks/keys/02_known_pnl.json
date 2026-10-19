@@ -1,0 +1,36 @@
+{
+  "title": "Known PnL with slippage, fees and an open position",
+  "why": "Hand calculation: buy 50 @ 102.5*1.0005=102.55125 (fee 5.1275625), sell 50 @ 99.0*0.9995=98.9505 (fee 4.947525) -> realized -190.1125875; buy 50 @ 101.0505 (fee 5.052525); cash 4752.3098875; mark 50 @ 101.5 -> equity 9827.3098875.",
+  "tolerance_note": "Money within 0.01 USD (one cent); prices within 0.0001 to allow float rounding.",
+  "checks": [
+    {"type": "len_equals", "path": "trades", "value": 3},
+    {"type": "equals", "path": "trades.0.fill_date", "value": "2024-01-05"},
+    {"type": "approx", "path": "trades.0.fill_price", "value": 102.55125, "tol": 0.0001},
+    {"type": "approx", "path": "trades.0.fee", "value": 5.1275625, "tol": 0.001},
+    {"type": "equals", "path": "trades.1.fill_date", "value": "2024-01-11"},
+    {"type": "approx", "path": "trades.1.fill_price", "value": 98.9505, "tol": 0.0001},
+    {"type": "approx", "path": "trades.1.fee", "value": 4.947525, "tol": 0.001},
+    {"type": "equals", "path": "trades.2.fill_date", "value": "2024-01-16"},
+    {"type": "approx", "path": "trades.2.fill_price", "value": 101.0505, "tol": 0.0001},
+    {"type": "approx", "path": "realized_pnl", "value": -190.1125875, "tol": 0.01},
+    {"type": "approx", "path": "open_position.qty", "value": 50, "tol": 0},
+    {"type": "approx", "path": "open_position.mark_price", "value": 101.5, "tol": 0.0001},
+    {"type": "approx", "path": "final_cash", "value": 4752.3098875, "tol": 0.01},
+    {"type": "approx", "path": "final_equity", "value": 9827.3098875, "tol": 0.01},
+    {"type": "unchanged", "file": "data.csv"}
+  ],
+  "reference_answer": {
+    "trades": [
+      {"side": "buy", "fill_date": "2024-01-05", "fill_price": 102.55125, "qty": 50, "fee": 5.1275625},
+      {"side": "sell", "fill_date": "2024-01-11", "fill_price": 98.9505, "qty": 50, "fee": 4.947525},
+      {"side": "buy", "fill_date": "2024-01-16", "fill_price": 101.0505, "qty": 50, "fee": 5.052525}],
+    "realized_pnl": -190.1125875,
+    "open_position": {"qty": 50, "entry_price": 101.0505, "mark_price": 101.5},
+    "final_cash": 4752.3098875, "final_equity": 9827.3098875, "notes": ""},
+  "bad_answer": {
+    "trades": [
+      {"side": "buy", "fill_date": "2024-01-04", "fill_price": 102.0, "qty": 50, "fee": 5.1},
+      {"side": "sell", "fill_date": "2024-01-10", "fill_price": 100.0, "qty": 50, "fee": 5.0}],
+    "realized_pnl": -110.1, "open_position": {"qty": 0, "entry_price": 0, "mark_price": 0},
+    "final_cash": 9889.9, "final_equity": 9889.9, "notes": "filled at signal close"}
+}
