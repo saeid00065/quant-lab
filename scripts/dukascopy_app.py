@@ -24,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from src.data_export import PRICES, TIMEFRAMES, build_export, write_export  # noqa: E402
-from src.modules.dukascopy import INSTRUMENT_INFO, DukascopyBlocked, Stopped, _sleep, download  # noqa: E402
+from src.modules.dukascopy import INSTRUMENT_INFO, DukascopyBlocked, Stopped, _sleep, download, last_complete_day  # noqa: E402
 
 RAW = ROOT / "data/raw/dukascopy"
 EXPORTS = ROOT / "data/exports"
@@ -51,9 +51,9 @@ def validate(symbol: str, start: str, end: str) -> tuple[date, date]:
         s, e = date.fromisoformat(start.strip()), date.fromisoformat(end.strip())
     except ValueError:
         raise ValueError("Dates must be YYYY-MM-DD") from None
-    yesterday = date.today() - timedelta(days=1)
+    yesterday = last_complete_day()
     if s < EARLIEST or e > yesterday:
-        raise ValueError(f"Dates must be between {EARLIEST} and {yesterday} (today is not complete yet)")
+        raise ValueError(f"Dates must be between {EARLIEST} and {yesterday} (UTC; today is not complete yet)")
     if s > e:
         raise ValueError("Start date is after end date")
     return s, e
@@ -76,6 +76,8 @@ def run(req: dict, post, should_stop) -> None:
                              progress=progress, on_wait=on_wait, should_stop=should_stop)
             post("log", f"  {stats['downloaded']} downloaded, {stats['cached']} already cached, "
                         f"{stats['empty']} empty (no trading), {len(stats['failed'])} failed")
+            if stats["not_published"]:
+                post("log", f"  not published yet (not saved, run again later): {', '.join(stats['not_published'])}")
             if not stats["failed"]:
                 break
             if rnd < ROUNDS:
@@ -125,7 +127,7 @@ class App(tk.Tk):
         self.worker: threading.Thread | None = None
         self.last_file: str | None = None
 
-        yesterday = date.today() - timedelta(days=1)
+        yesterday = last_complete_day()
         self.symbol = tk.StringVar(value="XAUUSD")
         self.start = tk.StringVar(value=(yesterday - timedelta(days=30)).isoformat())
         self.end = tk.StringVar(value=yesterday.isoformat())

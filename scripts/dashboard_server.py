@@ -21,7 +21,7 @@ import threading
 import time
 import traceback
 import uuid
-from datetime import date, timedelta
+from datetime import date
 from functools import partial
 from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
@@ -32,7 +32,7 @@ sys.path.insert(0, str(ROOT))
 
 from src.data_export import PRICES, TIMEFRAMES, build_export, shape, write_export  # noqa: E402
 from src.data_import import combine_imports  # noqa: E402
-from src.modules.dukascopy import INSTRUMENT_INFO, DukascopyBlocked, Stopped, _sleep, download  # noqa: E402
+from src.modules.dukascopy import INSTRUMENT_INFO, DukascopyBlocked, Stopped, _sleep, download, last_complete_day  # noqa: E402
 
 DIST = ROOT / "dist"
 # Overridable only for testing with sample files.
@@ -57,9 +57,9 @@ def parse_request(body: dict) -> dict:
     if price not in PRICES:
         raise ValueError(f"Unknown price {price!r}")
     start, end = date.fromisoformat(str(body.get("start"))), date.fromisoformat(str(body.get("end")))
-    yesterday = date.today() - timedelta(days=1)
+    yesterday = last_complete_day()
     if start < EARLIEST or end > yesterday:
-        raise ValueError(f"Dates must be between {EARLIEST} and {yesterday} (today is not complete yet)")
+        raise ValueError(f"Dates must be between {EARLIEST} and {yesterday} (UTC; today is not complete yet)")
     if start > end:
         raise ValueError("Start date is after end date")
     return {"symbol": symbol, "start": start, "end": end, "timeframe": tf, "price": price}
@@ -189,7 +189,7 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json_cors({
                 "instruments": [{"symbol": k, "label": v[0]} for k, v in INSTRUMENT_INFO.items()],
                 "timeframes": list(TIMEFRAMES), "prices": list(PRICES),
-                "earliest": EARLIEST.isoformat(), "latest": (date.today() - timedelta(days=1)).isoformat(),
+                "earliest": EARLIEST.isoformat(), "latest": last_complete_day().isoformat(),
             })
         if p == "/api/exports":
             files = sorted(EXPORTS.glob("*.csv"), key=lambda f: f.stat().st_mtime, reverse=True) if EXPORTS.exists() else []

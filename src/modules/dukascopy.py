@@ -21,7 +21,7 @@ import os
 import struct
 import time
 from dataclasses import dataclass
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Iterable
 
@@ -75,6 +75,23 @@ def check_price_scale(symbol: str, df: pd.DataFrame) -> None:
         raise ValueError(f"{symbol}: decoded median price {df['close'].median():.5f} is outside {lo}..{hi}; price scale is wrong")
 
 SIDES = ("BID", "ASK")
+
+# A 404 for one of the last RECENT_DAYS UTC days may only mean "not published yet", so it is
+# not cached as an empty day (that would hide the day for good); it is retried next run.
+RECENT_DAYS = 3
+
+
+def utc_today() -> date:
+    return datetime.now(timezone.utc).date()
+
+
+def last_complete_day() -> date:
+    """Latest UTC calendar day that has ended. Day files are UTC days, so local dates are wrong here."""
+    return utc_today() - timedelta(days=1)
+
+
+def is_recent(day: date) -> bool:
+    return day > utc_today() - timedelta(days=RECENT_DAYS)
 
 
 @dataclass(frozen=True)
@@ -191,12 +208,20 @@ def download(
 
     If the first `give_up_after` files in a row all fail, Dukascopy is blocking this connection:
     raise DukascopyBlocked at once instead of grinding through every day.
-    Returns counts: {"downloaded", "cached", "empty", "failed": [..]}.
+    An empty answer for a recent day (see RECENT_DAYS) is not saved, and an empty file already
+    saved for a recent day is fetched again; such days are listed in "not_published".
+    Returns counts: {"downloaded", "cached", "empty", "failed": [..], "not_published": [..]}.
     """
     # Day by day, both sides together, so a partial download is still usable.
     jobs = [DayFile(symbol, s, d) for d in day_range(start, end) for s in sides]
-    todo = [j for j in jobs if not j.path(raw_dir).exists()]
-    stats = {"requested": len(jobs), "cached": len(jobs) - len(todo), "downloaded": 0, "empty": 0, "failed": []}
+
+    def have(j: DayFile) -> bool:
+        p = j.path(raw_dir)
+        return p.exists() and not (is_recent(j.day) and p.stat().st_size == 0)
+
+    todo = [j for j in jobs if not have(j)]
+    stats = {"requested": len(jobs), "cached": len(jobs) - len(todo), "downloaded": 0, "empty": 0, "failed": [],
+             "not_published": []}
     log(f"      {len(jobs)} day files: {stats['cached']} already downloaded, {len(todo)} to go", flush=True)
 
     t0 = time.monotonic()
@@ -204,14 +229,18 @@ def download(
     for i, job in enumerate(todo, 1):
         try:
             payload = _fetch(job.url, pause=pause, on_wait=on_wait, should_stop=should_stop)
-            p = job.path(raw_dir)
-            p.parent.mkdir(parents=True, exist_ok=True)
-            tmp = p.with_suffix(".part")
-            tmp.write_bytes(payload)
-            tmp.replace(p)
-            stats["downloaded"] += 1
-            stats["empty"] += len(payload) == 0
             streak = 0
+            p = job.path(raw_dir)
+            if not payload and is_recent(job.day):
+                stats["not_published"].append(f"{job.day} {job.side}")
+                p.unlink(missing_ok=True)  # an old empty file must not count as "had it"
+            else:
+                p.parent.mkdir(parents=True, exist_ok=True)
+                tmp = p.with_suffix(".part")
+                tmp.write_bytes(payload)
+                tmp.replace(p)
+                stats["downloaded"] += 1
+                stats["empty"] += len(payload) == 0
         except Stopped:
             raise
         except Exception as exc:  # recorded, not swallowed

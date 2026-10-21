@@ -25,7 +25,7 @@ import platform
 import subprocess
 import sys
 import time
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -36,7 +36,7 @@ import pandas as pd  # noqa: E402
 
 from src.data_loader import resample_bars  # noqa: E402
 from src.data_quality import daily_closes, run_all  # noqa: E402
-from src.modules.dukascopy import DukascopyBlocked, combine_bid_ask, download, load_side  # noqa: E402
+from src.modules.dukascopy import DukascopyBlocked, combine_bid_ask, download, last_complete_day, load_side  # noqa: E402
 
 # Only instruments whose price scale and trading calendar have been checked.
 INSTRUMENTS = {
@@ -184,7 +184,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--symbol", default="XAUUSD", choices=sorted(INSTRUMENTS))
     ap.add_argument("--start", default="2019-01-01", help="first UTC day, YYYY-MM-DD")
-    ap.add_argument("--end", default=(date.today() - timedelta(days=1)).isoformat(), help="last UTC day, inclusive")
+    ap.add_argument("--end", default=last_complete_day().isoformat(), help="last UTC day, inclusive")
     ap.add_argument("--skip-download", action="store_true", help="only rebuild from files already downloaded")
     ap.add_argument("--csv", action="store_true", help="also write yearly CSV files")
     ap.add_argument("--rounds", type=int, default=6, help="download rounds; failed days are retried after a wait")
@@ -206,6 +206,8 @@ def main() -> None:
                 stats = {"downloaded": 0, "cached": 0, "failed": ["blocked"]}
             print(f"      round {rnd}: {stats['downloaded']} downloaded, {stats['cached']} already had, "
                   f"{len(stats['failed'])} failed", flush=True)
+            if stats.get("not_published"):
+                print(f"      not published yet (not saved, run again later): {', '.join(stats['not_published'])}", flush=True)
             if not stats["failed"]:
                 break
             if rnd < a.rounds:

@@ -341,3 +341,50 @@ def test_import_rejects_conflicting_duplicates():
     other = BID_CSV.replace(b"2650.5,2.0", b"2999.0,2.0")
     with pytest.raises(ValueError, match="different prices"):
         combine_imports([("a_BID.csv", BID_CSV), ("b_BID.csv", other)], [("ASK.csv", ASK_CSV)])
+
+
+# ---------- UTC dates and days not published yet ----------
+
+def test_last_complete_day_is_utc(monkeypatch):
+    import datetime as dt
+    from src.modules import dukascopy
+
+    class Clock(dt.datetime):
+        @classmethod
+        def now(cls, tz=None):
+            # 2026-10-21 02:00 in UTC+4 = 2026-10-20 22:00 UTC: Oct 20 is still running in UTC.
+            return dt.datetime(2026, 10, 20, 22, 0, tzinfo=dt.timezone.utc).astimezone(tz)
+
+    monkeypatch.setattr(dukascopy, "datetime", Clock)
+    assert dukascopy.utc_today() == date(2026, 10, 20)
+    assert dukascopy.last_complete_day() == date(2026, 10, 19)
+
+
+def test_recent_404_not_cached_old_404_cached(tmp_path, monkeypatch):
+    from src.modules import dukascopy
+    monkeypatch.setattr(dukascopy, "utc_today", lambda: date(2026, 10, 21))
+    monkeypatch.setattr(dukascopy, "_fetch", lambda url, **k: b"")  # every file answers 404
+    raw = tmp_path / "raw"
+    # RECENT_DAYS = 3 -> recent means after 2026-10-18: Oct 19 and Oct 20. Oct 17 and 18 are old.
+    stale = DayFile("XAUUSD", "BID", date(2026, 10, 20)).path(raw)
+    stale.parent.mkdir(parents=True)
+    stale.write_bytes(b"")  # empty file saved by an older version must be fetched again
+    stats = dukascopy.download("XAUUSD", date(2026, 10, 17), date(2026, 10, 20), raw, log=lambda *a, **k: None, pause=0)
+    assert stats["cached"] == 0 and stats["downloaded"] == 4 and stats["empty"] == 4 and stats["failed"] == []
+    assert stats["not_published"] == ["2026-10-19 BID", "2026-10-19 ASK", "2026-10-20 BID", "2026-10-20 ASK"]
+    for d, saved in ((17, True), (18, True), (19, False), (20, False)):
+        for side in ("BID", "ASK"):
+            assert DayFile("XAUUSD", side, date(2026, 10, d)).path(raw).exists() is saved
+    _, manifest = dukascopy.load_side("XAUUSD", "BID", date(2026, 10, 17), date(2026, 10, 20), raw)
+    assert [m["status"] for m in manifest] == ["empty", "empty", "missing", "missing"]
+
+
+def test_recent_day_with_data_is_saved(tmp_path, monkeypatch):
+    from src.modules import dukascopy
+    monkeypatch.setattr(dukascopy, "utc_today", lambda: date(2026, 10, 21))
+    payload = _bi5([(0, 2650000, 2650000, 2649950, 2650050, 1.0)])
+    monkeypatch.setattr(dukascopy, "_fetch", lambda url, **k: payload)
+    raw = tmp_path / "raw"
+    stats = dukascopy.download("XAUUSD", date(2026, 10, 20), date(2026, 10, 20), raw, log=lambda *a, **k: None, pause=0)
+    assert stats["downloaded"] == 2 and stats["not_published"] == []
+    assert DayFile("XAUUSD", "ASK", date(2026, 10, 20)).path(raw).read_bytes() == payload
