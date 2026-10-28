@@ -1,0 +1,352 @@
+{
+ "data_file": "data\\raw\\yahoo\\GLD_1d_2005-01-03_2026-10-28.csv",
+ "seed": 20261029,
+ "random_null_runs": 1000,
+ "segments": {
+  "research": {
+   "dates": [
+    "2005-01-04",
+    "2016-12-30"
+   ],
+   "by_cost": {
+    "0bp": {
+     "night": {
+      "sessions": 3020,
+      "trades": 3020,
+      "total_return": 1.694092641282133,
+      "cagr": 0.08621355316043977,
+      "vol": 0.13497328141870366,
+      "sharpe": 0.6803018944176082,
+      "max_drawdown": -0.38134395169364477,
+      "win_rate": 0.5251655629139073,
+      "mean_trade_bp": 3.643753136702581
+     },
+     "day": {
+      "sessions": 3020,
+      "trades": 3020,
+      "total_return": -0.05426983005338204,
+      "cagr": -0.004645168331985472,
+      "vol": 0.13676713925097697,
+      "sharpe": 0.034205078288178044,
+      "max_drawdown": -0.3078263996911238,
+      "win_rate": 0.5016556291390728,
+      "mean_trade_bp": 0.1856401073543577
+     },
+     "hold": {
+      "sessions": 3020,
+      "trades": 1,
+      "total_return": 1.5478846914917015,
+      "cagr": 0.08116790836152599,
+      "vol": 0.19629082832602107,
+      "sharpe": 0.495909483561485,
+      "max_drawdown": -0.455550127230811,
+      "win_rate": NaN,
+      "mean_trade_bp": NaN
+     }
+    },
+    "1bp": {
+     "night": {
+      "sessions": 3020,
+      "trades": 3020,
+      "total_return": 0.47260252909686273,
+      "cagr": 0.03282247749906997,
+      "vol": 0.13494628811215273,
+      "sharpe": 0.30683863948096984,
+      "max_drawdown": -0.501332929090097,
+      "win_rate": 0.5142384105960265,
+      "mean_trade_bp": 1.643124422513489
+     },
+     "day": {
+      "sessions": 3020,
+      "trades": 3020,
+      "total_return": -0.4830598551934673,
+      "cagr": -0.05357023005016415,
+      "vol": 0.1367397871907982,
+      "sharpe": -0.3343597778912467,
+      "max_drawdown": -0.5760700029985673,
+      "win_rate": 0.49072847682119203,
+      "mean_trade_bp": -1.8142970188099852
+     },
+     "hold": {
+      "sessions": 3020,
+      "trades": 1,
+      "total_return": 1.5476299030225515,
+      "cagr": 0.08115888628206602,
+      "vol": 0.19629112171434754,
+      "sharpe": 0.49586650884668215,
+      "max_drawdown": -0.45555012723081256,
+      "win_rate": NaN,
+      "mean_trade_bp": NaN
+     }
+    },
+    "2bp": {
+     "night": {
+      "sessions": 3020,
+      "trades": 3020,
+      "total_return": -0.19511780244117505,
+      "cagr": -0.01794919647113613,
+      "vol": 0.13491929750506745,
+      "sharpe": -0.06673668244874925,
+      "max_drawdown": -0.5980585884909848,
+      "win_rate": 0.5009933774834437,
+      "mean_trade_bp": -0.3573042188017465
+     },
+     "day": {
+      "sessions": 3020,
+      "trades": 3020,
+      "total_return": -0.7174553815187099,
+      "cagr": -0.10009499569231595,
+      "vol": 0.13671243786596216,
+      "sharpe": -0.7030352311766586,
+      "max_drawdown": -0.7518364467535575,
+      "win_rate": 0.47582781456953643,
+      "mean_trade_bp": -3.814034141262749
+     },
+     "hold": {
+      "sessions": 3020,
+      "trades": 1,
+      "total_return": 1.5473751145533967,
+      "cagr": 0.08114986337556096,
+      "vol": 0.19629141929809113,
+      "sharpe": 0.4958235236629042,
+      "max_drawdown": -0.45555012723081145,
+      "win_rate": NaN,
+      "mean_trade_bp": NaN
+     }
+    },
+    "5bp": {
+     "night": {
+      "sessions": 3020,
+      "trades": 3020,
+      "total_return": -0.8686242559654247,
+      "cagr": -0.1557994354337422,
+      "vol": 0.13483834188060526,
+      "sharpe": -1.1881354987316273,
+      "max_drawdown": -0.8694502865764969,
+      "win_rate": 0.4609271523178808,
+      "mean_trade_bp": -6.357389705494389
+     },
+     "day": {
+      "sessions": 3020,
+      "trades": 3020,
+      "total_return": -0.9538820592770886,
+      "cagr": -0.22641444825189372,
+      "vol": 0.13663040630351084,
+      "sharpe": -1.8097256163209756,
+      "max_drawdown": -0.9539540842980938,
+      "win_rate": 0.4291390728476821,
+      "mean_trade_bp": -9.812045486341525
+     },
+     "hold": {
+      "sessions": 3020,
+      "trades": 1,
+      "total_return": 1.5466107491459509,
+      "cagr": 0.08112278969219067,
+      "vol": 0.19629233722163242,
+      "sharpe": 0.4956945053262502,
+      "max_drawdown": -0.45555012723081245,
+      "win_rate": NaN,
+      "mean_trade_bp": NaN
+     }
+    }
+   },
+   "night_minus_day_mean_bp": 3.458113029348223,
+   "night_minus_day_hac_t": 1.6763833147687315,
+   "night_mean_hac_t": 2.4354994028633965,
+   "day_mean_hac_t": 0.12125071656371596,
+   "random_null_1bp": {
+    "p95_final": 1.4295586956289887,
+    "median_final": 0.8816742066690343,
+    "night_final": 1.4726025290968627,
+    "night_percentile": 95.6
+   },
+   "night_mean_bp_by_weekday": {
+    "Friday": 4.36,
+    "Monday": 2.75,
+    "Thursday": 2.36,
+    "Tuesday": 1.75,
+    "Wednesday": 6.9
+   },
+   "day_mean_bp_by_weekday": {
+    "Friday": 10.4,
+    "Monday": -4.97,
+    "Thursday": -1.63,
+    "Tuesday": -2.14,
+    "Wednesday": -0.97
+   }
+  },
+  "validation": {
+   "dates": [
+    "2017-01-03",
+    "2021-12-31"
+   ],
+   "by_cost": {
+    "0bp": {
+     "night": {
+      "sessions": 1259,
+      "trades": 1259,
+      "total_return": 0.6275526071400015,
+      "cagr": 0.10240356924889604,
+      "vol": 0.10107310517859924,
+      "sharpe": 1.015282909297597,
+      "max_drawdown": -0.07843656858938497,
+      "win_rate": 0.5377283558379666,
+      "mean_trade_bp": 4.0721347729154855
+     },
+     "day": {
+      "sessions": 1259,
+      "trades": 1259,
+      "total_return": -0.04168273831393865,
+      "cagr": -0.008485830864764177,
+      "vol": 0.0884785196238686,
+      "sharpe": -0.05206324773619918,
+      "max_drawdown": -0.2265655504438745,
+      "win_rate": 0.5035742652899127,
+      "mean_trade_bp": -0.1827967891472076
+     },
+     "hold": {
+      "sessions": 1259,
+      "trades": 1,
+      "total_return": 0.5597117577244064,
+      "cagr": 0.09304875901553622,
+      "vol": 0.13388874957368807,
+      "sharpe": 0.731656332289629,
+      "max_drawdown": -0.18773528295755937,
+      "win_rate": NaN,
+      "mean_trade_bp": NaN
+     }
+    },
+    "1bp": {
+     "night": {
+      "sessions": 1259,
+      "trades": 1259,
+      "total_return": 0.265243795890145,
+      "cagr": 0.04821669945347007,
+      "vol": 0.10105289156829457,
+      "sharpe": 0.5165591299199276,
+      "max_drawdown": -0.12653136865916725,
+      "win_rate": 0.5258141382049245,
+      "mean_trade_bp": 2.0714203866829775
+     },
+     "day": {
+      "sessions": 1259,
+      "trades": 1259,
+      "total_return": -0.25501334671241194,
+      "cagr": -0.05722211100930119,
+      "vol": 0.08846082480472905,
+      "sharpe": -0.6217784873491086,
+      "max_drawdown": -0.3247376162367316,
+      "win_rate": 0.49166004765687055,
+      "mean_trade_bp": -2.182660231616624
+     },
+     "hold": {
+      "sessions": 1259,
+      "trades": 1,
+      "total_return": 0.5595557865486416,
+      "cagr": 0.09302687980158364,
+      "vol": 0.13388763268607734,
+      "sharpe": 0.7315117651471774,
+      "max_drawdown": -0.1877352829575598,
+      "win_rate": NaN,
+      "mean_trade_bp": NaN
+     }
+    },
+    "2bp": {
+     "night": {
+      "sessions": 1259,
+      "trades": 1259,
+      "total_return": -0.016436372463827564,
+      "cagr": -0.003311726461162623,
+      "vol": 0.10103267997945199,
+      "sharpe": 0.01768569599499625,
+      "max_drawdown": -0.19645758516510892,
+      "win_rate": 0.5083399523431295,
+      "mean_trade_bp": 0.07090608189191792
+     },
+     "day": {
+      "sessions": 1259,
+      "trades": 1259,
+      "total_return": -0.42086910241826814,
+      "cagr": -0.10356735682740248,
+      "vol": 0.08844313175515989,
+      "sharpe": -1.1916646842730014,
+      "max_drawdown": -0.46435770049479186,
+      "win_rate": 0.47180301826846704,
+      "mean_trade_bp": -4.1823236777431765
+     },
+     "hold": {
+      "sessions": 1259,
+      "trades": 1,
+      "total_return": 0.5593998153728668,
+      "cagr": 0.0930049988373951,
+      "vol": 0.13388653097455186,
+      "sharpe": 0.7313671126920263,
+      "max_drawdown": -0.18773528295755992,
+      "win_rate": NaN,
+      "mean_trade_bp": NaN
+     }
+    },
+    "5bp": {
+     "night": {
+      "sessions": 1259,
+      "trades": 1259,
+      "total_return": -0.5380217359334263,
+      "cagr": -0.14321662362620757,
+      "vol": 0.10097205734169692,
+      "sharpe": -1.4798331320383729,
+      "max_drawdown": -0.5518504796722468,
+      "win_rate": 0.45432883240667193,
+      "mean_trade_bp": -5.929436343822283
+     },
+     "day": {
+      "sessions": 1259,
+      "trades": 1259,
+      "total_return": -0.7279831428879423,
+      "cagr": -0.2293993948759221,
+      "vol": 0.08839006322387465,
+      "sharpe": -2.902349703147553,
+      "max_drawdown": -0.7367811143116658,
+      "win_rate": 0.403494837172359,
+      "mean_trade_bp": -10.180114038055796
+     },
+     "hold": {
+      "sessions": 1259,
+      "trades": 1,
+      "total_return": 0.5589319018455501,
+      "cagr": 0.0929393454402716,
+      "vol": 0.13388331690020738,
+      "sharpe": 0.7309326439011936,
+      "max_drawdown": -0.18773528295755926,
+      "win_rate": NaN,
+      "mean_trade_bp": NaN
+     }
+    }
+   },
+   "night_minus_day_mean_bp": 4.254931562062693,
+   "night_minus_day_hac_t": 1.832716253850521,
+   "night_mean_hac_t": 2.2536273811651792,
+   "day_mean_hac_t": -0.1214271832844554,
+   "random_null_1bp": {
+    "p95_final": 1.2574838129450256,
+    "median_final": 0.9689718550083991,
+    "night_final": 1.265243795890145,
+    "night_percentile": 95.7
+   },
+   "night_mean_bp_by_weekday": {
+    "Friday": 7.05,
+    "Monday": 3.57,
+    "Thursday": 3.66,
+    "Tuesday": 2.29,
+    "Wednesday": 3.82
+   },
+   "day_mean_bp_by_weekday": {
+    "Friday": -3.53,
+    "Monday": 1.67,
+    "Thursday": -1.35,
+    "Tuesday": 0.55,
+    "Wednesday": 1.82
+   }
+  }
+ },
+ "years_night_beats_day": "12/17"
+}
