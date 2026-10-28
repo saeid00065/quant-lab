@@ -8,3 +8,7 @@ results/
 
 
 proxy.txt
+
+# Cloudflare wrangler local state
+.wrangler/
+.dev.vars

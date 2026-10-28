@@ -1,0 +1,13 @@
+// Cloudflare deploy for the dashboard in dist/, behind the login gate in worker/index.js.
+// Deploy: npx wrangler@4 deploy    Set/change password: npx wrangler@4 secret put SITE_PASSWORD
+{
+  "name": "quant-lab",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-23",
+  "routes": [{ "pattern": "lab.binzaeim.com", "custom_domain": true }],
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  }
+}
