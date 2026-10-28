@@ -7,9 +7,12 @@ const pages = [
   ["trades.html", "Trades"],
   ["method.html", "Method"],
   ["agents.html", "Agents"],
+  ["coins.html", "Coins"],
+  ["puzzles.html", "Puzzles"],
 ];
 
-const currentPage = window.location.pathname.split("/").pop() || "index.html";
+const page = window.location.pathname.split("/").pop() || "index.html";
+const currentPage = page === "puzzle.html" ? "puzzles.html" : page;
 const nav = document.querySelector("nav");
 
 if (nav) {

@@ -1,0 +1,171 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="pages.css"><title>Quant Lab — Puzzle</title>
+<style>
+:root { --theory:#1f6fa0; --sim:#dc7259; --band:#dce9f1; --grid:#e3e8e6; }
+.crumbs { font:13px 'Trebuchet MS',Arial,sans-serif; color:var(--muted); margin-bottom:10px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.crumbs a { color:var(--blue); text-decoration:none; }
+h1 { font-size:clamp(30px,4.6vw,50px); }
+.tag.easy { background:#e8f1ec; color:#285a43; } .tag.medium { background:var(--sky); color:var(--blue); } .tag.hard { background:#fbe9e4; color:#b34c38; } .tag.assumed { background:#f3efe2; color:#7a6326; }
+.statement { font-size:19px; max-width:760px; margin:6px 0 0; }
+.controls { display:flex; gap:16px 22px; flex-wrap:wrap; align-items:end; font:14px 'Trebuchet MS',Arial,sans-serif; }
+.controls label { display:flex; flex-direction:column; gap:4px; color:var(--muted); }
+.controls input { border:1px solid var(--line); background:white; padding:6px 8px; font:inherit; width:130px; color:var(--ink); }
+.controls button { cursor:pointer; border:1px solid var(--ink); background:var(--ink); color:white; padding:7px 12px; font:inherit; }
+.controls button:hover { background:var(--blue); }
+.warn { color:#b34c38; font:14px 'Trebuchet MS',Arial,sans-serif; margin-top:10px; min-height:0; }
+.metric-grid { margin-top:18px; } .metric strong { font-size:26px; font-variant-numeric:tabular-nums; }
+.metric small.f { display:block; margin-top:4px; font:12px 'Trebuchet MS',Arial,sans-serif; color:var(--muted); }
+.ok { color:#1f805e; } .bad { color:#b34c38; }
+.chart { position:relative; height:300px; margin-top:6px; }
+.chart svg { display:block; width:100%; height:100%; overflow:visible; font:12px 'Trebuchet MS',Arial,sans-serif; }
+.legend { display:flex; gap:18px; flex-wrap:wrap; font:13px 'Trebuchet MS',Arial,sans-serif; color:var(--muted); margin:0 0 6px; }
+.legend i { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px; } .legend i.line { height:3px; border-radius:2px; vertical-align:3px; }
+.tip { position:absolute; pointer-events:none; background:#10212b; color:#fff; padding:8px 10px; font:12px/1.5 'Trebuchet MS',Arial,sans-serif; white-space:nowrap; opacity:0; z-index:2; }
+.tip b { font-variant-numeric:tabular-nums; } .tip i { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; }
+.explain { font-size:17px; max-width:780px; }
+.pager { display:flex; justify-content:space-between; gap:16px; margin-top:24px; font:14px 'Trebuchet MS',Arial,sans-serif; }
+.pager a { color:var(--blue); text-decoration:none; max-width:48%; } .pager a:hover { text-decoration:underline; }
+@media(max-width:700px){ .controls input { width:120px; } .chart { height:240px; } .statement { font-size:17px; } }
+</style></head><body><div class="shell"><header><div class="brand">QUANT <span>LAB</span></div><div class="status"><span class="dot"></span>Probability lab · interview puzzles</div></header><nav></nav>
+<div class="crumbs"><a href="puzzles.html">← All puzzles</a><span id="num"></span><span id="tags"></span></div>
+<h1 id="title"></h1>
+<p class="statement" id="statement"></p>
+
+<section class="panel">
+  <h2>Numbers</h2>
+  <div class="controls" id="controls"></div>
+  <div class="warn" id="warn"></div>
+  <div class="metric-grid">
+    <div class="metric"><small>Exact answer</small><strong id="exact"></strong><small class="f">from the formula below</small></div>
+    <div class="metric"><small>Simulated</small><strong id="sim"></strong><small class="f" id="simf"></small></div>
+    <div class="metric"><small>Standard error</small><strong id="se"></strong><small class="f">spread of the simulated mean</small></div>
+    <div class="metric"><small>Check</small><strong id="check"></strong><small class="f" id="checkf"></small></div>
+  </div>
+</section>
+
+<section class="panel" id="chartPanel">
+  <h2>Simulation settling on the answer</h2>
+  <p class="sub">The running average of the simulated trials. It wanders early and settles near the exact answer; the band is exact ± 2 standard errors at each point.</p>
+  <div class="legend"><span><i class="line" style="background:var(--sim)"></i>Running average of simulation</span><span><i style="background:var(--band)"></i>Exact ± 2 SE</span><span><i class="line" style="background:var(--theory)"></i>Exact answer</span></div>
+  <div class="chart" id="chart"><svg aria-label="Running average of the simulation against the exact answer"></svg><div class="tip"></div></div>
+</section>
+
+<section class="panel">
+  <h2>Why</h2>
+  <p class="explain" id="explain"></p>
+</section>
+
+<div class="pager"><a id="prev"></a><a id="next" style="text-align:right"></a></div>
+<footer>Simulation: mulberry32 generator with the seed shown. Exact answers are verified against hand-derived values and simulation by a script. A probability exercise, not market evidence.</footer>
+</div>
+<script src="nav.js"></script><script src="puzzles.js"></script>
+<script>
+const $ = id => document.getElementById(id), NS = "http://www.w3.org/2000/svg";
+const slug = new URLSearchParams(location.search).get("p");
+const idx = Math.max(0, PUZZLES.findIndex(p => p.slug === slug));
+const P = PUZZLES[idx];
+document.title = `Quant Lab — ${P.title}`;
+$("num").textContent = `#${P.num} of ${PUZZLES.length}`;
+$("tags").innerHTML = `<span class="tag ${P.level.toLowerCase()}">${P.level}</span> ${P.assumed ? '<span class="tag assumed">assumed version</span>' : ""}`;
+$("title").textContent = P.title;
+const prev = PUZZLES[idx - 1], next = PUZZLES[idx + 1];
+if (prev) { $("prev").href = `puzzle.html?p=${prev.slug}`; $("prev").textContent = `← ${prev.title}`; }
+if (next) { $("next").href = `puzzle.html?p=${next.slug}`; $("next").textContent = `${next.title} →`; }
+
+$("controls").innerHTML = P.params.map(a => `<label>${a.label}<input type="number" id="q_${a.key}" min="${a.min}" max="${a.max}" step="${a.step}" value="${a.value}"></label>`).join("")
+  + (P.sim ? `<label>Trials<input type="number" id="trials" min="100" max="200000" step="100" value="${P.trials || 20000}"></label><label>Seed<input type="number" id="seed" min="0" step="1" value="1"></label><button type="button" id="reseed">New seed</button>` : "");
+
+function readParams() {
+  const q = {}, bad = [];
+  for (const a of P.params) {
+    const v = parseFloat($("q_" + a.key).value);
+    if (!Number.isFinite(v) || v < a.min || v > a.max) bad.push(`${a.label} must be between ${a.min} and ${a.max}`);
+    else if (a.step >= 1 && !Number.isInteger(v)) bad.push(`${a.label} must be a whole number`);
+    q[a.key] = v;
+  }
+  if (!bad.length && P.check) { const c = P.check(q); if (c !== true) bad.push(c); }
+  return { q, bad };
+}
+
+let series = null; // running means for the chart
+function simulate(q) {
+  const N = Math.min(200000, Math.max(100, parseInt($("trials").value, 10) || 20000)), seed = Math.max(0, parseInt($("seed").value, 10) || 0);
+  const r = mulberry32(seed), pts = [], every = Math.max(1, Math.floor(N / 800));
+  let n = 0, mean = 0, m2 = 0;
+  for (let i = 0; i < N; i++) {
+    const x = P.sim(q, r); if (x === null || !Number.isFinite(x)) continue;
+    n++; const d = x - mean; mean += d / n; m2 += d * (x - mean);
+    if (n % every === 0 || i === N - 1) pts.push([n, mean]);
+  }
+  const sd = n > 1 ? Math.sqrt(m2 / (n - 1)) : NaN;
+  return { n, N, seed, mean, sd, se: sd / Math.sqrt(n), pts };
+}
+
+function render() {
+  const { q, bad } = readParams();
+  $("warn").textContent = bad.join(" · ");
+  if (bad.length) return;
+  $("statement").textContent = P.statement(q);
+  $("explain").textContent = P.explain(q);
+  const ex = P.exact(q);
+  $("exact").textContent = f(ex);
+  if (!P.sim) {
+    $("sim").textContent = "—"; $("simf").textContent = "no randomness in this puzzle"; $("se").textContent = "—";
+    $("check").textContent = "n/a"; $("check").className = ""; $("checkf").textContent = "deterministic: formula only";
+    $("chartPanel").style.display = "none"; return;
+  }
+  const s = simulate(q); series = { ...s, ex };
+  $("sim").textContent = f(s.mean); $("simf").textContent = `${s.n.toLocaleString()} trials · seed ${s.seed}` + (P.simNote ? ` · ${P.simNote}` : "");
+  $("se").textContent = f(s.se);
+  const z = (s.mean - ex) / s.se, pass = Number.isFinite(ex) && (s.se === 0 ? Math.abs(s.mean - ex) < 1e-12 : Math.abs(z) <= 4);
+  $("check").textContent = pass ? "✓ agrees" : "✗ differs"; $("check").className = pass ? "ok" : "bad";
+  $("checkf").textContent = s.se === 0 ? "every trial gave the same value" : `difference = ${Number.isFinite(z) ? z.toFixed(2) : "?"} standard errors (pass ≤ 4)`;
+  draw();
+}
+
+function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); parent.appendChild(e); return e; }
+function draw() {
+  if (!series) return;
+  const box = $("chart"), svg = box.querySelector("svg"), W = box.clientWidth, H = box.clientHeight;
+  if (W < 120 || H < 80) return;
+  svg.innerHTML = ""; svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const m = { l: 58, r: 12, t: 10, b: 30 }, iw = W - m.l - m.r, ih = H - m.t - m.b, { pts, ex, sd, n } = series;
+  const band = k => 2 * sd / Math.sqrt(k), start = Math.max(1, Math.floor(pts.length * 0.02));
+  let lo = ex, hi = ex;
+  for (let i = start; i < pts.length; i++) { lo = Math.min(lo, pts[i][1], ex - band(pts[i][0])); hi = Math.max(hi, pts[i][1], ex + band(pts[i][0])); }
+  const pad = (hi - lo) * 0.12 || Math.abs(ex) * 0.05 || 1; lo -= pad; hi += pad;
+  const X = k => m.l + iw * (k - 1) / Math.max(1, n - 1), Y = v => m.t + ih * (1 - (Math.min(hi, Math.max(lo, v)) - lo) / (hi - lo));
+  for (let i = 0; i <= 4; i++) {
+    const v = lo + (hi - lo) * i / 4, y = Y(v);
+    el("line", { x1: m.l, x2: m.l + iw, y1: y, y2: y, stroke: i ? "var(--grid)" : "#9fb0b0" }, svg);
+    el("text", { x: m.l - 7, y: y + 4, "text-anchor": "end", fill: "#60737a" }, svg).textContent = f(v, Math.abs(hi - lo) < 0.1 ? 4 : Math.abs(hi - lo) < 10 ? 3 : 1);
+  }
+  for (const k of [1, Math.round(n / 2), n]) el("text", { x: X(k), y: H - 8, "text-anchor": k === 1 ? "start" : k === n ? "end" : "middle", fill: "#60737a" }, svg).textContent = k.toLocaleString();
+  if (Number.isFinite(sd) && sd > 0) {
+    const bp = pts.filter(([k]) => k >= pts[start - 1][0]);
+    el("path", { d: "M" + bp.map(([k]) => `${X(k)},${Y(ex + band(k))}`).join("L") + "L" + bp.slice().reverse().map(([k]) => `${X(k)},${Y(ex - band(k))}`).join("L") + "Z", fill: "var(--band)" }, svg);
+  }
+  el("line", { x1: m.l, x2: m.l + iw, y1: Y(ex), y2: Y(ex), stroke: "var(--theory)", "stroke-width": 2, "stroke-dasharray": "6 4" }, svg);
+  el("path", { d: "M" + pts.map(([k, v]) => `${X(k)},${Y(v)}`).join("L"), fill: "none", stroke: "var(--sim)", "stroke-width": 2, "stroke-linejoin": "round" }, svg);
+  const cross = el("line", { y1: m.t, y2: m.t + ih, stroke: "#10212b", opacity: 0 }, svg);
+  const dot = el("circle", { r: 5, fill: "var(--sim)", stroke: "#fffefa", "stroke-width": 2, opacity: 0 }, svg);
+  const hit = el("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" }, svg), tip = box.querySelector(".tip");
+  const move = e => {
+    const b = svg.getBoundingClientRect(), k = 1 + (e.clientX - b.left - m.l) / iw * (n - 1);
+    let best = pts[0]; for (const pt of pts) if (Math.abs(pt[0] - k) < Math.abs(best[0] - k)) best = pt;
+    const [kk, v] = best;
+    cross.setAttribute("x1", X(kk)); cross.setAttribute("x2", X(kk)); cross.setAttribute("opacity", .35);
+    dot.setAttribute("cx", X(kk)); dot.setAttribute("cy", Y(v)); dot.setAttribute("opacity", 1);
+    tip.innerHTML = `After <b>${kk.toLocaleString()}</b> trials<br><i style="background:var(--sim)"></i>Running average <b>${f(v)}</b><br><i style="background:var(--theory)"></i>Exact <b>${f(ex)}</b>` + (sd > 0 ? ` ± <b>${f(band(kk))}</b>` : "");
+    tip.style.opacity = 1; const w = tip.offsetWidth;
+    tip.style.left = (X(kk) + 14 + w > W ? X(kk) - w - 14 : X(kk) + 14) + "px"; tip.style.top = Math.max(0, Y(v) - 20) + "px";
+  };
+  hit.addEventListener("pointermove", move); hit.addEventListener("pointerdown", move);
+  hit.addEventListener("pointerleave", () => { cross.setAttribute("opacity", 0); dot.setAttribute("opacity", 0); tip.style.opacity = 0; });
+}
+
+$("controls").addEventListener("change", render);
+if (P.sim) $("reseed").addEventListener("click", () => { $("seed").value = (parseInt($("seed").value, 10) || 0) + 1; render(); });
+let rt, lastW = 0;
+new ResizeObserver(([e]) => { const w = Math.round(e.contentRect.width); if (w !== lastW) { lastW = w; clearTimeout(rt); rt = setTimeout(draw, 100); } }).observe($("chart"));
+render();
+</script></body></html>

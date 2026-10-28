@@ -1,0 +1,241 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="pages.css"><title>Quant Lab — Coins</title>
+<style>
+:root { --theory:#1f6fa0; --sim:#dc7259; --band:#dce9f1; --grid:#e3e8e6; }
+.controls { display:flex; gap:22px; flex-wrap:wrap; align-items:center; font:14px 'Trebuchet MS',Arial,sans-serif; }
+.controls label { display:flex; gap:8px; align-items:center; color:var(--muted); }
+.controls input[type=range] { width:150px; accent-color:var(--theory); }
+.controls output { color:var(--ink); font-weight:bold; min-width:40px; font-variant-numeric:tabular-nums; }
+.controls select, .controls input[type=number] { border:1px solid var(--line); background:white; padding:5px 8px; font:inherit; width:auto; }
+.controls button { cursor:pointer; border:1px solid var(--ink); background:var(--ink); color:white; padding:6px 12px; font:inherit; }
+.controls button:hover { background:var(--blue); }
+.metric-grid { margin:14px 0 18px; }
+.metric strong { font-size:25px; font-variant-numeric:tabular-nums; }
+.metric small.f { display:block; margin-top:4px; font:12px Consolas,'Courier New',monospace; color:var(--muted); }
+.chart { position:relative; height:300px; }
+.chart svg { display:block; width:100%; height:100%; overflow:visible; font:12px 'Trebuchet MS',Arial,sans-serif; }
+.legend { display:flex; gap:18px; flex-wrap:wrap; font:13px 'Trebuchet MS',Arial,sans-serif; color:var(--muted); margin:0 0 8px; }
+.legend i { display:inline-block; width:12px; height:12px; border-radius:3px; margin-right:6px; vertical-align:-1px; }
+.legend i.line { height:3px; border-radius:2px; vertical-align:3px; }
+.legend i.dot { border-radius:50%; }
+.tip { position:absolute; pointer-events:none; background:#10212b; color:#fff; padding:8px 10px; font:12px/1.5 'Trebuchet MS',Arial,sans-serif; white-space:nowrap; opacity:0; transition:opacity .08s; z-index:2; }
+.tip b { font-variant-numeric:tabular-nums; }
+.tip i { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:5px; }
+.notice { margin-top:16px; }
+code { font:13px Consolas,'Courier New',monospace; background:#eef2f0; padding:1px 5px; }
+details { margin-top:14px; font-size:14px; } summary { cursor:pointer; color:var(--blue); font-family:'Trebuchet MS',Arial,sans-serif; }
+details table { margin-top:8px; } .num { text-align:right; }
+.readout { font:14px 'Trebuchet MS',Arial,sans-serif; color:var(--muted); margin-top:10px; min-height:21px; } .readout b { color:var(--ink); font-variant-numeric:tabular-nums; }
+@media(max-width:700px){ #two .fx, #two .dx { display:none; } .controls { gap:12px; } .controls input[type=range] { width:110px; } .chart { height:240px; } }
+</style></head><body><div class="shell"><header><div class="brand">QUANT <span>LAB</span></div><div class="status"><span class="dot"></span>Probability lab · coin flips</div></header><nav></nav>
+<h1>Coin flips: one, two, and n coins.</h1>
+<p class="lede">Exact probabilities next to a seeded simulation. Change the chance of heads and the number of coins, and watch where intuition and arithmetic part ways.</p>
+
+<section class="panel">
+  <div class="controls">
+    <label>Chance of heads p <input id="p" type="range" min="0" max="1" step="0.01" value="0.5"><output id="pOut">0.50</output></label>
+    <label>Seed <input id="seed" type="number" value="42" min="0" step="1" style="width:80px"></label>
+    <button id="rerun" type="button">New seed</button>
+  </div>
+  <p class="sub" style="margin:10px 0 0">The simulation uses a fixed-seed random generator, so the same seed always gives the same flips.</p>
+</section>
+
+<section class="panel">
+  <h2>1 · One coin</h2>
+  <p class="sub">A single flip is heads with probability p. The share of heads over many flips settles toward p, and the 95% band shrinks like 1/√flips.</p>
+  <div class="metric-grid">
+    <div class="metric"><small>P(heads)</small><strong id="m1h"></strong><small class="f">p</small></div>
+    <div class="metric"><small>P(tails)</small><strong id="m1t"></strong><small class="f">1 − p</small></div>
+    <div class="metric"><small>SD of one flip</small><strong id="m1sd"></strong><small class="f">√(p(1−p))</small></div>
+    <div class="metric"><small>Share of heads after all flips</small><strong id="m1last"></strong><small class="f" id="m1lastf"></small></div>
+  </div>
+  <div class="controls" style="margin-bottom:10px"><label>Flips <select id="flips"><option>100</option><option>500</option><option selected>2000</option><option>10000</option></select></label></div>
+  <div class="legend"><span><i class="line" style="background:var(--sim)"></i>Simulated share of heads</span><span><i style="background:var(--band)"></i>p ± 2 SD (about 95% of runs)</span><span><i class="line" style="background:var(--theory)"></i>True p</span></div>
+  <div class="chart" id="c1"><svg aria-label="Running share of heads over flips"></svg><div class="tip"></div></div>
+</section>
+
+<section class="panel">
+  <h2>2 · Two coins</h2>
+  <p class="sub">Two independent flips have four outcomes. Multiply the chances of each coin to get the chance of each outcome.</p>
+  <table id="two">
+    <thead><tr><th>Event</th><th class="fx">Formula</th><th class="num">Exact</th><th class="num">Simulated</th><th class="num dx">Difference</th></tr></thead>
+    <tbody id="t2"></tbody>
+  </table>
+  <div class="notice"><b>The classic trap.</b> "At least one coin is heads. What is the chance both are?" It is <b>1/3</b> for fair coins, not 1/2: of the three equally likely outcomes HH, HT, TH, only one is HH. Knowing <i>the first</i> coin is heads is different information, and then the answer is p = 1/2.</div>
+  <p class="sub" id="s2" style="margin:10px 0 0"></p>
+</section>
+
+<section class="panel">
+  <h2>3 · n coins (binomial distribution)</h2>
+  <p class="sub">The number of heads in n flips follows the binomial distribution: P(k heads) = C(n,k) · p<sup>k</sup> · (1−p)<sup>n−k</sup>. Hover or tap a bar for its exact and simulated values.</p>
+  <div class="controls" style="margin-bottom:6px">
+    <label>Coins n <input id="n" type="range" min="1" max="100" step="1" value="10"><output id="nOut">10</output></label>
+    <label>Simulated trials <select id="trials"><option>1000</option><option selected>10000</option><option>50000</option></select></label>
+  </div>
+  <div class="metric-grid">
+    <div class="metric"><small>Expected heads</small><strong id="m3mean"></strong><small class="f">n · p</small></div>
+    <div class="metric"><small>Standard deviation</small><strong id="m3sd"></strong><small class="f">√(n · p · (1−p))</small></div>
+    <div class="metric"><small>Most likely count</small><strong id="m3mode"></strong><small class="f">⌊(n+1) · p⌋</small></div>
+    <div class="metric"><small>P(at least one head)</small><strong id="m3any"></strong><small class="f">1 − (1−p)<sup>n</sup></small></div>
+  </div>
+  <div class="legend"><span><i style="background:var(--theory)"></i>Exact probability</span><span><i class="dot" style="background:var(--sim)"></i>Simulated frequency</span></div>
+  <div class="chart" id="c3"><svg aria-label="Probability of each number of heads"></svg><div class="tip"></div></div>
+  <div class="readout" id="r3">Hover or tap a bar.</div>
+  <p class="sub" id="s3" style="margin:6px 0 0"></p>
+  <details><summary>Show as a table</summary><table><thead><tr><th>Heads k</th><th class="num">Exact P(k)</th><th class="num">Simulated</th><th class="num">P(≤ k)</th><th class="num">P(≥ k)</th></tr></thead><tbody id="t3"></tbody></table></details>
+</section>
+
+<footer>Exact values are computed with logarithms of factorials, so large n does not overflow. Simulation: mulberry32 generator, seed shown above. This page is a probability exercise, not market evidence.</footer>
+</div>
+<script src="nav.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const fmt = (x, d = 4) => Number.isFinite(x) ? x.toFixed(d) : "undefined";
+const pct = x => Number.isFinite(x) ? (100 * x).toFixed(2) + "%" : "undefined";
+
+function rng(seed) { // mulberry32
+  let a = seed >>> 0;
+  return () => { a = (a + 0x6D2B79F5) >>> 0; let t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+}
+
+const logFact = [0]; for (let i = 1; i <= 200; i++) logFact[i] = logFact[i - 1] + Math.log(i);
+function binomPmf(n, p) {
+  if (p === 0) return Array.from({ length: n + 1 }, (_, k) => +(k === 0));
+  if (p === 1) return Array.from({ length: n + 1 }, (_, k) => +(k === n));
+  const lp = Math.log(p), lq = Math.log(1 - p);
+  return Array.from({ length: n + 1 }, (_, k) => Math.exp(logFact[n] - logFact[k] - logFact[n - k] + k * lp + (n - k) * lq));
+}
+
+function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function frame(box) {
+  const svg = box.querySelector("svg"); svg.innerHTML = "";
+  const W = box.clientWidth, H = box.clientHeight, m = { l: 46, r: 12, t: 10, b: 30 };
+  if (W < 120 || H < 80) return null; // not laid out yet; the ResizeObserver draws it later
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  return { svg, W, H, m, iw: W - m.l - m.r, ih: H - m.t - m.b };
+}
+function yAxis(f, max, ticks, label) {
+  for (let i = 0; i <= ticks; i++) {
+    const v = max * i / ticks, y = f.m.t + f.ih - f.ih * v / max;
+    el("line", { x1: f.m.l, x2: f.m.l + f.iw, y1: y, y2: y, stroke: i ? "var(--grid)" : "#9fb0b0", "stroke-width": 1 }, f.svg);
+    const t = el("text", { x: f.m.l - 7, y: y + 4, "text-anchor": "end", fill: "#60737a" }, f.svg); t.textContent = label(v);
+  }
+}
+function tip(box, html, x, y) {
+  const t = box.querySelector(".tip"); t.innerHTML = html; t.style.opacity = 1;
+  const w = t.offsetWidth, left = x + 14 + w > box.clientWidth ? x - w - 14 : x + 14;
+  t.style.left = left + "px"; t.style.top = Math.max(0, y - 20) + "px";
+}
+const hideTip = box => { box.querySelector(".tip").style.opacity = 0; };
+
+// ---------- 1 · one coin ----------
+function drawOne(p, seed) {
+  const N = +$("flips").value, r = rng(seed), share = new Float64Array(N);
+  let heads = 0;
+  for (let i = 0; i < N; i++) { heads += r() < p; share[i] = heads / (i + 1); }
+  const sd = Math.sqrt(p * (1 - p));
+  $("m1h").textContent = fmt(p, 2); $("m1t").textContent = fmt(1 - p, 2); $("m1sd").textContent = fmt(sd, 3);
+  $("m1last").textContent = fmt(share[N - 1], 3); $("m1lastf").textContent = `${heads} heads in ${N} flips`;
+
+  const box = $("c1"), f = frame(box);
+  if (!f) return;
+  const X = k => f.m.l + f.iw * (k - 1) / Math.max(1, N - 1), Y = v => f.m.t + f.ih * (1 - v);
+  yAxis(f, 1, 4, v => v.toFixed(2));
+  for (const k of [1, Math.round(N / 4), Math.round(N / 2), Math.round(3 * N / 4), N]) {
+    const t = el("text", { x: X(k), y: f.H - 8, "text-anchor": "middle", fill: "#60737a" }, f.svg); t.textContent = k.toLocaleString();
+  }
+  const step = Math.max(1, Math.floor(N / 600)), idx = [];
+  for (let k = 1; k <= N; k += step) idx.push(k); if (idx[idx.length - 1] !== N) idx.push(N);
+  const hi = k => Math.min(1, p + 2 * sd / Math.sqrt(k)), lo = k => Math.max(0, p - 2 * sd / Math.sqrt(k));
+  el("path", { d: "M" + idx.map(k => `${X(k)},${Y(hi(k))}`).join("L") + "L" + idx.slice().reverse().map(k => `${X(k)},${Y(lo(k))}`).join("L") + "Z", fill: "var(--band)" }, f.svg);
+  el("line", { x1: f.m.l, x2: f.m.l + f.iw, y1: Y(p), y2: Y(p), stroke: "var(--theory)", "stroke-width": 2, "stroke-dasharray": "6 4" }, f.svg);
+  el("path", { d: "M" + idx.map(k => `${X(k)},${Y(share[k - 1])}`).join("L"), fill: "none", stroke: "var(--sim)", "stroke-width": 2, "stroke-linejoin": "round" }, f.svg);
+  const cross = el("line", { y1: f.m.t, y2: f.m.t + f.ih, stroke: "#10212b", "stroke-width": 1, opacity: 0 }, f.svg);
+  const dot = el("circle", { r: 5, fill: "var(--sim)", stroke: "#fffefa", "stroke-width": 2, opacity: 0 }, f.svg);
+  const hit = el("rect", { x: f.m.l, y: f.m.t, width: f.iw, height: f.ih, fill: "transparent" }, f.svg);
+  const move = ev => {
+    const b = f.svg.getBoundingClientRect(), x = ev.clientX - b.left;
+    const k = Math.min(N, Math.max(1, Math.round(1 + (x - f.m.l) / f.iw * (N - 1))));
+    cross.setAttribute("x1", X(k)); cross.setAttribute("x2", X(k)); cross.setAttribute("opacity", .35);
+    dot.setAttribute("cx", X(k)); dot.setAttribute("cy", Y(share[k - 1])); dot.setAttribute("opacity", 1);
+    tip(box, `Flip <b>${k.toLocaleString()}</b><br><i style="background:var(--sim)"></i>Share of heads <b>${fmt(share[k - 1], 3)}</b><br><i style="background:var(--theory)"></i>True p <b>${fmt(p, 2)}</b>, 95% band <b>${fmt(lo(k), 3)}–${fmt(hi(k), 3)}</b>`, X(k), Y(share[k - 1]));
+  };
+  hit.addEventListener("pointermove", move); hit.addEventListener("pointerdown", move);
+  hit.addEventListener("pointerleave", () => { cross.setAttribute("opacity", 0); dot.setAttribute("opacity", 0); hideTip(box); });
+}
+
+// ---------- 2 · two coins ----------
+function drawTwo(p, seed) {
+  const q = 1 - p, M = 100000, r = rng(seed + 1), c = { HH: 0, HT: 0, TH: 0, TT: 0 };
+  for (let i = 0; i < M; i++) c[(r() < p ? "H" : "T") + (r() < p ? "H" : "T")]++;
+  const s = k => c[k] / M, atLeast = (c.HH + c.HT + c.TH), firstH = c.HH + c.HT;
+  const rows = [
+    ["Both heads (HH)", "p · p", p * p, s("HH")],
+    ["First heads, second tails (HT)", "p · (1−p)", p * q, s("HT")],
+    ["First tails, second heads (TH)", "(1−p) · p", q * p, s("TH")],
+    ["Both tails (TT)", "(1−p) · (1−p)", q * q, s("TT")],
+    ["Exactly one head", "2 · p · (1−p)", 2 * p * q, (c.HT + c.TH) / M],
+    ["At least one head", "1 − (1−p)²", 1 - q * q, atLeast / M],
+    ["Both heads, given at least one head", "p² / (1 − (1−p)²)", p > 0 ? p * p / (1 - q * q) : NaN, atLeast ? c.HH / atLeast : NaN],
+    ["Both heads, given the first is heads", "p", p > 0 ? p : NaN, firstH ? c.HH / firstH : NaN],
+  ];
+  $("t2").innerHTML = rows.map(([e, f, x, y]) => `<tr><td>${e}</td><td class="fx"><code>${f}</code></td><td class="num">${fmt(x)}</td><td class="num">${fmt(y)}</td><td class="num dx">${Number.isFinite(x - y) ? (y - x >= 0 ? "+" : "") + (y - x).toFixed(4) : "—"}</td></tr>`).join("");
+  $("s2").textContent = `Simulated with ${M.toLocaleString()} pairs of flips. Conditional rows are undefined when the condition can never happen (p = 0).`;
+}
+
+// ---------- 3 · n coins ----------
+function drawN(p, seed) {
+  const n = +$("n").value, M = +$("trials").value, pmf = binomPmf(n, p), r = rng(seed + 2), hist = new Array(n + 1).fill(0);
+  for (let t = 0; t < M; t++) { let h = 0; for (let i = 0; i < n; i++) h += r() < p; hist[h]++; }
+  const freq = hist.map(h => h / M), cdf = []; pmf.reduce((a, v, k) => (cdf[k] = a + v), 0);
+  const mean = n * p, sd = Math.sqrt(n * p * (1 - p)), mode = p === 1 ? n : Math.floor((n + 1) * p);
+  $("m3mean").textContent = fmt(mean, 2); $("m3sd").textContent = fmt(sd, 3); $("m3mode").textContent = mode; $("m3any").textContent = pct(1 - Math.pow(1 - p, n));
+  const total = pmf.reduce((a, b) => a + b, 0);
+  $("s3").textContent = `Check: exact probabilities sum to ${total.toFixed(10)}. Simulated with ${M.toLocaleString()} trials of ${n} flips.`;
+  $("t3").innerHTML = pmf.map((v, k) => `<tr><td>${k}</td><td class="num">${fmt(v, 6)}</td><td class="num">${fmt(freq[k], 6)}</td><td class="num">${fmt(cdf[k], 6)}</td><td class="num">${fmt(1 - (k ? cdf[k - 1] : 0), 6)}</td></tr>`).join("");
+
+  const box = $("c3"), f = frame(box);
+  if (!f) return;
+  const top = Math.max(...pmf, ...freq) * 1.1 || 1;
+  const nice = top <= .1 ? .02 : top <= .25 ? .05 : top <= .5 ? .1 : .2, max = Math.ceil(top / nice) * nice;
+  yAxis(f, max, Math.round(max / nice), v => (v * 100).toFixed(0) + "%");
+  const slot = f.iw / (n + 1), gap = Math.min(2, slot * .2), bw = Math.max(1, slot - gap);
+  const X = k => f.m.l + slot * k + gap / 2, Y = v => f.m.t + f.ih * (1 - v / max), base = f.m.t + f.ih;
+  const every = Math.ceil((n + 1) / Math.max(2, Math.floor(f.iw / 34)));
+  for (let k = 0; k <= n; k += every) { const t = el("text", { x: X(k) + bw / 2, y: f.H - 8, "text-anchor": "middle", fill: "#60737a" }, f.svg); t.textContent = k; }
+  const ax = el("text", { x: f.m.l + f.iw, y: f.H - 8, "text-anchor": "end", fill: "#60737a" }, f.svg); if ((n % every) !== 0) ax.textContent = n;
+  const bars = [], rad = Math.min(4, bw / 2);
+  for (let k = 0; k <= n; k++) {
+    const h = base - Y(pmf[k]), y = Y(pmf[k]), x = X(k), rr = Math.min(rad, h);
+    bars.push(el("path", { d: h > 0 ? `M${x},${base}V${y + rr}Q${x},${y} ${x + rr},${y}H${x + bw - rr}Q${x + bw},${y} ${x + bw},${y + rr}V${base}Z` : "", fill: "var(--theory)" }, f.svg));
+  }
+  const dotR = Math.max(3, Math.min(5, bw / 3));
+  for (let k = 0; k <= n; k++) if (freq[k] > 0) el("circle", { cx: X(k) + bw / 2, cy: Y(freq[k]), r: dotR, fill: "var(--sim)", stroke: "#fffefa", "stroke-width": 2 }, f.svg);
+  const show = k => {
+    bars.forEach((b, i) => b.setAttribute("opacity", i === k ? 1 : .45));
+    const le = cdf[k], ge = 1 - (k ? cdf[k - 1] : 0);
+    tip(box, `<b>${k}</b> heads of ${n}<br><i style="background:var(--theory)"></i>Exact <b>${pct(pmf[k])}</b><br><i style="background:var(--sim)"></i>Simulated <b>${pct(freq[k])}</b> (${hist[k].toLocaleString()} of ${M.toLocaleString()})`, X(k) + bw / 2, Y(Math.max(pmf[k], freq[k])));
+    $("r3").innerHTML = `k = <b>${k}</b>: P(X = k) <b>${pct(pmf[k])}</b> · P(X ≤ k) <b>${pct(le)}</b> · P(X ≥ k) <b>${pct(ge)}</b>`;
+  };
+  for (let k = 0; k <= n; k++) {
+    const hit = el("rect", { x: f.m.l + slot * k, y: f.m.t, width: slot, height: f.ih, fill: "transparent" }, f.svg);
+    hit.addEventListener("pointerenter", () => show(k)); hit.addEventListener("pointerdown", () => show(k));
+  }
+  f.svg.addEventListener("pointerleave", () => { bars.forEach(b => b.setAttribute("opacity", 1)); hideTip(box); });
+}
+
+function seedVal() { const s = parseInt($("seed").value, 10); return Number.isFinite(s) && s >= 0 ? s : 0; }
+function render() {
+  const p = +$("p").value; $("pOut").textContent = p.toFixed(2); $("nOut").textContent = $("n").value;
+  const s = seedVal(); drawOne(p, s); drawTwo(p, s); drawN(p, s);
+}
+["p", "n"].forEach(id => $(id).addEventListener("input", render));
+["flips", "trials", "seed"].forEach(id => $(id).addEventListener("change", render));
+$("rerun").addEventListener("click", () => { $("seed").value = seedVal() + 1; render(); });
+let rt, lastW = 0;
+new ResizeObserver(([e]) => {
+  const w = Math.round(e.contentRect.width);
+  if (w !== lastW) { lastW = w; clearTimeout(rt); rt = setTimeout(render, 120); }
+}).observe($("c1"));
+render();
+</script></body></html>

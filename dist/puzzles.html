@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="stylesheet" href="pages.css"><title>Quant Lab — Puzzles</title>
+<style>
+.list { display:grid; grid-template-columns:repeat(2,1fr); gap:16px; margin-top:24px; }
+.card { display:flex; flex-direction:column; gap:8px; border:1px solid var(--line); background:#fffefa; padding:16px 18px; color:var(--ink); text-decoration:none; }
+.card:hover { border-color:var(--blue); background:#fbfdfd; }
+.card .top { display:flex; gap:8px; align-items:baseline; font:12px 'Trebuchet MS',Arial,sans-serif; color:var(--muted); }
+.card h3 { margin:0; font:700 17px/1.25 'Trebuchet MS',Arial,sans-serif; }
+.card .ans { margin-top:auto; font:13px 'Trebuchet MS',Arial,sans-serif; color:var(--muted); }
+.card .ans b { color:var(--ink); font-variant-numeric:tabular-nums; }
+.tag.easy { background:#e8f1ec; color:#285a43; } .tag.medium { background:var(--sky); color:var(--blue); } .tag.hard { background:#fbe9e4; color:#b34c38; } .tag.assumed { background:#f3efe2; color:#7a6326; }
+@media(max-width:700px){ .list { grid-template-columns:1fr; } }
+</style></head><body><div class="shell"><header><div class="brand">QUANT <span>LAB</span></div><div class="status"><span class="dot"></span>Probability lab · interview puzzles</div></header><nav></nav>
+<h1>Expectation puzzles.</h1>
+<p class="lede">Each puzzle has its own page: an exact answer, a seeded simulation that checks it, and controls to change the numbers.</p>
+<div class="notice" style="margin-top:20px">Titles come from a public practice list. The statements are our own versions. Where a title leaves the rules open, the puzzle is marked <span class="tag assumed">assumed version</span> and its page says which rules were chosen.</div>
+<div class="list" id="list"></div>
+<footer>Exact answers are checked against hand-derived values and against simulation (within 4 standard errors) by a script before publishing.</footer>
+</div>
+<script src="nav.js"></script><script src="puzzles.js"></script>
+<script>
+document.getElementById("list").innerHTML = PUZZLES.map(p => {
+  const ex = p.exact(defaults(p));
+  return `<a class="card" href="puzzle.html?p=${p.slug}">
+    <div class="top"><span>#${p.num}</span><span class="tag ${p.level.toLowerCase()}">${p.level}</span>${p.assumed ? '<span class="tag assumed">assumed version</span>' : ""}</div>
+    <h3>${p.title}</h3>
+    <div class="ans">Answer with default numbers: <b>${f(ex)}</b></div></a>`;
+}).join("");
+</script></body></html>
