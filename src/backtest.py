@@ -15,10 +15,9 @@ class BacktestConfig:
     execution: Literal["close", "open_next"] = "open_next"
 
 
-def _apply_costs(returns: pd.Series, turnover: pd.Series, fee_bps: float, slip_bps: float) -> pd.Series:
-    bps = fee_bps + slip_bps
-    cost = (turnover * bps) / 10_000.0
-    return returns - cost
+def _cost_factor(turnover: pd.Series, fee_bps: float, slip_bps: float) -> pd.Series:
+    """Fraction of equity kept after paying fees + slippage on a fill of size `turnover`."""
+    return 1 - turnover * (fee_bps + slip_bps) / 10_000.0
 
 
 def backtest_from_positions(
@@ -29,42 +28,67 @@ def backtest_from_positions(
 ) -> tuple[pd.DataFrame, pd.DataFrame, dict]:
     """Backtest long-only or long/flat positions.
 
+    `positions[t]` is the target decided with information up to the close of bar t.
+    Fill timing (config.execution):
+      - "close":     filled at close[t]; held over (close[t], close[t+1]].
+      - "open_next": filled at open[t+1]; the overnight gap close[t] -> open[t+1] belongs to the old
+                     position, the move open[t+1] -> close[t+1] to the new one. A target decided on the
+                     last bar is never filled. Requires an `open` column.
+    Bar return: (1 + held_prev * gap) * (1 - turnover * (fee_bps + slippage_bps) / 1e4) * (1 + held * move) - 1,
+    i.e. costs are paid as a fraction of equity at the moment of the fill (after the gap, before the move).
+    In "close" mode gap is the whole close-to-close return and move is 0. Trade prices are raw fill prices
+    (no costs). equity_df["position"] is the target, equity_df["position_held"] the position after the fill.
+
     Returns: (equity_df, trades_df, metrics_dict)
     """
     if "close" not in df.columns:
         raise ValueError("df must include close")
+    if config.execution not in ("close", "open_next"):
+        raise ValueError(f"Unknown execution {config.execution!r}")
+    if config.execution == "open_next" and "open" not in df.columns:
+        raise ValueError("execution='open_next' needs an open column")
 
     out = df.copy()
     out["position"] = positions.astype(int).values
-    out["position_prev"] = out["position"].shift(1).fillna(0).astype(int)
-    base_ret = out["close"].pct_change().fillna(0.0)
-    strat_ret = base_ret * out["position_prev"]
-    turnover = (out["position"] - out["position_prev"]).abs()
-    strat_ret = _apply_costs(strat_ret, turnover, config.fee_bps, config.slippage_bps)
-    out["strategy_return"] = strat_ret
+    close = out["close"].astype(float)
+    if config.execution == "close":
+        held = out["position"]
+        fill_price = close
+        gap = close.pct_change().fillna(0.0)                # whole bar is "gap" from the previous close
+        move = pd.Series(0.0, index=out.index)
+    else:
+        held = out["position"].shift(1).fillna(0).astype(int)
+        fill_price = out["open"].astype(float)
+        gap = (fill_price / close.shift(1) - 1).fillna(0.0)
+        move = close / fill_price - 1
+    held_prev = held.shift(1).fillna(0).astype(int)
+    turnover = (held - held_prev).abs()
+    kept = _cost_factor(turnover, config.fee_bps, config.slippage_bps)
+    out["position_held"] = held.astype(int)
+    out["strategy_return"] = (1 + held_prev * gap) * kept * (1 + held * move) - 1
     out["equity"] = config.initial_capital * (1 + out["strategy_return"]).cumprod()
     out["drawdown"] = out["equity"] / out["equity"].cummax() - 1.0
 
     trades = []
     entry_index = None
-    for i in range(1, len(out)):
-        if out.iloc[i]["position"] == 1 and out.iloc[i - 1]["position"] == 0:
+    held_arr, held_prev_arr = held.to_numpy(), held_prev.to_numpy()
+    for i in range(len(out)):
+        if held_arr[i] == 1 and held_prev_arr[i] == 0:
             entry_index = i
-        elif out.iloc[i]["position"] == 0 and out.iloc[i - 1]["position"] == 1 and entry_index is not None:
-            entry_price = out.iloc[entry_index]["close"]
-            exit_price = out.iloc[i]["close"]
+        elif held_arr[i] == 0 and held_prev_arr[i] == 1 and entry_index is not None:
+            entry_price, exit_price = float(fill_price.iloc[entry_index]), float(fill_price.iloc[i])
             trades.append({
-                "entry_time": out.iloc[entry_index]["date"],
-                "exit_time": out.iloc[i]["date"],
-                "entry_price": float(entry_price),
-                "exit_price": float(exit_price),
-                "return": float(exit_price / entry_price - 1),
+                "entry_time": out["date"].iloc[entry_index],
+                "exit_time": out["date"].iloc[i],
+                "entry_price": entry_price,
+                "exit_price": exit_price,
+                "return": exit_price / entry_price - 1,
             })
             entry_index = None
 
     trades_df = pd.DataFrame(trades)
-    metrics = compute_metrics(out, trades_df)
-    equity_df = out[["date", "close", "position", "equity", "drawdown", "strategy_return"]]
+    metrics = compute_metrics(out, trades_df) | {"open_position_at_end": int(held_arr[-1]) if len(out) else 0}
+    equity_df = out[["date", "close", "position", "position_held", "equity", "drawdown", "strategy_return"]]
     return equity_df, trades_df, metrics
 
 

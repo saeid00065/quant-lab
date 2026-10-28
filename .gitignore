@@ -8,3 +8,5 @@ results/
 
 
 proxy.txt
+.hypothesis/
+research/*/out/equity_*.csv
