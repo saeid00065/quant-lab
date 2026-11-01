@@ -1,0 +1,1921 @@
+{
+ "meta": {
+  "source": "Crossref API, prefix 10.2139 (SSRN)",
+  "retrieved_utc": "2026-10-29T20:57:55+00:00",
+  "queries": [
+   "gold intraday returns time of day",
+   "London fix foreign exchange month-end",
+   "currency intraday patterns trading hours",
+   "pre-FOMC announcement drift",
+   "bitcoin intraday seasonality",
+   "turn of the month effect"
+  ],
+  "rows_per_query": 25,
+  "since": 2010,
+  "n_papers": 146
+ },
+ "papers": [
+  {
+   "ssrn_id": "2434194",
+   "doi": "10.2139/ssrn.2434194",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2434194",
+   "title": "Is Bitcoin Money? Bitcoin and Alternate Theories of Money",
+   "authors": "Sonal Mittal",
+   "year": 2014,
+   "citations": 22,
+   "abstract": "In 2009, a curious new virtual currency called Bitcoin made its first appearance on the Internet. While it remains a “niche” currency relative to other major denominations like the U.S. dollar, Bitcoin has experienced significant growth since its inception. The total number of Bitcoins in circulation is about 12.5 million, with a recent market price of about $500 each. Today, Bitcoin’s total market capitalization is about $6 billion, and in the past it has been as high as $13 billion. The average number of Bitcoin transactions per day has averaged over 60,000 since January 2014, reflecting between $20 million and $100 million worth of transactions per day. The numbers show that in the five years since its first appearance, Bitcoin has grown tremendously in popular knowledge and usage. Although it is clear that Bitcoin can be used to purchase goods and services, and can be given an explicit dollar value, questions remain about the economic and legal status of Bitcoin and other virtual currencies that have emerged in its wake. Members of the Bitcoin developer and user community believe “Bitcoin is an innovative payment network and new kind of money.” Others, like the U.S. Internal Revenue Service, take the position that Bitcoin is a type of commodity or property. Whether Bitcoin is a new form of virtual money or simply an electronic commodity requires an investigation into what constitutes money, and an assessment of whether Bitcoin comfortably fits into the parameters of what we consider to be money. This paper finds that, at this stage in its development, Bitcoin is not money and more closely resembles a commodity or property. This paper begins by giving a brief overview of Bitcoin and how it operates. It then describes two major theories of money — the conventional and constitutional theories — that differ in their accounts of how money emerges within a society or political grouping. The paper assesses how well Bitcoin fits under each theory by assessing Bitcoin’s economic properties and implementation. It then turns to the impact of the Bitcoin on the two theories of money, finding it likely does not support the conventional creation story of money and instead lends credence to the constitutional theory.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "3114108",
+   "doi": "10.2139/ssrn.3114108",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3114108",
+   "title": "Is Bitcoin a Hedge or Safe-Haven for Currencies? An Intraday Analysis",
+   "authors": "Andrew Urquhart, Hanxiong Zhang",
+   "year": 2018,
+   "citations": 17,
+   "abstract": "",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "1786697",
+   "doi": "10.2139/ssrn.1786697",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1786697",
+   "title": "Pre-Earnings Announcement Drift",
+   "authors": "Peter D. Easton, George Gao, Pengjie Gao",
+   "year": 2011,
+   "citations": 12,
+   "abstract": "We present evidence of a predictable drift in stock prices before the earnings announcements of firms that announce their earnings later than other firms in their industry. We form portfolios based on the returns of later announcers that are implied by the abnormal returns of earlier announcers and the historical pair-wise covariance of the abnormal earnings announcement date returns of earlier and later announcers. A long-short trading strategy based on these implied returns generates monthly returns of more than 100 basis points. The drift is neither due to the well-known momentum effect nor a manifestation of post-earnings announcement drift; it is evident both between the earlier announcers’ earnings announcement dates and the later announcers’ earnings announcement dates and at the later announcers’ earnings announcement dates. The continued under-reaction after later announcers’ earnings announcements is shown to be an under-reaction to the later announcers’ own earnings announcements (i.e., post-earnings announcement drift) rather than a continued under-reaction to the earnings news of earlier announcers (i.e., pre-earnings announcement drift). We show that transaction costs explain the predictability of later announcers’ returns.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "3094647",
+   "doi": "10.2139/ssrn.3094647",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3094647",
+   "title": "The Impact of Futures Trading on Intraday Spot Volatility and Liquidity: Evidence from Bitcoin Market",
+   "authors": "Shimeng Shi",
+   "year": 2018,
+   "citations": 8,
+   "abstract": "This study uses high-frequency data to examine the impact of Bitcoin futures trading on volatility and liquidity of the Bitcoin spot market. The introduction of futures trading significantly reduces the spot price variations. The spot market becomes more liquid in the post-futures trading period. The results are robust to different volatility and liquidity proxies. Hence, at least within a short period, Bitcoin futures trading plays a positive role in stabilising the spot price volatility and improving the spot market liquidity.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "3489214",
+   "doi": "10.2139/ssrn.3489214",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3489214",
+   "title": "An Econometric Model for Intraday Electricity Trading",
+   "authors": "Marcel Kremer, Ruediger Kiesel, Florentina Paraschiv",
+   "year": 2019,
+   "citations": 7,
+   "abstract": "This paper develops an econometric price model with fundamental impacts for intraday electricity markets of 15-minute contracts. A unique data set of intradaily updated forecasts of renewable power generation is analyzed. We use a threshold regression model to examine how 15-minute intraday trading depends on the slope of the merit order curve. Our estimation results reveal strong evidence of mean reversion in the price formation mechanism of 15-minute contracts. Additionally, prices of neighboring contracts exhibit strong explanatory power and a positive impact on prices of a given contract. We observe an asymmetric effect of renewable forecast changes on intraday prices depending on the merit-order-curve slope. In general, renewable forecasts have a higher explanatory power at noon than in the morning and evening, but price information is the main driver of 15-minute intraday trading. Overall, we show that the importance of influencing factors on the intraday electricity market has changed from fundamental towards trading-related factors. This novel finding illustrates that the intraday electricity market has become increasingly mature.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "3101695",
+   "doi": "10.2139/ssrn.3101695",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3101695",
+   "title": "Forecasting Intraday Trading Volume: A Kalman Filter Approach",
+   "authors": "Ran Chen, Yiyong Feng, Daniel Palomar",
+   "year": 2018,
+   "citations": 6,
+   "abstract": "An accurate forecast of intraday volume is a key aspect of algorithmic trading. This manuscript proposes a state-space model to forecast intraday trading volume via the Kalman filter and derives closed-form expectation-maximization (EM) solutions for model calibration. The model is extended to handle outliers in real-time market data by applying a sparse regularization technique. Empirical studies using thirty securities on eight exchanges show that the proposed model substantially outperforms the rolling means (RM) and the state-of-the-art Component Multiplicative Error Model (CMEM) by 64% and 29%, respectively, in volume prediction and by 15% and 9%, respectively, in Volume Weighted Average Price (VWAP) trading.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "3644386",
+   "doi": "10.2139/ssrn.3644386",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3644386",
+   "title": "The Pre-FOMC Announcement Drift and Private Information: Kyle Meets Macro-Finance",
+   "authors": "Chao Ying",
+   "year": 2020,
+   "citations": 5,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "3495047",
+   "doi": "10.2139/ssrn.3495047",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3495047",
+   "title": "Intraday Imbalance Optimization: Incentives and Impact of Strategic Intraday Bidding in Germany",
+   "authors": "Christopher Koch",
+   "year": 2019,
+   "citations": 5,
+   "abstract": "Intraday markets are crucial to balance supply and demand in the very short term, up to delivery. It offers also opportunities for speculative trading. This paper analyzes a strategy of taking positions in the German intraday market based on expected imbalance prices. Using a logistic regression model, it is possible to accurately predict the direction of the overall system balance and to apply a profitable trading strategy. However, this behavior would not have been system supportive due to biased imbalance price incentives. These are asymmetric price spreads and insufficiently low imbalance prices compared to intraday prices. An efficient intraday price constraint would partly solve the problem and intentional imbalance positions would predominantly reduce the system balance, especially in situations when the system wide imbalance is high. These findings are important for other European countries with a single imbalance pricing and provide an indication for crucial points of the imbalance pricing rules.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "1595706",
+   "doi": "10.2139/ssrn.1595706",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1595706",
+   "title": "The Month-of-The-Year Effect: Evidence from GARCH Models in Fifty Five Stock Markets",
+   "authors": "Eleftherios Giovanis",
+   "year": 2010,
+   "citations": 5,
+   "abstract": "This paper studies the month of the year effect, where January effect presents positive and the highest returns of the other months of the year. In order to investigate the specific calendar effect in global level, fifty-five stock market indices from fifty-one countries are examined. Symmetric GARCH models are applied and based on asymmetries tests asymmetric GARCH models are estimated. The main findings of this study is that a December effect is found on twenty stock markets, with higher returns on the specific month, while February effect is presented in nine stock markets, followed by January and April effects in seven and six stock markets respectively. These patterns provide positive and highest returns on the mentioned months, while a pattern where a specific month gives a persistence signal of negative returns couldn’t be found.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "3134546",
+   "doi": "10.2139/ssrn.3134546",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3134546",
+   "title": "The Disappearing Pre-FOMC Announcement Drift",
+   "authors": "Thomas Gilbert, Alexander Kurov, Marketa Wolfe",
+   "year": 2018,
+   "citations": 4,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "3013699",
+   "doi": "10.2139/ssrn.3013699",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3013699",
+   "title": "The Intraday Dynamics of Bitcoin",
+   "authors": "Andrea Eross, Frank McGroarty, Andrew Urquhart, Simon Wolfe",
+   "year": 2017,
+   "citations": 4,
+   "abstract": "Bitcoin has received much investor attention in recent years, however, there remains a lot of scepticism and lack of understanding of this cryptocurrency. We contribute to the growing literature of Bitcoin by examining the intraday variables of the leading Bitcoin exchange with the highest information share from 1st November 2014 to 31st October 2016 to reveal the intraday stylized facts of Bitcoin and also study the intraday interaction between returns, volume, bid-ask spread and volatility. Employing GMT-stamped tick data aggregated to the 5-mintuely frequency, we find that volume, bid-ask spread and volatility all experience n-shaped patterns throughout the day which suggests that European and North American traders are the main drivers of Bitcoin trading and volatility. It also suggests that volatility and the bid-ask spread are highly related as suggested by Roll (1984), which is probably due to the lack of market makers in Bitcoin markets. We also find that all intraday variables are highly correlated, possess significant lead-lag relationships and there is significant bilateral Granger causality.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "2479295",
+   "doi": "10.2139/ssrn.2479295",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2479295",
+   "title": "The Turn-of-The-Month-Effect: Evidence from Periodic Generalized Autoregressive Conditional Heteroskedasticity (PGARCH) Model",
+   "authors": "Eleftherios Giovanis",
+   "year": 2014,
+   "citations": 4,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "1929359",
+   "doi": "10.2139/ssrn.1929359",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1929359",
+   "title": "Explaining Stock Returns with Intraday Jumps",
+   "authors": "Diego Amaya, Aurelio Vasquez",
+   "year": 2011,
+   "citations": 3,
+   "abstract": "The presence of jumps in stock prices is widely accepted. In this paper, we explore the impact of jumps on the pricing of stocks by extracting the average jump size of individual stock returns from high-frequency data and examining the empirical relation with subsequent stock returns. Given that jump diffusion models predict a negative relation between expected stock returns and the average jump size, our goal is to empirically con rm that negative relation. We form ten portfolios based of the average jump size and compute subsequent weekly stock returns. The raw returns of the decile of stocks with low jump size exceed those of the decile of stocks with high jump size by 74 basis points with a t-statistic of 10.89. To rule out that average jump size is not a proxy of rm characteristics, we perform additional double-sortings and regressions with proxy variables such as size, book-to-market, previous week return, volatility, skewness, kurtosis and illiquidity. The results are con firmed.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "2345450",
+   "doi": "10.2139/ssrn.2345450",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2345450",
+   "title": "Does the Financial Crisis Influence the Month and the Trading Month Effects? Evidence from the Athens Stock Exchange",
+   "authors": "Evangelos Vasileiou, Aristeidis Samitas",
+   "year": 2013,
+   "citations": 3,
+   "abstract": "The aim of this study is to examine the month and the trading month effect under changing financial trends. We choose the Greek stock market to implement our assumption because there are clear and long term periods of financial growth and recession. Daily financial data from Athens Exchange General Index for the period 2002-2012 are considered. The paper employs several linear and non-linear models, although the TGARCH asymmetry model best fits in this sample and for this reason we mainly present the TGARCH results. Empirical results show that changing economic and financial conditions influence the calendar effects. Especially, the trading month effect totally changes in each fortnight according to the financial trend. On the other hand, in Greece the January effect exists during the growth periods, although it does not exist when the financial trend changes. The findings are helpful to anybody who invest and deals with the Greek stock market. Moreover, they may pave the way for an alternative calendar anomalies research approach, so it may be useful to investors who take into account these anomalies when they draw their investment strategy.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "3014299",
+   "doi": "10.2139/ssrn.3014299",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3014299",
+   "title": "Explaining the Pre-Announcement Drift",
+   "authors": "Paula Cocoma",
+   "year": 2017,
+   "citations": 3,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "3482450",
+   "doi": "10.2139/ssrn.3482450",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3482450",
+   "title": "Intraday Stock Returns Patterns Revisited. A Day of the Week and Market Trend Approach",
+   "authors": "Constantina Kottaridi, Emmanouil Skarmeas, Vasileios Pappas",
+   "year": 2019,
+   "citations": 2,
+   "abstract": "In this paper, we investigate the intraday behavior of the General index of the Athens Stock Exchange. We find evidence for a U shape pattern for both returns and volatility. Returns are positive at the opening and closing phases of a trading session, with the pattern being more pronounced in specific days of the week. Subsequent analysis for bull and bear markets shows evidence of an upward and a downward return pattern, respectively.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "3857785",
+   "doi": "10.2139/ssrn.3857785",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3857785",
+   "title": "Disentangling Autocorrelated Intraday Returns",
+   "authors": "Rui Da, Dacheng Xiu",
+   "year": 2021,
+   "citations": 2,
+   "abstract": "<span>We propose a semiparametric framework to disentangle the autocovariance structure of high-frequency equity returns. The observed price is modeled as the sum of an efficient component, evolving as a nonparametric continuous-time Itˆo-semimartingale, and a market microstructure component governed by a discrete-time moving-average process. Our estimation strategy is based on a quasi-likelihood approach that employs a misspecified moving-average model selected via information criteria. We establish a pointwise central limit theorem for the resulting autocovariance estimator, as well as uniform consistency over a broad class of models allowing for arbitrary noise magnitude and flexible dependence structures. Simulation results demonstrate that our estimator outperforms leading nonparametric alternatives, particularly in regimes with small noise magnitude, and highlight that the performance of all estimators is critically driven by the level of noise. Applying our methodology, alongside existing nonparametric approaches, to S&P 1500 constituents from 1996 to 2024, we find that noise magnitude is persistently small throughout the sample. This empirical finding has important implications for the measurement of noise magnitude, noise persistence, and volatility.</span>",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "2869624",
+   "doi": "10.2139/ssrn.2869624",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2869624",
+   "title": "The Cross-Section of Intraday and Overnight Returns",
+   "authors": "Vincent Bogousslavsky",
+   "year": 2016,
+   "citations": 2,
+   "abstract": "I investigate cross-sectional variation in stock returns over the trading day and overnight to shed light on what drives asset pricing anomalies. Margin requirements are higher overnight, and lending fees are typically charged only on positions held overnight. Such institutional constraints and overnight risk incentivize arbitrageurs who trade on mispricing to reduce their positions before the end of the day. Consistent with this intuition, a mispricing factor earns positive returns throughout the day but performs poorly at the end of the day. This pattern strengthens in the second half of the sample and is shared by several well-known anomalies.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "2657224",
+   "doi": "10.2139/ssrn.2657224",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2657224",
+   "title": "Intraday Patterns in Natural Gas Futures: Extracting Signals from High-Frequency Trading Data",
+   "authors": "Jung Heon Song, Marcos López de Prado, Horst Simon, Kesheng Wu",
+   "year": 2015,
+   "citations": 2,
+   "abstract": "High Frequency Trading is pervasive across all electronic financial markets. As algorithms replace an increasing number of tasks previously performed by humans, cascading effects similar to the Flash Crash of May 6th 2010 become more likely. In this study, we bring together a number of different data analysis tools to improve our understanding of natural gas futures trading activities. We focus on Fourier analysis and cointegration between weather forecasts and natural gas prices. From the Fourier analysis of Natural Gas futures market, we see strong evidences of High Frequency Trading in the market. The Fourier components corresponding to high frequencies (1) are becoming more prominent in the recent years and (2) are much stronger than could be expected from the overall trading records. Additionally, significant amount of trading activities occur in the first second of every minute, which is a telltale sign of the Time-Weighted Average Price (TWAP) execution algorithms. To illustrate the potential for cascading events, we study how weather forecasts drive natural gas prices. After separating the data according to seasons, the temperature forecast is strongly cointegrated with natural gas price. This splitting of data is necessary because in different seasons the natural gas demand depends on temperature through different mechanisms. We are also able to show that the variations in temperature forecasts contribute to a significant percentage of the average daily price fluctuations, which supports the hypothesis that the variations in temperature dominates the volatility of natural gas trading.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "2488539",
+   "doi": "10.2139/ssrn.2488539",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2488539",
+   "title": "An Investigation of Simple Intraday Trading Strategies",
+   "authors": "Chrilly Donninger",
+   "year": 2014,
+   "citations": 2,
+   "abstract": "This working paper investigates the performance of several published simple intraday trading strategies for S&P-500 futures. The general result is: The strategies do not work as advertised under realistic trading assumptions. The paper discusses some possible refinements. It is important to restrict the rules to specific market regimes. An appropriate regime-classifier is the Implied-Volatility-Term-Structure (IVTS) developed in previous working papers. The best strategy under investigation is a set of rules proposed by the Sibyl-Fund trader Siddharth Bhatia. But overall it seems to be difficult to develop a simple and attractive intraday strategy.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "2198816",
+   "doi": "10.2139/ssrn.2198816",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2198816",
+   "title": "Intraday Forex Trading Based on Sentiment Inflection Points",
+   "authors": "Peter Hafez, Junqiang Xie",
+   "year": 2013,
+   "citations": 2,
+   "abstract": "In this study we propose a short-term Forex trading strategy that uses the principles of technical analysis to create buy or sell signals based on data derived from fundamental news. Short and long term sentiment inflection points are captured by consulting a set of sentiment indexes that measure the trailing sentiment on both scheduled and unscheduled economic and geopolitical news events. The sentiment indexes are proven to predict intraday price moves in the EURUSD for up to several hours after an inflection point.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "3399001",
+   "doi": "10.2139/ssrn.3399001",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3399001",
+   "title": "Passive Balancing through Intraday Trading",
+   "authors": "Christopher Koch, Philipp Maskosa",
+   "year": 2019,
+   "citations": 2,
+   "abstract": "",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "2024459",
+   "doi": "10.2139/ssrn.2024459",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2024459",
+   "title": "The Pre-FOMC Announcement Drift",
+   "authors": "Emanuel Moench, David O. Lucca",
+   "year": 2012,
+   "citations": 2,
+   "abstract": "Since the Federal Open Market Committee (FOMC) began announcing its policy decisions in 1994, average U.S. stock returns on announcement days have far exceeded those on other days. Surprisingly, these abnormal returns are accrued before the policy announcement, and are very large in magnitude. Excess returns earned in the 24 hours ahead of the scheduled FOMC announcements can account for more than 80% of the equity premium over the past 17 years. Similar returns are found for other major global equity indexes, but not for other asset classes, or around other major economic news announcements. We discuss a few possible explanations of these findings, none of which can quantitatively account for the return anomaly.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "1923197",
+   "doi": "10.2139/ssrn.1923197",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1923197",
+   "title": "The Pre-FOMC Announcement Drift",
+   "authors": "David O. Lucca, Emanuel Moench",
+   "year": 2012,
+   "citations": 2,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "4628806",
+   "doi": "10.2139/ssrn.4628806",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4628806",
+   "title": "Daily and intraday application of various architectures of the LSTM model in algorithmic investment strategies on Bitcoin and the S&P 500 Index",
+   "authors": "Katarzyna Kryńska, Robert Ślepaczuk",
+   "year": 2023,
+   "citations": 2,
+   "abstract": "This thesis investigates the use of various architectures of the LSTM model in algorithmic investment strategies. LSTM models are used to generate buy/sell signals, with previous levels of Bitcoin price and the S&P 500 Index value as inputs. Four approaches are tested: two are regression problems (price level prediction), and the other two are classification problems (prediction of price direction). All approaches are applied to daily, hourly, and 15-minute data and use a walk-forward optimization procedure with numerous IS and OOS periods. The out-of-sample period for the S&P 500 Index is from February 6, 2014, to August 26, 2022, and for Bitcoin, it is from February 1, 2014, to August 26, 2022. We discover that classification techniques beat regression methods on average and that intraday models perform much better in the classification approach, while daily ones produce outperforming results in the regression methods. The research covers three types of ensemble models: frequencies, assets, and the combination of both of them. We come to the conclusion that the ensembling of models positively affects their performance only on the basis of specific characteristics of the component parts. Finally, a sensitivity analysis is performed to determine how changes in the main hyperparameters of the LSTM model affect strategy performance. It reveals that we can distinguish the specific hyperparameters that can increase the performance of the LSTM model in all tested cases.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "3243797",
+   "doi": "10.2139/ssrn.3243797",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3243797",
+   "title": "Instantaneous Volatility Seasonality of Bitcoin in Directional-Change Intrinsic Time",
+   "authors": "Vladimir Petrov, Anton Golub, Richard B. Olsen",
+   "year": 2018,
+   "citations": 2,
+   "abstract": "",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "4106003",
+   "doi": "10.2139/ssrn.4106003",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4106003",
+   "title": "Turn of the Month Effect",
+   "authors": "Marta Vidal, Javier Vidal-García",
+   "year": 2022,
+   "citations": 2,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "1913882",
+   "doi": "10.2139/ssrn.1913882",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1913882",
+   "title": "Predictability of Turn-of-the-Month Effect at Stock Markets in Malaysia, South Korea and Japan",
+   "authors": "Zainudin bin Arsad, Seng Aik Seng Chuah, Siti Noor Mohd Nordin",
+   "year": 2011,
+   "citations": 2,
+   "abstract": "Financial market efficiency has been constantly challenged with new evidence of calendar anomalies in the stock market. This paper examines the existence and predictability of the turn-of-the-month effect at Kuala Lumpur Composite Index (KLCI), Seoul Composite Stock Price Index (KOSPI) and Tokyo Nikkei 225 Stock Average (JNK) by employing Kalman filter technique. The advantage of using the Kalman filter technique is that it allows the mean returns to change over time and from the analyses, it can be said that the turn-of-the-month effect exists in more than fifty percent of the months during the 16-year period from 1995 until 2010 for the three indices. The findings from the Kalman filter model contradict the results from the regression model and that it also shows that there is inconsistency in the absence or existence of the turn-of-the-month effect. Further analyses show only little evidence for predictability for the occurrence of the turn-of-the-month across the sample period for the three countries.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "2363855",
+   "doi": "10.2139/ssrn.2363855",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2363855",
+   "title": "Are the 'Turn of the Month' Days Profitable Even During Severe Crisis? Evidence from the Greek Stock Market",
+   "authors": "Aristeidis Samitas, Evangelos Vasileiou",
+   "year": 2013,
+   "citations": 2,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "2171634",
+   "doi": "10.2139/ssrn.2171634",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2171634",
+   "title": "A Survey of Day of the Month Effect in World Stock Markets",
+   "authors": "Jay Desai, Arti Trivedi",
+   "year": 2012,
+   "citations": 2,
+   "abstract": "A curious seasonal anomaly found in finance is the turn of the month effect, where the daily mean return of stock market at the end of a month and beginning of a month is significantly higher than the average daily return of all the days of a month. There have been evidences that certain months in a year deliver significantly higher returns. Similar anomalies are found for week days also, where some days in a week deliver above average returns. Seasonal anomalies for researchers have been a subject of great interest and lot of literature is available worldwide. This paper examines presence of day of the month effect on ten stock markets, geographically located in different corners of the world. This paper is not intended to study only the anomalies and inefficiencies present in various world markets, it is intended to highlight the profit potential available to individual investors and professional fund managers. The date wise daily returns are calculated in percentage terms to make the phenomena easy to understand. The statistical significance of daily returns is tested with Z-Statistics, in total 310 hypotheses are tested in the research. We found day of the month effect present in all the stock markets tested across the world, some days in a month historically are found to have delivered significantly higher returns.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "2186110",
+   "doi": "10.2139/ssrn.2186110",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2186110",
+   "title": "A Study of Day of the Month Effect in S&P CNX Nifty 50",
+   "authors": "Jay Desai, Arti Trivedi",
+   "year": 2012,
+   "citations": 2,
+   "abstract": "A curious seasonal anomaly found in finance is the turn of the month effect, where the daily mean return of stock market at the end of a month and beginning of a month is significantly higher than the average daily return of all the days of a month. There have been evidences that certain months in a year deliver significantly higher returns. Similar anomalies are found for week days also, where some days in a week deliver above average returns. Seasonal anomalies for researchers have been a subject of great interest and lot of literature is available worldwide. This paper examines presence of presence of day of the month effect in leading stock indices of India S&P CNX Nifty 50. We have tested the presence of day of the month effect from the year 1994 in the research. We found that the Nifty return data is not normally distributed and skewed. To test the statistical significance of difference in date wise return we have used Kruskal-Wallis Test. To identify the statistically significant days, we have used Z Statistics. We found that the date wise return in Nifty to be statistically different and there exists opportunity to earn excess return due to day of the month anomaly.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "2991183",
+   "doi": "10.2139/ssrn.2991183",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2991183",
+   "title": "Reversal, Momentum and Intraday Returns",
+   "authors": "Haoyu Xu",
+   "year": 2017,
+   "citations": 1,
+   "abstract": "This paper studies the trades immediately after the market open and immediately before the market close. The trades in the morning positively predict future returns and cause price continuation. The trades in the afternoon negatively predict future returns and cause price reversals. The momentum trading strategies based on morning returns and the reversal trading strategies based on afternoon returns generate significant abnormal returns, which cannot be explained by standard risk factors including momentum and reversal factors. The results provide strong evidence that trades in the morning are mostly information driven and trades in the afternoon are mostly liquidity driven.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "4853867",
+   "doi": "10.2139/ssrn.4853867",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4853867",
+   "title": "The Influence of Intraday Sentiment on Bitcoin Returns",
+   "authors": "Lars Kuerzinger, Christoph J. Börner",
+   "year": 2024,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "gold intraday returns time of day",
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "4946188",
+   "doi": "10.2139/ssrn.4946188",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4946188",
+   "title": "Threshold Overnight Comovement Analysis of Intraday and Overnight Returns",
+   "authors": "Jiwon Jung, Kiseop Lee, Tim Leung",
+   "year": 2024,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "2099321",
+   "doi": "10.2139/ssrn.2099321",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2099321",
+   "title": "Intraday Patterns in FX Returns and Order Flow",
+   "authors": "Francis Breedon, Angelo Ranaldo",
+   "year": 2012,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "5126281",
+   "doi": "10.2139/ssrn.5126281",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5126281",
+   "title": "Dynamic Impact of Foreign Exchange Trading Volume on Foreign Exchange Volatility",
+   "authors": "Jong Kang, Carlos Cabaero",
+   "year": 2025,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "3440417",
+   "doi": "10.2139/ssrn.3440417",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3440417",
+   "title": "Predictable End-of-Month Treasury Returns",
+   "authors": "Jonathan Hartley, Krista Schwarz",
+   "year": 2019,
+   "citations": 1,
+   "abstract": "We document a distinct pattern in the timing of excess returns on coupon Treasury securities. Average returns are positive and highly significant in the last few days of the month, and are not significantly different from zero at other times. A long Treasury position for just the last few days of each month gives a high annualized Sharpe ratio of around 1. We attribute this pattern to temporary spikes in investor demand for specific securities due to window dressing and portfolio rebalancing. We find evidence in quantities that aggregate insurer transactions contribute to the end-of-month price pattern. In particular life insurers are large net buyers of Treasury securities on benchmark index rebalancing dates.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "4588979",
+   "doi": "10.2139/ssrn.4588979",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4588979",
+   "title": "Foreign Exchange Intervention",
+   "authors": "Helen Popper",
+   "year": 2023,
+   "citations": 1,
+   "abstract": "The practice of central bank foreign exchange intervention for a time ran ahead of either compelling theoretical explanations of its use or persuasive empirical evidence of its effectiveness. Research accelerated when the emerging economy crises of the 1990s and the early 2000s brought fresh data in the form of urgent experimentation with foreign exchange intervention and related policies, and the financial crisis of 2008 propelled serious treatment of financial frictions into models of intervention.<br><br>Current foreign exchange intervention models combine financial frictions with relevant externalities: with the aggregate demand and pecuniary externalities that inform macroeconomic models more broadly, and with the trade-related learning externalities that are particularly relevant for developing and emerging economies. These models characteristically allow for normative evaluation of the use of foreign exchange intervention, though most (but not all) do so from a single economy perspective. <br><br>Empirical advances reflect the advantages of more variation in the use of foreign exchange intervention, better data, and novel econometric approaches to addressing endogeneity. Foreign exchange intervention is now widely seen as influencing exchange rates at least to some extent; and sustained one-sided intervention and its corresponding reserve accumulation appears to play a role in moderating exchange rate fluctuations, and in reducing the likelihood and damaging consequences of financial crises.<br><br>Key avenues for future research include sorting out which frictions and externalities matter most, and where foreign exchange intervention—and perhaps international cooperation—properly fits (if at all) into the blend of policies that might appropriately address the externalities.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "5109039",
+   "doi": "10.2139/ssrn.5109039",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5109039",
+   "title": "Foreign Exchange Interventions and Foreign Shocks",
+   "authors": "Elizabeth Bucacos, Javier Garcia-Cicco, Miguel Mello",
+   "year": 2025,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "2716195",
+   "doi": "10.2139/ssrn.2716195",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2716195",
+   "title": "The New Tate Letter: Foreign Official Immunity and the Case for a Statutory Fix",
+   "authors": "Luke Ryan",
+   "year": 2016,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "1925826",
+   "doi": "10.2139/ssrn.1925826",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1925826",
+   "title": "Intraday Trading Patterns and Commonality in Liquidity",
+   "authors": "Mehmet F. Dicle, Tarun K. Mukherjee",
+   "year": 2011,
+   "citations": 1,
+   "abstract": "A common thread in literature that connects liquidity commonality and intraday trading patterns lies in the potential sources of these two phenomena: inventory risk and asymmetric information. There is ample evidence in literature on trading patterns to suggest that both volume and return volatility are highest during the first and last half hours of a trading day. Thus, one would expect that liquidity commonality would be most concentrated during the intraday trading periods when the trading volume and return volatility are most intense. Therefore, we hypothesize that the degree of liquidity commonality is highest during these two trading periods. We present evidence in support of this hypothesis.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "2554621",
+   "doi": "10.2139/ssrn.2554621",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2554621",
+   "title": "Dark Trading and Intraday Market Quality",
+   "authors": "James Brugler",
+   "year": 2014,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "3306011",
+   "doi": "10.2139/ssrn.3306011",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3306011",
+   "title": "The Tone of the Beige Book and the Pre-FOMC Announcement Drift",
+   "authors": "Yasutomo Tsukioka, Takahiro Yamasaki",
+   "year": 2019,
+   "citations": 1,
+   "abstract": "We examine whether disclosed information from the Federal Reserve (Fed) affects investor expectations of monetary policy decisions and whether the disclosed information leads to the pre-Federal Open Market Committee (FOMC) announcement drift through investor expectations of monetary policy. We measure the tone of the Beige Books, speeches, and testimonies using text-mining techniques. We find that the tone of the Beige Books positively relates to federal funds rate (FFR) changes and expected FFR changes. We also find that expected FFR changes are negatively associated with stock market index returns in the 24 hours prior to FOMC announcement time. These results suggest that the Beige Book implies monetary policy changes and positively affects investor expectations. In addition, these results suggest that disclosed information from the Fed leads to pre-FOMC announcement drift though the investor expectations.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "2640477",
+   "doi": "10.2139/ssrn.2640477",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2640477",
+   "title": "The Pre-FOMC Drift Explored",
+   "authors": "Linus Nilsson",
+   "year": 2015,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "3286745",
+   "doi": "10.2139/ssrn.3286745",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3286745",
+   "title": "Pre-FOMC Announcement Relief",
+   "authors": "Vitor Martello, Ruy Ribeiro",
+   "year": 2018,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "3964349",
+   "doi": "10.2139/ssrn.3964349",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3964349",
+   "title": "Information Acquisition and the Pre-Announcement Drift",
+   "authors": "Leyla Jianyu Han, Hengjie Ai, Ravi Bansal",
+   "year": 2021,
+   "citations": 1,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "4779488",
+   "doi": "10.2139/ssrn.4779488",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4779488",
+   "title": "Impact of US Bitcoin ETF Introduction on BTC and ETH Intraday Regime Seasonality",
+   "authors": "Tom J. Espel",
+   "year": 2025,
+   "citations": 1,
+   "abstract": "We evidence intraday liquidity regimes for BTC and ETH and highlight the impact of the introduction of the US Bitcoin ETF on the liquidity structure of those markets. We analysed exchange data two months before and two months after the introduction of the ETF on price and traded volume.<br>We have found evidence of intraday seasonalities and commonalities for volatility and traded volumes between both cryptocurrencies. Those are the strongest during the weekdays. We have also identified patterns that are known to traditional foreign exchange markets.<br>At the time of writing, we have not found in the literature either evidence of those intraday commonalities, or a quantified analysis of the impact of the introduction of the US Bitcoin ETF.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "4081000",
+   "doi": "10.2139/ssrn.4081000",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4081000",
+   "title": "Seasonality, Trend-following, and Mean reversion in Bitcoin",
+   "authors": "Matúš Padyšák, Radovan Vojtko",
+   "year": 2022,
+   "citations": 1,
+   "abstract": "The cryptocurrency market is not negligible nor minor anymore. With the continuous development of the crypto market, researchers aimed to analyze novel cryptocurrencies thoroughly. An excellent starting point might be in other recognized effects from the developed asset classes. This research examines seasonality effects such as when the major NYSE opened or closed and their intraday, overnight, or daily components. Furthermore, we also examine the distribution of the daily returns and the returns that are significant. The results point to a simple seasonality strategy that is based on holding BTC only for two hours per day. The second aim is to examine trend-following and mean reversion strategies. The data suggests that BTC tends to trend when it is at its maximum and bounce back when at the minimum. These findings support the empirical observations that BTC tends to trend strongly and revert after drawdowns.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "3676977",
+   "doi": "10.2139/ssrn.3676977",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3676977",
+   "title": "Bitcoin, a lejárat nélküli követelés? (Bitcoin: Receivable Without Due Date?)",
+   "authors": "Gabriella Erdos",
+   "year": 2020,
+   "citations": 1,
+   "abstract": "<b>Hungarian abstract:</b> : A kriptovaluták népszerűsége világszerte növekszik. Használják őket fizetésre, befektetésre, kincsképzésre, annak ellenére, hogy nem minősülnek fizetőeszköznek, értékpapírnak, vagy vagyontárgynak, bár kétségkívül minden kategóriának a tulajdonságaiból rendelkeznek néhánnyal. Egy magyar állásfoglalás szerint a krioptovalutákat egyéb követelésnek kell tekinteni, míg a nemzetközi számviteli sztenderdek ajánlása szerint a kriptovalutákat vagy az immateriális javak, vagy a készletek között kell bemutatni. A cikk elemzi a kriptovaluták tulajdonságait, és bemutatja, hogy milyen társasági adózási következményei vannak annak, ha a vállalkozás a magyar állásfoglalás ajánlását követi, és hogyan vezet a helytelen besorolás fals adózási eredményekhez. A szerző az állásfoglalás visszavonását, és új számviteli szabályok és értelmezés megalkotását javasolja – akár egy új eszközkategória megalkotásával a kriptovaluták számára.<br><br><b>English abstract:</b> Cryptocurrencies are gaining in popularity worldwide. They are used as if they were currencies, securities, debt or equity instruments, or property. They are neither of those things although they certainly show characteristics of each categories. A Hungarian non-binding ruling classifies them as claims or accounts receivable, while the international accounting standards recommend to present cryptocurrencies either as intangible assets or as inventories. The article analyses the characteristics of cryptocurrencies, and the corporate income tax consequences of following the recommendations of the Hungarian non-binding ruling. It shows why the wrong classification of cryptocurrencies leads to false tax results. The author recommends the withdrawal of the tax ruling and the establishment of new accounting rules and interpretations - possibly also the introduction of a new accounting category for cryptocurrencies.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "4341907",
+   "doi": "10.2139/ssrn.4341907",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4341907",
+   "title": "Event Studies With Intraday Data",
+   "authors": "Rajeev Bhattacharya",
+   "year": 2023,
+   "citations": 1,
+   "abstract": "Using intraday data from TAQ, TRACE, I/B/E/S, and Capital IQ, using daily data from CRSP, Compustat, CRSP-Compustat Merged Database, and FRED, I find that, for all publicly traded U.S. stocks for 2014 - September 2021, abnormal reactions are systemically all out of the system within two hours after a potentially material event. I compile a dataset of systematic, independent, and objective characterizations of each ticker-year, ticker-halfyear, ticker-quarter, and ticker-month, as statistically and economically significant efficient, statistically and economically significant inefficient, or otherwise. I find that capital markets during the first two months of the COVID-19 lockdown were statistically and economically significantly less efficient. <br> JEL Classification Codes: G24; G32; G11; G12; G14; C58; C33.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "2648136",
+   "doi": "10.2139/ssrn.2648136",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2648136",
+   "title": "Turn-of-the-Month: Window Dressing Behavior",
+   "authors": "Linus Nilsson",
+   "year": 2015,
+   "citations": 1,
+   "abstract": "We study the impact of trading during the end of the month cycle. We find that there is a meaningful negative expected return from owning equities in the last trading hour of the month. The effect is large and potentially exploitable by investors that are not tied to monthly reporting cycles. The return pattern is different from other days in equity markets and has persisted over more than a decade. The effect is generally larger for US small cap indices than large cap indices. The reasons for the effect may be related to window dressing by fund managers, risk control, lottery-ticket behavior or less likely market manipulation. The effect applies to broad indices making it less likely that it is driven by a few traders but rather by the behavior of a large group of traders responding to the same incentives.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "5142698",
+   "doi": "10.2139/ssrn.5142698",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5142698",
+   "title": "The Effect of Cultural Turn in Western Historical Discourse: Historiographic Shift in Truth, Tropology, and Subjectivity",
+   "authors": "Danyal Masood",
+   "year": 2025,
+   "citations": 1,
+   "abstract": "This article attempts to investigate the epistemic influence of cultural turn upon Western historical writings which happened in the second half of the twentieth century. The history of historical writings from modernist objectivism, archival chronicles, and historical material man deeply influences philosophy of historiography. However, with the fall of modernism and historicism the patterns of historical knowledge production suffered a decline in representation of values and concepts. There is a plethora of literature on the post-concept writings which broadly deals with the postmodern culture of concepts. However, this article specifically explores its effect and influence upon the emergence of contemporary historical theory. There is a significant historiographic shift during a cultural turn in the concepts of truth, tropology, and subjectivity. The old regime of truth and climate of tropology in the presence of subjective discourse of desire have brought historical studies into a completely new understanding of the existing world and words. Regarding the methodological application, this paper deals with cultural historians and theorists, particularly Western explanations to understand the underlying crisis in modernist historiography and to uphold new medium and parameters for historical theory and applied history.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "6074846",
+   "doi": "10.2139/ssrn.6074846",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6074846",
+   "title": "Intraday Price Asymmetry and Next-Day Intraday Returns in the S&P 500",
+   "authors": "Francesco Valenti",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "This paper examines the relationship between intraday price asymmetry and next-day intraday returns in U.S. equity markets. It introduces a simple, range-based measure of intraday asymmetry constructed from daily open, high, and low prices to capture directional imbalances in intraday price movements relative to the opening level. Using more than two decades of data for the SPDR S&P 500 ETF (SPY), the analysis documents a contrarian relationship between intraday asymmetry and subsequent intraday performance. Trading sessions characterized by negative intraday asymmetry are followed, on average, by stronger next-day intraday returns, while positive asymmetry is associated with weaker subsequent intraday performance, despite the long-run upward bias of equity markets. Conditional long and short exposures derived from the measure exhibit economically meaningful return patterns, with evidence of conditional return variation on the short side concentrated during periods of elevated volatility and market stress. The analysis is intentionally descriptive and does not rely on assumptions about order flow, trading volume, or specific microstructure mechanisms. The results are consistent with temporary price pressure and inventory-related dynamics rather than persistent intraday trends, highlighting information contained in the intraday price path that is not captured by standard return-based measures.",
+   "queries": [
+    "gold intraday returns time of day",
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "6749178",
+   "doi": "10.2139/ssrn.6749178",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6749178",
+   "title": "Disentangling Autocorrelated Intraday Returns",
+   "authors": "Rui Da, Dacheng Xiu",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "We propose a semiparametric framework to disentangle the autocovariance structure of high-frequency equity returns. The observed price is modeled as the sum of an efficient component, evolving as a nonparametric continuous-time Itˆo-semimartingale, and a market microstructure component governed by a discrete-time moving-average process. Our estimation strategy is based on a quasi-likelihood approach that employs a misspecified moving-average model selected via information criteria. We establish a pointwise central limit theorem for the resulting autocovariance estimator, as well as uniform consistency over a broad class of models allowing for arbitrary noise magnitude and flexible dependence structures. Simulation results demonstrate that our estimator outperforms leading nonparametric alternatives, particularly in regimes with small noise magnitude, and highlight that the performance of all estimators is critically driven by the level of noise. Applying our methodology, alongside existing nonparametric approaches, to S&P 1500 constituents from 1996 to 2024, we find that noise magnitude is persistently small throughout the sample. This empirical finding has important implications for the measurement of noise magnitude, noise persistence, and volatility.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "2229290",
+   "doi": "10.2139/ssrn.2229290",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2229290",
+   "title": "Day of the Week Effect on Gold Returns",
+   "authors": "Dr. Sunita Arora, Dr. Narender Garg",
+   "year": 2013,
+   "citations": 0,
+   "abstract": "Day of the week effect has vastly been investigated for stock markets, but commodity markets have got less attention in this regard. Present study is an attempt to investigate the day of the week effect on gold futures return. For the purpose of study, opening and closing prices of gold futures contract, traded on India’s largest commodity exchange i.e. Multi Commodity Exchange of India Limited (MCX), have been analysed with the help of dummy variables. Daily return from close to close prices was calculated and was further decomposed into trading period return and non trading period return. Gold is traded on MCX six days a week, from Mondays through Saturdays; therefore dummies for all the six days have been applied. Period of study spans from 1st April 2006 to 31st March 2012. Data has been analysed by applying linear regression of dummy variables on return. But after applying linear regression, ARCH effect was found to be left. To account for ARCH effect, GARCH(1,1) model was applied. Extreme value analysis was also carried on with the help of chi-square test. Presence of day of the week effect was found in all the three types of return series, but the impact was more during non trading period than during trading period. Results of the study may be useful for commodity market players in timing their trading.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "3283919",
+   "doi": "10.2139/ssrn.3283919",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3283919",
+   "title": "Redundant Information and Predictable Intraday Returns",
+   "authors": "Michael P Carniol",
+   "year": 2018,
+   "citations": 0,
+   "abstract": "This paper examines how well investors distinguish between genuinely novel private information and information that already is priced (labeled \"redundant information\"). We derive a structural model of stock price returns that identifies investors’ non-Bayesian weighting of redundant information distinctly from information asymmetry, transaction costs, and serially correlated liquidity trader demand. We estimate this model using five-minute, 12-minute, and 30-minute returns and find that, on average, investors behave as if over 47 percent of the information content in the immediately prior price change is private information. These results suggest an information-processing mechanism that drives momentum and mean reversion in intraday returns.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "3138756",
+   "doi": "10.2139/ssrn.3138756",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3138756",
+   "title": "Intraday Patterns in Foreign Exchange Returns and Realized Volatility",
+   "authors": "Hao Zhang",
+   "year": 2018,
+   "citations": 0,
+   "abstract": "This paper investigates intraday patterns in foreign exchange returns based on a sample of 16 currencies versus the U.S. dollar using high-frequency data for the period 2010-2015. We find that home currencies tend to depreciate during domestic trading sessions and appreciate during U.S. trading sessions after London markets are closed, indicating that intraday patterns in foreign exchange returns exist in many countries, including countries with capital controls. Intraday patterns in foreign exchange returns are significantly related to realized volatility, which reflects risk attributable to order flow and market sensitivity to order flow in domestic and foreign markets.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "5795584",
+   "doi": "10.2139/ssrn.5795584",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5795584",
+   "title": "Volume-Driven Time-of-Day Effects in Intraday Volatility Models",
+   "authors": "Igor Ferreira Batista Martins, Audrone Virbickaite, Hoang Nguyen, Hedibert Freitas Lopes",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "5164956",
+   "doi": "10.2139/ssrn.5164956",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5164956",
+   "title": "Overnight vs. Intraday Returns: Investor Disagreement, Information Uncertainty, and Future Stock Returns",
+   "authors": "Richard D. F. Harris, Nan Li, Nicholas Taylor",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "4748907",
+   "doi": "10.2139/ssrn.4748907",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4748907",
+   "title": "Predicting Intraday cryptocurrency returns–A Sparse Signals approach",
+   "authors": "Vaibhav Lalwani, Vedprakash Meshram",
+   "year": 2024,
+   "citations": 0,
+   "abstract": "We test for the existence of sparse and short-lived signals in minute-by-minute cryptocurrency returns. Using a large set of linear as well as non linear predictors and a machine learning technique called the LASSO, we generate 1-minute ahead out of sample return forecasts for ten major cryptocurrencies. The forecasts obtained from the LASSO are statistically superior to those generated by the benchmark models. The LASSO based estimation selects predictors that are sparse and quite short lived.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "6811380",
+   "doi": "10.2139/ssrn.6811380",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6811380",
+   "title": "Intraday Lead-Lag Relationships in Idiosyncratic Stock Returns",
+   "authors": "Danni Shi, Mihai Cucuringu, Álvaro Cartea",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "We examine intraday lead-lag relationships in high-frequency stock returns that arise from firmspecific interactions. After removing systematic variation using common risk factors, we model lagged cross-dependencies in idiosyncratic returns with Kendall's correlation networks. Using S&P 500 constituent stocks, we document that lead-lag effects are both stronger and more persistent at higher sampling frequencies. In contrast to earlier evidence based on lower-frequency data, we find that these effects largely disappear in daily returns but remain pronounced at intraday horizons. A network-based trading strategy further shows that lead-lag signals extracted from high-frequency idiosyncratic returns have substantial predictive power and deliver significantly higher out-of-sample Sharpe ratios than signals based on low-frequency returns or returns unadjusted for systematic risk.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "4019829",
+   "doi": "10.2139/ssrn.4019829",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4019829",
+   "title": "Predicting Intraday Crude Oil Returns with Higher Order Risk-Neutral Moments",
+   "authors": "Patrick Wong",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "High frequency crude oil option data is used to extract the risk-neutral semi-moments from the crude oil market. These risk-neutral moments include the variance, third central moment and the recently developed tail risk variation measures. The returns of second and third semi-moments, and to a lesser extent the returns of the tail risk measures, are found to explain and predict returns in the crude oil and S&P 500 futures at high frequency.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "3705017",
+   "doi": "10.2139/ssrn.3705017",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3705017",
+   "title": "Strikingly Suspicious Overnight and Intraday Returns",
+   "authors": "Bruce Knuteson",
+   "year": 2020,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "7318198",
+   "doi": "10.2139/ssrn.7318198",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7318198",
+   "title": "When Does Intraday Options Trading Predict Stock Returns?",
+   "authors": "Tse-Chun Lin, Xingguo Luo, Shidong Shao",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "We aggregate signed options trading volume from CBOE and ISE and document a persistent positive predictive power of 30-minute options order imbalance (OOI) for next-day stock returns. OOI near the market close exhibits the strongest predictability, driven primarily by open-buy positions, high-leverage options, and small orders. Consistent with informed trading, options traders appear to time the liquidity across options and stock markets, and this predictability is stronger when option liquidity is high and stock liquidity is low. The predictive power also intensifies with firm-specific and macroeconomic information events. Finally, OOI also forecasts both stock price jumps and crash risks.",
+   "queries": [
+    "gold intraday returns time of day",
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "7458058",
+   "doi": "10.2139/ssrn.7458058",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7458058",
+   "title": "Invariant Structure, Variable Returns: What Survives the Fill Assumption in an Intraday Edge",
+   "authors": "Vittorio Paonessa",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "An intraday backtest reports its return under one assumption about how orders fill.This paper measures how much of an edge is a property of the market and howmuch of that assumption. The instrument is a frozen mean-reversion rule onNYMEX Henry Hub natural gas futures: one parameter set, never re-fitted,transported unchanged across nine bar sizes and priced under six explicit fillconventions, from the optimistic limit at the reference level to the first tradeprinted inside the tolerance band on exchange tape. The edge is a price, not amoment: against placebo populations that share the exit rules, costs andaccounting but enter on random bars, 85 to 97 per cent of the advantage is theentry price, stable across fifteen cells, and at the tape-measured floor theadvantage is still 2.7 to 3.1 times the placebos. Orderings are invariant while levelsare not: a quality gradient survives every convention and Bonferroni correction,and the scaling exponent of the mean return matches that of volatility within thepre-registered margin of 0.10, while return levels move by 0.155 ATR units on thefill assumption alone, one and a half times that margin. No unconditional meanreversion is detectable at intraday horizons, so the edge is conditional on theselection. The execution bracket is wider than several of the effects it contains;intraday studies should report it, and state which end of it each claim rests on.Analysis code and drafting were AI-assisted under the author’s direction (Section9).",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "2897034",
+   "doi": "10.2139/ssrn.2897034",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2897034",
+   "title": "The Contribution of Intraday Jumps to Forecasting the Density of Returns",
+   "authors": "Christophe Chorro, Florian Ielpo, Benoît Sévi",
+   "year": 2017,
+   "citations": 0,
+   "abstract": "Recent contributions highlight the importance of intraday jumps in forecasting realized volatility at horizons up to one month. We extend the methodology developed in Maheu and McCurdy (2011) to exploit the information content of intraday data in forecasting the density of returns. Considering both intra-week periodicity and signed jumps, we estimate two variants of a bivariate model of returns and volatilities where the jump component is independently modeled. Our empirical results for four futures series (S&P 500, U.S. 10-year Treasury, USD/CAD exchange rate and WTI crude oil) highlight the importance of considering the continuous/jump decomposition of volatility for the purpose of density forecasting. Specifically, we show that models considering jumps apart from the continuous component consistently deliver better density forecasts for horizons up to one month and a half and, in two cases out of four, for horizons up to three months.<br>",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "1716759",
+   "doi": "10.2139/ssrn.1716759",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1716759",
+   "title": "Forecasting Bond Returns Using Jumps in Intraday Prices",
+   "authors": "Johan G. Duyvesteyn, Martin P.E. Martens, Siawash Safavi Nic",
+   "year": 2010,
+   "citations": 0,
+   "abstract": "We build on the work of Wright and Zhou (2009) who show that the average jump mean in bond prices can predict excess bond returns, capturing the countercyclical behaviour of risk premia. We show that these jumps often take place at 8:30 and 10:00 directly linking them to specific macroeconomic news announcements. Mean-reversion, which looks at the total return over the past period rather than just the part related to jumps, has no predictive ability. Hence it is important to consider excess returns that are related to macroeconomic announcements that matter to market participants, and jumps are a good market proxy for what investors believe is important news. Our improved jump measure produces a Sharpe ratio of 0.52 in an out-of-sample market-neutral investment strategy.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "4834097",
+   "doi": "10.2139/ssrn.4834097",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4834097",
+   "title": "Rough Gaps Exist? Opening Gaps Helps To Surge Returns in Swing and Intraday Trading",
+   "authors": "Sagar Baniya",
+   "year": 2024,
+   "citations": 0,
+   "abstract": "This study examines the importance of fundamental price anomalies in the American stock market, specifically examining the S&P 500 and NASDAQ indexes spanning. The study seeks to provide an understanding of gap trading behaviour and consequences for trading strategies, particularly profit reduces risks in optimization and swing and intraday trading. The study uses a comprehensive approach, including a pre-test methodology and post-test analysis, to examine gap size, trend, and closure from 2019 to 2021, using a data set of 750 samples.<br><br>The study also examines three hypotheses: first, that larger gap increases the likelihood of market inversions; Second, there is a correlation between the large gap and the trading volume and third, that gap trading behaviour may affected by economic variables like gold and the US dollar. According to the findings, there is a significant correlation between gap size and market reversals because big gaps tend to result in bigger market retractions. There is only a poor correlation between gap size and trading scale, so other independent variables may influence trade flow. Most importantly, there is only weak relationship between gap behaviour and economic variables like gold prices or dollar value.<br><br>It emphasizes the nature of effective market thinking and comprehensive business planning that goes beyond just basic economic issues. This research provides us beautiful pictures of gap analysis and a new way to look at the gaps, which predicts the direction in which market will move. Secondly it is relevant on how we would take note upon other components such as social aspect, psychological aspects among others while deciding concerning trades. To enhance our comprehension of market dynamics, future research should seek those analysing global markets and machine learning models - many economic indicators included.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "6809080",
+   "doi": "10.2139/ssrn.6809080",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6809080",
+   "title": "Measuring the Memory Structure of Intraday Returns: Evidence from E-mini S&P; 500 Futures",
+   "authors": "Max Brown",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "Standard intraday trading systems treat consecutive returns as approximately independent, ignoring long-range dependence, fractional integration, volatility persistence, and multifractal regime mixing-properties that are measurable and consequential at the one-minute frequency. This paper implements and empirically validates a complete memory-structure measurement toolkit applied to E-mini S&P; 500 (ES) futures on the one-minute timeframe. The toolkit comprises three confidence-weighted Hurst estimators (R/S analysis, aggregated variance, absolute moments), the Geweke-Porter-Hudak (GPH) log-periodogram estimator for the ARFIMA fractional differencing parameter d, a Multifractal Detrended Fluctuation Analysis (MFDFA) spectrum estimator, and a volatility suite including realized, fractional, and FIGARCH-approximated conditional variance with leverage and jump diagnostics. All components are implemented in MQL5 as a single modular header file suitable for real-time use in indicators, Expert Advisors, and machine learning feature pipelines; the open-source implementation is documented in a companion article series (Brown, 2026a-d). Empirical analysis of 514 New York trading sessions (April 2024-March 2026, approximately 196,000 one-minute observations) yields four principal findings. First, the confidence-weighted Hurst blend produces H = 0.660 (median 0.662)-a strongly upward-biased estimate driven by short-range autocorrelation in the R/S statistic, as predicted by Lo (1991). Second, the GPH estimator, which is robust to this bias, gives pooled d =-0.057 and session-level mean d =-0.006 (SD = 0.121), consistent with near-random-walk behavior. The H-d discrepancy exceeds 0.1 in 75.1% of sessions, directly quantifying the R/S bias in real market data. Third, MFDFA singularity spectrum widths (delta-alpha, Legendre-transformed) average 0.415 (median 0.359), with 44.7% of sessions showing strong multifractal structure, confirming that opposing memory regimes coexist within individual sessions. Fourth, volatility clustering is present but modest at the minute level (mean clustering index 0.071), with jump intensity averaging 0.86%. Together these findings establish that ES M1 intraday returns are near-memoryless in aggregate but heterogeneous in structure, and that the R/S Hurst estimator systematically overstates persistence at this frequency.",
+   "queries": [
+    "gold intraday returns time of day"
+   ]
+  },
+  {
+   "ssrn_id": "2019274",
+   "doi": "10.2139/ssrn.2019274",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2019274",
+   "title": "Exchange Rates, Equity Hedging, and the London 4pm Fix",
+   "authors": "Michael Melvin, John Prins",
+   "year": 2012,
+   "citations": 0,
+   "abstract": "A key institutional feature of the foreign exchange market is the London 4pm “fix.” The exchange rates set at this fix serve as the benchmark prices for the foreign exchange market, yet this important institution has never been analyzed in an academic study. Passive hedging strategies for global equity portfolios tend to be traded at the London 4pm fix. We discuss how the fix works and present an analysis of the market dynamics around the fix. Trading intensity and volatility are highest at the fix. In addition, because of the large number of passive hedging trades executed at the fix, hedging flows predict the direction of temporary exchange rate movements at this time of day. We focus on end of month “fixing” prices where hedging and rebalancing activity concentrates and find that hedging demand has a strong, but temporary, impact on exchange rates.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "1829309",
+   "doi": "10.2139/ssrn.1829309",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1829309",
+   "title": "High Frequency Information Content in End-User Foreign Exchange Order Flows",
+   "authors": "Ian William Marsh, Teng Miao",
+   "year": 2011,
+   "citations": 0,
+   "abstract": "This paper considers the impact of foreign exchange order flows on contemporaneous and future stock market returns using a new database of customer order flows in the €-$ exchange rate market as seen by a leading European bank. We do not find clear contemporaneous relationships between FX order flows and stock market changes at high frequencies, but FX flows do appear to have significant power to forecast stock index returns over 1-minute to 30-minute horizons, after controlling for lagged exchange rate and stock market returns. The effects of order flows from financial customers on future stock market changes are negative, while the effects of corporate orders are positive. The latter results are consistent with the premise that corporate order flows contain dispersed, passively acquired information about fundamentals. Thus purchases of the dollar by corporate customers represent good news about the state of the US economy. Importantly, though, there also appears to be extra information in corporate flows which is directly relevant to equity prices over and above the impact derived from stock prices reacting to (predicted) exchange rate changes. Interpretation of the financial customer results is more difficult, although our findings suggest that these flows only affect stock prices through their impact on the value of the dollar.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "1865278",
+   "doi": "10.2139/ssrn.1865278",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1865278",
+   "title": "A Review of the Work of the London Foreign Exchange Joint Standing Committee in 2010",
+   "authors": "Bank of England Publications",
+   "year": 2011,
+   "citations": 0,
+   "abstract": "This article reviews the work undertaken by the London Foreign Exchange Joint Standing Committee during 2010.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "4819478",
+   "doi": "10.2139/ssrn.4819478",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4819478",
+   "title": "Price Manipulation and Collusion around the London 4pm Fix *",
+   "authors": "Paolo Colla, Walter Distaso, Paolo Vitale",
+   "year": 2024,
+   "citations": 0,
+   "abstract": "Inspired by several investigations on the manipulation of the London 4pm Fix, we develop a model of price manipulation and collusion. In our model, several large dealers receive \"fill-at-Fix\" orders well before the time interval over which the benchmark rate is set. As long as dealers share information on their clients' hedging demand and coordinate their trading activity, they find it profitable to front-run their clients' orders. Information sharing and collusion affect price dynamics and market quality. Thus, front-running generates larger transaction costs and volatility before than during the Fix period and price manipulation intensifies when the volume of FX hedging demand increases (for example, during end-of-month days). These implications are confirmed empirically in our analysis of FX spot market, based on EBS transaction data for the EUR/USD rate.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "6331249",
+   "doi": "10.2139/ssrn.6331249",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6331249",
+   "title": "Seasonal inversion in the estuarine-shelf exchange in a dual-month subtropical estuarine systemrsion in the estuarine-shelf exchange in a dual-month subtropical estuarine system",
+   "authors": "Pedro  Almeida Rodrigo, Maurício  Almeida Noernberg",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "This study examines the hydrodynamic structure and estuarine-shelf exchange mechanisms at the two primary mouths of the Paranaguá Estuarine Complex (PEC), a multi-mouth estuary system in Southern Brazil. The research defines the hierarchy of controls governing circulation and flow partitioning across tidal and seasonal scales. Tidal forcing is the dominant short-term regulator of exchange volume, establishing an overall ebb-dominant system. Spring tides significantly enhance estuarine flushing, increasing total ebb volume by approximately 40% compared to neap tides. The principal result is the discovery of a complete seasonal reversal of functional dominance between the two mouths that dictates net estuarine-shelf exchange. In summer, the south mouth acts as the dominant export channel (e.g., 66% of total ebb volume), while the north mouth handles imports. This pattern inverts in winter. This asymmetry extends to stratification: the south mouth maintains persistent stratification during summer neap tides (high Richardson numbers, 2.15–2.59), while the deeper north mouth tends toward a well-mixed state during high tidal energy. These dynamics are supported by Coriolis forcing (low Ekman numbers, <0.003) and nonlinear tidal interactions. The major conclusion is that the PEC's multi-mouth configuration establishes a complementary, asymmetric coupling that is highly sensitive to large-scale seasonal continental shelf dynamics, offering fundamental insight into estuarine-shelf connectivity in complex coastal systems.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "2669430",
+   "doi": "10.2139/ssrn.2669430",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2669430",
+   "title": "'High and Dry': the Liquidity and Credit of Colonial and Foreign Government Debt in the London Stock Exchange (1880-1910)",
+   "authors": "Marc Flandreau, Matthieu Chavaz",
+   "year": 2015,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "5168021",
+   "doi": "10.2139/ssrn.5168021",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5168021",
+   "title": "Deep Foreign Exchange Networks (Dfen) Investment Positioning and Unveiling Foreign Exchange Rate Dynamics",
+   "authors": "Martin Kang, Gary Templeton, Sungyong Um, Insoo Son",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "6059756",
+   "doi": "10.2139/ssrn.6059756",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6059756",
+   "title": "Fixed Exchange Rates: The Austrian Prescription for Foreign Exchange Policy",
+   "authors": "Valentin Mattia",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "2681183",
+   "doi": "10.2139/ssrn.2681183",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2681183",
+   "title": "Wave Function Method to Forecast Foreign Currencies Exchange Rates at Ultra High Frequency Electronic Trading in Foreign Currencies Exchange Markets",
+   "authors": "Dimitri Ledenyov, Viktor Ledenyov",
+   "year": 2015,
+   "citations": 0,
+   "abstract": "The accurate forecast of the foreign currencies exchange rates at the ultra high frequency electronic trading in the foreign currencies exchange markets is a main topic of our research: 1) the present state of the foreign currencies exchange markets in Asia, Europe and North America; 2) the research review on the classic forecast techniques of the foreign currencies exchange rates dynamics in the foreign currencies exchange markets in the classic finances theory; 3) the description on the quantum forecast techniques of the foreign currencies exchange rates dynamics in the foreign currencies exchange markets with the application of both the wave function and the time dependent/time independent wave equation in the quantum finances theory; 4) the derivation of the time dependent/time independent wave equation in the quantum finances theory; 5) the creation of the quantum system state prediction algorithm, based on both the wave function and the time dependent/time independent wave equation in the quantum finances theory; 6) the discussion on the developed software program with the embedded quantum system state prediction algorithm, using both the wave function and the time dependent/time independent wave equation in the quantum finances theory; 7) the final words on the perspectives of the quantum forecast techniques of the foreign currencies exchange rates dynamics in the foreign currencies exchange markets, applying both the wave function and the time dependent/time independent wave equation in the quantum finances theory.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "4242755",
+   "doi": "10.2139/ssrn.4242755",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4242755",
+   "title": "Intrinsic Foreign Exchange Indices",
+   "authors": "Ebrahim Kasenally",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "Foreign Exchange, (Fx), markets quote the value of one currency relative to another. In contrast, an intrinsic currency is not observable but represents the market’s view of the value of a currency in its own right. Penned in this paper is the first parameterization of all, optimal intrinsic currency indices subject to exchange rate equilibrium thus laying a mathematical foundation for Fx index construction. This novel basket approach is consistent with the functioning of the Fx market and expresses each index elegantly through a geometric mean. Furthermore, a weighted formulation integrates factor-driven weights to deliver equilibrium-compatible, factor-themed intrinsic indices.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "2865796",
+   "doi": "10.2139/ssrn.2865796",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2865796",
+   "title": "Econometric Identification of Foreign Exchange Options Volatility Surfaces Recovering Foreign Exchange Option Prices from Spot Price Dynamics",
+   "authors": "Julian Cook, Dennis Philip, Handing Sun, Julian M. Williams",
+   "year": 2016,
+   "citations": 0,
+   "abstract": "Over-the-counter foreign exchange options (OTC-FXOs) are the fourth largest derivatives market in the world. However, the extant literature on their pricing is noticeably thin. We propose a new discrete time exponential-affine multi-factor model, with multiple estimation strategies and pricing confidence intervals for the resulting synthetic volatility surface, for OTC-FXOs and test the various specifications out-of-sample on five liquid currencies versus the dollar. Our specification is the first of its type that can be estimated directly from spot FX and deposit rate quotes without recourse to quoted volatility surfaces. Results indicate that both short and long tenor OTC-FXOs can be accurately priced with minimal calibration.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "2151722",
+   "doi": "10.2139/ssrn.2151722",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2151722",
+   "title": "Turn - of - the - Month Effect on the Bucharest Stock Exchange",
+   "authors": "Razvan Stefanescu, Ramona Dumitriu",
+   "year": 2012,
+   "citations": 0,
+   "abstract": "This paper explores the presence of the turn – of – the – month effect on Bucharest Stock Exchange. We employ daily values from 2002 to 2011 of the two important indices of the Romanian capital market: BET – C and RAQ – C, composed on the stock prices of some of the biggest Romanian companies and RAQ – C, which includes the stock prices of smaller firms. We find evidences of the turn – of – the – month effect only for the BET – C evolution.",
+   "queries": [
+    "London fix foreign exchange month-end",
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "4913925",
+   "doi": "10.2139/ssrn.4913925",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4913925",
+   "title": "Balance of Payments, Exchange Rate, and Foreign Exchange Reserves in China since 1979",
+   "authors": "Vladimir Popov",
+   "year": 2024,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "4908857",
+   "doi": "10.2139/ssrn.4908857",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4908857",
+   "title": "Foreign Exchange Reserves, Exchange Rate Regimes, and Monetary Policy: Issues in Asia",
+   "authors": "Akiko Terada-Hagiwara",
+   "year": 2024,
+   "citations": 0,
+   "abstract": "<p>This paper seeks to outline issues arising from rapid foreign exchange reserve accumulations in Asia. Greater attention is paid to People's Republic of China and India for the significance of the accumulation fed by surges in capital inflows. The paper finds that sterilization interventions by the two economies appear to be effective in curbing credit growth, but the impacts appear limited and short-lived. In this regard, adjustments of exchange rate policies are called for to have more freedom in policy options, though incentives to live with exchange rate fluctuations are still limited, and in fact the currencies have been managed more tightly than before. Therefore, the paper argues that, while maintaining the current exchange rate practices with capital controls in place, domestic reforms should be pushed further to be ready for capital account convertibility and more exchange rate flexibility in the long term.</p>",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "6747538",
+   "doi": "10.2139/ssrn.6747538",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6747538",
+   "title": "India’s effective foreign exchange reserves",
+   "authors": "Siddhartha Sarma",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "We formalise a layered balance-sheet model of the Reserve Bank of India's foreign exchange reserves that distinguishes gross headline reserves from effective deployable intervention capacity. The model incorporates (i) component decomposition with fungibility weights, (ii) duration-adjusted mark-to-market dynamics, (iii) the off-balance-sheet forward book with maturity laddering, (iv) a four-factor correlated shock framework driving Brent crude, foreign portfolio flows, USD/INR, and the US Treasury yield curve, (v) closed-form and Monte Carlo expressions for Value-at-Risk and Expected Shortfall on the effective reserve stock, and (vi) a barrier-hitting framework for crisis-threshold breach probability. Calibrated to RBI Weekly Statistical Supplement data of 1 May 2026, the central point estimate of effective liquid reserves is $447.7 billion against a headline of $690.7 billion; the 95% one-year VaR is approximately $84 billion and the one-year probability of breaching the IMF three-month import-cover floor is estimated at 4.1%.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "2205083",
+   "doi": "10.2139/ssrn.2205083",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2205083",
+   "title": "Coherent Foreign Exchange Market Models",
+   "authors": "Alessandro Gnoatto",
+   "year": 2013,
+   "citations": 0,
+   "abstract": "A model describing the dynamics of a foreign exchange (FX) rate should preserve the same level of analytical tractability when the inverted FX process is considered. We show that affine stochastic volatility models satisfy such a requirement. Such a finding allows us to use affine stochastic volatility models as a building block for FX dynamics which are functionally-invariant with respect to the construction of suitable products/ratios of rates thus generalizing the model of (De Col et al., 2013).",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "3391461",
+   "doi": "10.2139/ssrn.3391461",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3391461",
+   "title": "A Theory of Stock Exchange Competition and Innovation: Will the Market Fix the Market?",
+   "authors": "Eric B. Budish, Robin S. Lee, John J. Shim",
+   "year": 2019,
+   "citations": 0,
+   "abstract": "This paper builds a new model of financial exchange competition, tailored to the institutional details of the modern US stock market. In equilibrium, exchange trading fees are competitive but exchanges are able to earn economic profits from the sale of speed technology. We document stylized facts consistent with these results. We then use the model to analyze incentives for market design innovation. The novel tension between private and social innovation incentives is incumbents’ rents from speed technology in the status quo. This creates a disincentive to adopt new market designs that eliminate latency arbitrage and the high-frequency trading arms race.",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "5142754",
+   "doi": "10.2139/ssrn.5142754",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5142754",
+   "title": "Machine Learning in Foreign Exchange",
+   "authors": "Bo Yuan",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "4326050",
+   "doi": "10.2139/ssrn.4326050",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4326050",
+   "title": "Multiple Monetary Policy Instruments, Foreign Exchange Intervention, and Exchange Rate in China",
+   "authors": "Soyoung Kim, Hongyi Chen",
+   "year": 2023,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "London fix foreign exchange month-end"
+   ]
+  },
+  {
+   "ssrn_id": "7154758",
+   "doi": "10.2139/ssrn.7154758",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7154758",
+   "title": "Expected Intraday Range and the VIX: Calibration and a Touch-Probability Backtest on Nasdaq-100 Regular-Trading-Hours Sessions",
+   "authors": "Matthias Backhaus",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "We study whether a simple, widely used practitioner rulescaling the prior-day VIX by 1/ √ 252 to obtain an expected daily moveis well calibrated for the intraday range of the Nasdaq-100 during U.S. regular trading hours (RTH), and how often, when, and under what volatility regime the implied band is touched. Using one-minute data on the Nasdaq-100 cash index from January 2015 to April 2026 (2,909 RTH sessions) and prior-day VIX closes (strict no-look-ahead), we calibrate the expected move by a regression through the origin of the realized maximum one-sided excursion from the open on VIX/ √ 252. The estimated slope is 1.001essentially oneso the naive rule is close to unbiased on average, albeit with large day-today dispersion (R 2 ≈ 0.34). The expected-move band is touched intraday in 37.5% of sessions. Because the expected move targets the mean of a right-skewed excursion distribution, the unconditional touch probability lies below one-half by construction; the median session reaches roughly 0.85× the expected move. Touch probability rises monotonically with the volatility regime, from 31.7% when VIX < 14 to 43.9% when VIX > 25, consistent with a volatility risk premium that renders VIX/ √ 252 an increasingly conservative estimate of the realized range as volatility rises. Conditional on a touch, the median time-to-hit is 144 minutes from the open, and the lower band is touched rst in 54.8% of hit sessions. Touch frequency is higher mid-to-late week (WednesdayFriday ≈ 40% vs. Monday ≈ 33%) and shows mild calendar seasonality. Results are qualitatively stable across years but vary widely in level with the volatility regime (29.5% in 2016 to 56.2% in 2022).",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "1926984",
+   "doi": "10.2139/ssrn.1926984",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=1926984",
+   "title": "Intraday Trading Patterns in Fragmented Markets - A Post MiFID Analysis",
+   "authors": "Ulli Friedrich Paul Spankowski, Martin Wagener",
+   "year": 2011,
+   "citations": 0,
+   "abstract": "The Markets in Financial Instrument Directive (MiFID) considerably changed the nature of European equity markets. Introduced in November 2007, it allowed alternative trading venues to compete for order flow with traditional exchanges. This paper studies the impact of increased fragmentation of order flow on market quality in UK blue chip stocks from two different dimensions. First, we provide evidence that market quality increases along with the level of market fragmentation over 2009. Second, we evaluate intraday patterns of trading intensity and market quality measures. Our results show that the traditional exchange has an important function at market opening and closing, attracting a significantly higher share of trading volume compared to other periods of the trading day. Additionally, we find converging intraday patterns across trading venues over time which indicates a maturing market.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "6401099",
+   "doi": "10.2139/ssrn.6401099",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6401099",
+   "title": "When Markets Never Sleep: Intraday Liquidity Patterns and Volatility Effects in Cryptocurrency Trading",
+   "authors": "Aleksander R. Mercik, Barbara Bedowska-Sojka",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "This paper examines the microstructure of cryptocurrency markets by analysing liquidity and volatility patterns. Using high-frequency 15-minute data from Binance and Coinbase, we study Bitcoin and Ethereum trading pairs with both fiat currencies and stablecoins. We employ a depth-adjusted spread measure standardised for trade size to identify and statistically validate daily and intraday periodicities in spreads and volatility across trading venues and quote currencies. Our findings reveal that volatility is the primary driver of spread variation, though periodic factors provide additional explanatory power in an integrated model. The identified periodicities enhance out-of-sample spread forecasting performance across several markets, with consistent differences observed between venues and quote currencies.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "7434697",
+   "doi": "10.2139/ssrn.7434697",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7434697",
+   "title": "When Markets Never Sleep: Intraday Liquidity Patterns and Macroeconomic Announcement Effects in Cryptocurrency Trading",
+   "authors": "Aleksander R. Mercik, Barbara Bedowska-Sojka",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "Cryptocurrency markets trade without interruption, yet their spreads are not evenly distributed across the trading day. Using 15-minute order-book data for 27 pairs on Binance and Coinbase, we measure liquidity as a volume-weighted spread at a fixed $100,000 notional together with a depth-shortfall indicator, and we ask what governs their variation. Two countervailing forces explain most of it: volatility widens spreads while trading activity narrows them, and the celebrated intraday cycle largely dissolves into these forces, except for a residual component that is not a smooth wave but a set of sharp, scheduled minutes, better captured by an ex-ante empirical filter than by the harmonic curves commonly used in the literature. Scheduled U.S. macroeconomic releases dominate this calendar: spreads jump by a factor of roughly 2.5 to 2.8 and the probability that the book cannot fill $100,000 rises by 20 percentage points, regardless of how the news surprises. The calendar is public, and using it improves out-of-sample spread forecasts by 30% inside announcement windows, and avoids a measurable execution cost.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "4792199",
+   "doi": "10.2139/ssrn.4792199",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4792199",
+   "title": "Intraday Dynamics of NASDAQ Stocks in the Electronic Trading Era: Uncovering Strong U-Shape Patterns in Trading Volume and Bid-Ask Spread",
+   "authors": "Jian Hua, Lingyi Kong, Yajun Wang",
+   "year": 2024,
+   "citations": 0,
+   "abstract": "Using Trade and Quote (TAQ) data from 2000 to 2021, we find that NASDAQ stocks exhibit pronounced U-shaped patterns in bid-ask spreads and trading volumes. Traders often trade aggressively at market open to capitalize on their private information and rebalance their portfolios at market close, leading to concentrated trading at market open and close. Our findings suggest that the U-shaped pattern in bid-ask spread arises from imperfect competition among liquidity providers, who may increase spreads in response to heightened trading incentives. The U-shaped pattern is more pronounced for smaller stocks and those with larger order imbalances, consistent with our hypothesis and existing theoretical predictions. Moreover, the spikes in bid-ask spreads at market close help explain the observed trend of higher overnight returns compared to intraday returns for certain stocks on NASDAQ.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "5246516",
+   "doi": "10.2139/ssrn.5246516",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5246516",
+   "title": "Artificial Intelligence in Day Trading: An Intraday Trading Framework with Economic Indicators and Large Language Model Analysis",
+   "authors": "Zhuokai Chen",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "7272458",
+   "doi": "10.2139/ssrn.7272458",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7272458",
+   "title": "Information Arrival as a Stochastic Clock for Intraday Trading",
+   "authors": "Ben Van Vliet",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "Financial markets do not evolve uniformly through calendar time. Periods of intense information arrival accelerate market activity, while information-poor periods produce the familiar intraday lull in trading. We propose a stochastic clock framework in which business time is generated by the information arrival process, providing a unified explanation for intraday trading intensity, volume, realized volatility, and execution risk. To formalize this idea, we develop a compound Hawkes model consisting of a deterministic bathtubshaped baseline intensity, a marked linear trade-feedback component, and a squared-mark news channel that treats equal-magnitude positive and negative information symmetrically at the event level. The same signed news mark enters expected price changes linearly but enters trading intensity quadratically. The model therefore predicts opposite expected price responses but identical activity and conditional residualvariance responses to equal-magnitude positive and negative news. Under a clock law of large numbers and finite-moment conditions, the trade-time component of midpoint log price admits a diffusive limit with variance proportional to average trading intensity. The model also yields a closed-form parametric VWAP profile and a set of directly testable predictions linking information flow to trading activity and volatility. The framework provides a parsimonious theoretical foundation for understanding how information arrival governs the speed of financial markets.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "5757622",
+   "doi": "10.2139/ssrn.5757622",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5757622",
+   "title": "Forecasting Intraday Trading Volume with Periodicity",
+   "authors": "Dahao Tan, Chao Zhang, Haibin Zhu",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "7384239",
+   "doi": "10.2139/ssrn.7384239",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7384239",
+   "title": "Keeping New York’s hours Bitcoin’s intraday clock after the spot ETFs",
+   "authors": "Peter Schmidt, Lennard Kraft",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "Bitcoin trades continuously and has no exchange clock of its own. We show that since US spot exchange-traded funds launched in January 2024, its intraday activity has been anchored to the New York clock. Using five-minute Bitstamp data from 2020 to 2026, we exploit US daylight saving transitions as an identification device: a pattern anchored to New York hours must shift by exactly one UTC hour twice a year, while a pattern anchored to a fixed UTC hour cannot. Two peaks emerge after the launch, at 10:00 and in the 15:00–16:00 benchmark fixing window in New York time, and both shift with the seasonal clock change. The winter fixing hour loses almost all of its volume premium when New York moves to daylight saving time (interaction −0.40, t = −8.6), and the result replicates on a second exchange. Hour of day predicts trading volume and volatility but not the direction of returns. Institutionalization reshaped the timing of trading rather than removing a predictable pattern.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "2682462",
+   "doi": "10.2139/ssrn.2682462",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2682462",
+   "title": "Intraday Rallies and Crashes: Spillovers of Trading Halts",
+   "authors": "Bei Cui, Arie Eskenazi Gozluklu",
+   "year": 2015,
+   "citations": 0,
+   "abstract": "This paper analyses a set of intraday rally and crash events at the firm level during the single stock circuit breaker (SSCB) program, and documents the cross-sectional spillover effects of such events on non-halted stocks. We test whether such major price jumps, and subsequent trading halts, affect related stocks through the destabilizing arbitrage channel. We find that extreme price movements that trigger the circuit breakers at the firm level are accompanied by a massive surge in volume, spread and short-term volatility, which gradually revert back to normal. Speculative strategies of arbitrageurs such as momentum and pairs trading cause cross-sectional spillovers in volume and volatility during the trading halt.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "6091130",
+   "doi": "10.2139/ssrn.6091130",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6091130",
+   "title": "A Risk-Constrained Reinforcement Learning Framework for Adaptive Intraday Equity Trading",
+   "authors": "Tanay Chatwani",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "<p>This research introduces an adaptive intraday equity trading system designed to synthesize rule-based financial constraints with advanced machine learning (ML) and reinforcement learning (RL) methodologies. Operating within the U.S. equity market, the framework is engineered to identify and exploit high-momentum, low-priced securities during periods of peak liquidity.</p> <p>Unlike traditional algorithmic strategies that rely on static heuristics, this system utilizes iterative optimization to refine its decision-making based on real-time trading outcomes. The architecture is structured into distinct layers: a foundational \"governing\" layer establishes non-negotiable risk management and strategy parameters, while the ML and RL components operate dynamically within these established boundaries. The ML layer conducts market-state analysis, while the RL agent optimizes trade execution (buy, hold, sell) by leveraging historical data stored in a replay buffer.</p><span>To ensure capital preservation, the system integrates institutional-grade risk controls, including trailing stop-losses and maximum drawdown thresholds. Initial execution via the E*TRADE sandbox API confirms that the system maintains high fidelity to its governing rules while demonstrating measurable adaptive learning. This research provides a robust framework for the secure deployment of learning-based autonomous trading, balancing computational intelligence with disciplined financial oversight.</span>",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "2558059",
+   "doi": "10.2139/ssrn.2558059",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2558059",
+   "title": "Intraday Index Predictability and Options Trading Profitability",
+   "authors": "Kian Guan Lim, Ying Chen, Nelson Yap",
+   "year": 2015,
+   "citations": 0,
+   "abstract": "In this paper we study the intraday dynamics of E-mini S&P 500 index futures and the option trading strategies employing the weekly E-mini S&P 500 index futures options. We make a number of contributions to the literature in the area of intra-day equity index futures return predictability and trading profitability. As far as we know till at present, ours is one of the first studies on intraday implied moments of S&P 500 index futures return using intraday option prices. We use intra-day E-mini S&P500 European-style weekly options data from August 2009 to December 2012 and improve on existing techniques to extract the first four moments of the risk-neutral futures return distribution. Secondly we perform intraday out-of-sample forecasting or prediction, and document the intraday dynamics of the risk-neutral moments. We introduce a novel local autoregression method that allows variable windows in estimating the autoregressive parameters. This is particularly useful in situations when there may be intraday news that cause structural breaks in the otherwise smooth process. It also distinguishes itself from the conventional autoregressive model with predetermined sample lengths. Thirdly, we show profitability in the options trading strategies involving the various risk-neutral moment forecasts, particularly that involving skewness. The positive profitability after transaction costs in skewness trading indicates that the market is not as efficient as thought to be. We also use a novel technique in kurtosis trading that resulted in positive profits before cost, something new in the literature where negative profits were found in kurtosis trading. These results may explain the persistence of intraday trading activities in the market. Our intraday risk-neutral moments also suggest that forecast increases in volatility and skewness lead to an average increase in subsequent return over the next 10 minutes. On the other hand, intraday forecast increase in risk-neutral kurtosis leads to an average decrease in subsequent return. These intraday results appear to be contrary to existing studies using risk-neutral moments over daily intervals. This suggests that intraday price dynamics is different from daily price dynamics.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "4492355",
+   "doi": "10.2139/ssrn.4492355",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4492355",
+   "title": "Implementation of Algorithm on Intraday Trading Bot for Trading Foreign Exchange Markets Using Python",
+   "authors": "Vatsal Nigam, Piyush Kumar, Chinmay Lahoti, Priyanka Gupta, Kammari Naveen",
+   "year": 2024,
+   "citations": 0,
+   "abstract": "The Python programming language is usedto design and execute an algorithm for an intraday trading bot on the forex market. The algorithm is based on technical analysis using multiple indicators and signals and is designed to generate buy and sell signals based on market conditions. The bot is back tested and simulated on historical market data, and its performance is evaluated using various metrics. Live trading results are also presented, and the bot is compared with a benchmark to determine its effectiveness. The study also includes an analysis of risk management strategies. The implications of this research are significant for traders and investors who wish to use algorithmic trading to improve their trading outcomes. Overall, this research demonstrates the potential for algorithmic trading to generate consistent profits in intraday trading on the foreign exchange market.",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "3263593",
+   "doi": "10.2139/ssrn.3263593",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3263593",
+   "title": "Is Renminbi a (Truly) International Currency? An Evaluation Based on Offshore Foreign Exchange Market Trading Patterns",
+   "authors": "Lian Cheng, Junru Luo, Lin Liu",
+   "year": 2018,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "6224760",
+   "doi": "10.2139/ssrn.6224760",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6224760",
+   "title": "Extending Exchange Trading Hours",
+   "authors": "Kaitao Lin",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "<p><span>Recent momentum toward extended or near-continuous (24/5) trading reflects rising retail participation, global investor demand, and technological advances. This paper examines trading hours across 60 global exchanges and analyzes the operational challenges associated with extended trading, focusing on temporal misalignments between trade execution and post-trade processes, including central counterparties (CCPs), central securities depositories (CSDs), and real-time gross settlement (RTGS) systems. Case studies from the foreign exchange market and the Continuous Linked Settlement (CLS) system, together with evidence from cryptocurrency markets, show that continuous access does not imply continuous liquidity and settlement efficiency—market quality varies across time. The findings highlight that investor outcomes in a near-continuous market depend not on trading engines alone, but on the alignment of execution, funding, clearing, and settlement infrastructures.</span></p>",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "5534038",
+   "doi": "10.2139/ssrn.5534038",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5534038",
+   "title": "Predicting Intraday Trading Volume with News Sentiment: An Analysis of U.S. Airline Stocks",
+   "authors": "Steven VanOmmeren",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "currency intraday patterns trading hours"
+   ]
+  },
+  {
+   "ssrn_id": "3086941",
+   "doi": "10.2139/ssrn.3086941",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3086941",
+   "title": "Post-FOMC Announcement Drift in U.S. Bond Markets",
+   "authors": "Jordan Brooks, Michael Katz, Hanno N. Lustig",
+   "year": 2017,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "4764451",
+   "doi": "10.2139/ssrn.4764451",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4764451",
+   "title": "<span>The Pre-FOMC Drift in Long-Term Treasury Bonds</span> <br>",
+   "authors": "Qing Peng, Jun Pan",
+   "year": 2024,
+   "citations": 0,
+   "abstract": "<span>We document positive, significant pre-FOMC returns on long-term Treasury bonds. This pre-FOMC Treasury drift occurs earlier than the pre-FOMC equity drift – on the day before FOMC announcements – and predicts the subsequent equity returns. Unique to this day is a disconnect between long- and short-term yields, underscoring a risk-premium channel in bond pricing. Consistently, the pre-FOMC Treasury drift is driven primarily by the term premium component. Attributing the phenomenon to heightened uncertainty, we find that elevated labor-market uncertainty predicts and strengthens the pre-FOMC Treasury drift, while the subsequent uncertainty resolution is captured by a significant pre-FOMC reduction in the MOVE index.</span> <br>",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "7356758",
+   "doi": "10.2139/ssrn.7356758",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7356758",
+   "title": "The Pre-BOJ Announcement Drift: Evidence from Japanese Equity Indices",
+   "authors": "Jun Maeda",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "We document a large and robust pre-announcement drift in Japanese equity indices ahead of scheduled Bank of Japan (BOJ) monetary policy decisions: prices drift up steadily in the days before a meeting, peak immediately ahead of the decision, and do not continue afterward, earning an economically large and statistically significant excess return without elevated volatility. The drift is concentrated in meetings preceded by high ex-ante implied volatility. It is the Bank-of-Japan analog of the pre-FOMC drift of Lucca and Moench (2015), with a distinctive Japanese feature-variable announcement timing-that aids identification.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "4623984",
+   "doi": "10.2139/ssrn.4623984",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4623984",
+   "title": "The FOMC Announcement Premium Asymmetry",
+   "authors": "Vitaliy Ryabinin",
+   "year": 2023,
+   "citations": 0,
+   "abstract": "Excess equity returns around Federal Open Market Committee (FOMC) meetings are concentrated in recessions. On FOMC announcement days, the difference between stock returns in recessions and expansions is 73-119 basis points (bps). For reference, the unconditional difference between the announcements and all other trading days is 21 bps. The asymmetry remains statistically significant after accounting for the elevated volatility in economic downturns. The pre-announcement drift and the compensation for bearing risk on announcement days are also much more pronounced in recessions. Overall, the state-dependent equity market behavior around FOMC news releases reflects the asymmetric risk accumulation over the business cycle.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "7674953",
+   "doi": "10.2139/ssrn.7674953",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7674953",
+   "title": "Beyond the Announcement Window: What Monthly FOMC Regressions Measure",
+   "authors": "Saurabh Ahluwalia",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "We ask how much of a monthly stock-return coefficient on summed Federal Open Market Committee (FOMC) surprises is attributable to announcement-window returns. We decompose the coefficient exactly into contributions before, during and after the announcement window. In months with one scheduled announcement from 1988 to 2023, the two-day window accounts for an estimated 33 percent of the U.S. nonfinancial market's coefficient on the published Bauer and Swanson (2023b) orthogonalized series and 37 to 63 percent on eight alternatives. For every measure, the 95 percent confidence set contains one half, so the data do not establish that the window accounts for most of the monthly coefficient. The thirty-minute window accounts for 22 to 35 percent of the S&P 500's monthly coefficient. The published orthogonalization adds a covariance term because its S&P 500 predictor overlaps the return month. Ending the same 65-trading-day predictor window before the month changes the pre-announcement coefficient from -11.8 to -6.8 percentage points per 100 basis points of surprise, with little change in the window coefficient. The change is statistically significant when both series are taken as given, but not when the uncertainty in both orthogonalizations is included. In reproduced monthly factor regressions, announcement windows account for about half of the market-factor coefficient; the value factor's window component is not statistically distinguishable from zero. Interpreting monthly coefficients as policy responses requires covariance outside the window to reflect earlier or later pricing of the same policy news. Monthly return studies should therefore report the decomposition alongside the monthly coefficient.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "6614558",
+   "doi": "10.2139/ssrn.6614558",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6614558",
+   "title": "When the Chair Speaks: Communication and the FOMC Announcement Premium",
+   "authors": "Daniil Gerchik",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "The modern FOMC announcement day contains two distinct public communications: the written statement and the Chair's live press conference. Using intraday changes in optionimplied volatility to measure firm-level exposure separately across these two windows, I show that the FOMC announcement premium in the cross-section of equity returns is concentrated in the press-conference window. From 2018 onward, firms more exposed to press-conference news outperform less exposed firms by 106 basis points per event, with the average return earned across the broader FOMC day rather than only inside the pressconference hour. A measure estimated from the statement through the press conference is weaker and adds little once the press-conference window is isolated. The premium is concentrated among high-valuation, low-leverage firms, and the return gap between highand low-exposure firms is sharpest when press-conference surprises are dovish.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "4400095",
+   "doi": "10.2139/ssrn.4400095",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4400095",
+   "title": "Corporate Bonds Distress and FOMC Announcement Returns",
+   "authors": "Tommaso Baglioni, Ruy Ribeiro",
+   "year": 2023,
+   "citations": 0,
+   "abstract": "This paper documents that the ex-ante level of the corporate bond market distress is a good predictor for the pre-FOMC announcement equity market return, which tends to be positive (negative) when distress on the week before the announcement is high (low). Distress subsumes the relevant information of equity market uncertainty, highlighted by the previous literature as a good predictor for the pre-FOMC announcement return. On FOMC announcement days, the effect of distress is much more pronounced on the return of the industries that are more sensitive to credit, suggesting that distress is part of the credit channel of monetary policy transmission.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "5294443",
+   "doi": "10.2139/ssrn.5294443",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5294443",
+   "title": "Post-Fomc Drift in the Equity Options Market",
+   "authors": "Yu Zhang, Konstantina Kappou, Andrew Urquhart",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "5384407",
+   "doi": "10.2139/ssrn.5384407",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5384407",
+   "title": "Pre-Announcement Drift for BoE, BoJ, SNB: Do Markets Move Before the Word Is Out?",
+   "authors": "Radovan Vojtko, Cyril Dujava",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "5237922",
+   "doi": "10.2139/ssrn.5237922",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5237922",
+   "title": "FOMC Announcement Premia in Currency Markets",
+   "authors": "Jiawei Lin, Mark P. Taylor, Zhe Wang, Qi Xu",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "5464630",
+   "doi": "10.2139/ssrn.5464630",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5464630",
+   "title": "Post-FOMC Drift in the Equity Options Market",
+   "authors": "Yu Zhang, Konstantina Kappou, Andrew Urquhart",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "4182628",
+   "doi": "10.2139/ssrn.4182628",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4182628",
+   "title": "The FOMC Announcement Reversal",
+   "authors": "Tommaso Baglioni, Ruy Ribeiro",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "4386170",
+   "doi": "10.2139/ssrn.4386170",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4386170",
+   "title": "Jumps and Post-Fomc Announcement Drifts in Currency Markets",
+   "authors": "Suzanne S. Lee, Minho Wang",
+   "year": 2023,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "2791386",
+   "doi": "10.2139/ssrn.2791386",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2791386",
+   "title": "Impact of FOMC Announcement on Stock Price Index in Southeast Asian Countries",
+   "authors": "Trung Bao, Cesario Mateus",
+   "year": 2016,
+   "citations": 0,
+   "abstract": "This paper examines the impact of Federal Open Market Committee (FOMC) announcements, which include information about target Federal fund rate and the revision to the future path of monetary policy, on Southeast Asian stock markets performance. It compares these effects in two periods, 1997 Asian financial crisis and subprime mortgage crisis. To do this, a sample of five national equity market indexes is analysed over the period 1997–2013 that covers 132 scheduled FOMC meetings. The result first shows that all stock markets examined do response to information in FOMC announcements. Second, target Federal fund rate has more impact on Southeast Asian stocks performance than information about the future path of monetary policy does. Third, different Southeast Asian equity markets respond similarly to target Federal fund rate, while the responses to monetary policy differ each other. Fourth, the response of each country to FOMC announcement is not statistically different in the two financial crises periods.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "7412318",
+   "doi": "10.2139/ssrn.7412318",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7412318",
+   "title": "Pre-FOMC Uncertainty Accumulation: Evidence from 0DTE Options",
+   "authors": "Yuhan Song",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "Using 0DTE SPX options, I show that the option-implied uncertainty of the prospective shock accumulates rather than resolves before scheduled FOMC announcements. The implied uncertainty monotonically rises from 10:00 ET to the 14:00 ET release and largely collapses at the announcement. Both the level and the accumulation of the implied uncertainty strongly forecast realized volatility in any window after the announcement time, but not prior to it. The implied skewness is uniformly negative, varies little, and does not predict returns. Immediately after the introduction of Wednesday-expiring 0DTE options, the pre-announcement drift documented in the literature disappears, indicating that the drift reflected compensation for previously unobservable event uncertainty. The same accumulation-and-release pattern appears around FOMC Minutes and the closing auction, scaled to their information content. The 0DTE option market prices any regularly anticipated concentration of price discovery in the same accumulating fashion, whether macroeconomic or microstructural.",
+   "queries": [
+    "pre-FOMC announcement drift"
+   ]
+  },
+  {
+   "ssrn_id": "6713392",
+   "doi": "10.2139/ssrn.6713392",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6713392",
+   "title": "Spot Bitcoin ETF Approval and the Intraday Risk Profile of Bitcoin: A Difference-in-Differences Analysis",
+   "authors": "Seungju Lee, Jaewook Lee",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "Spot Bitcoin ETFs, approved in January 2024, trade only during NYSE hours but track an asset that trades around the clock. We study whether this mismatch affects Bitcoin's intraday risk profile using a symmetric one-year difference-in-differences design on hourly Coinbase data. The aggregate US-hour effect is null, but hour-specific and sub-hourly decomposition reveals a volatility spike concentrated in the first 30 minutes of ETF trading (9:30-10:00 ET), the only window surviving multiple testing correction. The pre-open half-hour (9:00-9:30) is insignificant, a pattern more consistent with order flow at the open than with anticipatory positioning. Quantile analysis shows left-tail deepening at the 5th and 10th percentiles of US-hour returns while the median is unaffected, and both tails widen at the opening window. Trading volume surges at both NYSE open and close, but only the open generates a volatility spike, and an ETH/USD comparison on the same exchange, which lacked comparable ETF exposure, shows no similar pattern, together supporting a BTC-ETF-specific interpretation. The findings suggest that clock-bound financial instruments can reshape when risk concentrates in continuous markets.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "4581124",
+   "doi": "10.2139/ssrn.4581124",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4581124",
+   "title": "The Seasonality of Bitcoin",
+   "authors": "Radovan Vojtko, Juliána Javorská",
+   "year": 2023,
+   "citations": 0,
+   "abstract": "The cryptocurrency market has grown significantly and is no longer considered a small or negligible sector. As the crypto market continues to evolve, researchers are increasingly interested in conducting in-depth analyses, for example, one of the most fascinating phenomena in the world - seasonality effects. We examine the distribution of the daily returns, proposing a simple seasonality strategy based on holding BTC only for two hours per day. Moreover, this paper extends research on potential seasonal patterns related to Bitcoin, focusing on whether these patterns are influenced by factors such as current market trends or the level of volatility in the market.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "3447100",
+   "doi": "10.2139/ssrn.3447100",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3447100",
+   "title": "The Role of Daytime Stock Auctions in Intraday Return Seasonality",
+   "authors": "Ekaterina Azarnyh (Serikova)",
+   "year": 2019,
+   "citations": 0,
+   "abstract": "The paper provides a fresh look at the role of daytime auctions in intraday periodicity of stock returns. First, I show that daytime auctions, together with market opening and market closing intervals, drive the periodicity of stock returns. Second, by applying the model of infrequent rebalancing, I find that price impact is the highest during the fifteen-minute interval after daytime auctions. Combining this evidence with high realized returns, high volume changes and high return volatility, I conclude that after-auction periods take over a large share of infrequent rebalancing, being attractive for a concentration of liquidity traders. Small, low-fragmented stocks heavily traded on the home market show the strongest evidence for infrequent rebalancing after the daytime auctions. Finally, I show that post-auction returns predict returns before the US market opening and before the domestic market closing, which might be further evidence on clustered liquidity trading.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "4291254",
+   "doi": "10.2139/ssrn.4291254",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4291254",
+   "title": "Arbitrage Opportunities and Feedback Trading in Regulated Bitcoin Futures Market: An Intraday Analysis",
+   "authors": "Geoffrey Ngene, Jinghua Wang",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "The study investigates the impact of arbitrage opportunities on feedback trading using intraday 5-minute Bitcoin futures and spot prices. The study uses quantile regressions to capture different market conditions and the conditional distribution of returns and finds episodic cases of positive and negative feedback trading. The resulting evidence reveals that the intensity and type of feedback trading are significantly related to the market conditions and the degree of arbitrage opportunities. Channel “breakouts” analysis indicates that the bear and normal market conditions are dominated by positive feedback trading. When the basis declines by varying magnitudes across quantiles, positive feedback trading shifts to negative feedback trading. The findings suggest widening basis intensifies negative feedback trading during bull market conditions. However, when the basis decreases by varying scales across upper quantiles, negative feedback trading switches to positive feedback trading. By observing the trading signals, investors can adjust their portfolio positions accordingly to maximize returns and minimize risk.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "5386128",
+   "doi": "10.2139/ssrn.5386128",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5386128",
+   "title": "In Search of Seasonality in Intraday and Overnight Option Returns",
+   "authors": "Turan G. Bali, Amit Goyal, Mathis Moerke, Florian Weigert",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "2330159",
+   "doi": "10.2139/ssrn.2330159",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2330159",
+   "title": "Non-Parametric Estimation of Intraday Spot Volatility: Disentangling Instantaneous Trend and Seasonality",
+   "authors": "Thibault Vatter, Hau-tieng Wu, Valérie Chavez-Demoulin, Bin Yu",
+   "year": 2013,
+   "citations": 0,
+   "abstract": "We provide a new framework for modeling trends and periodic patterns in high-frequency financial data. Seeking adaptivity to ever-changing market conditions, we enlarge the Fourier flexible form into a richer functional class: both our smooth trend and the seasonality are non-parametrically time-varying and evolve in real time. We provide the associated estimators and use simulations to show that they behave adequately in the presence of jumps and heteroskedastic and heavy-tailed noise. A study of exchange rate returns sampled from 2010 to 2013 suggests that failing to factor in the seasonality's dynamic properties may lead to misestimation of the intraday spot volatility.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "3021533",
+   "doi": "10.2139/ssrn.3021533",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3021533",
+   "title": "Intraday Seasonality in Efficiency, Liquidity, Volatility and Volume: Platinum and Gold Futures in Tokyo and New York",
+   "authors": "Kentaro Iwatsubo, Clinton Watkins, Tao Xu",
+   "year": 2017,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "4619679",
+   "doi": "10.2139/ssrn.4619679",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4619679",
+   "title": "Returns Correspondence Between Bitcoin Futures & Bitcoin",
+   "authors": "Sean Grover",
+   "year": 2023,
+   "citations": 0,
+   "abstract": "Exchange-traded funds (ETFs) investing in bitcoin futures contracts first listed for trading in the fall of 2021. This research evaluates the extent to which the returns of bitcoin futures and bitcoin correspond to determine if bitcoin futures provide an effective proxy for a direct bitcoin investment. A no-arbitrage framework for bitcoin futures is established, which provides the basis for the empirical analyses that follow. The empirical analyses of returns correspondence between bitcoin futures and bitcoin use daily and monthly returns to estimate single-factor asset pricing regressions, finding coefficients of expected magnitude and that bitcoin returns explain over 97% of the variation in bitcoin futures returns. This research also estimates two-factor asset pricing regressions that include a novel excess carry term. The two-factor regressions find statistically significant excess carry term coefficients and over 99% explained variation. Finding strong evidence that the returns of bitcoin futures and bitcoin closely correspond, this research concludes that bitcoin futures provide an effective proxy for a direct bitcoin investment.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "3669809",
+   "doi": "10.2139/ssrn.3669809",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3669809",
+   "title": "Lavagem de Dinheiro e Bitcoin (Money Laundering and Bitcoin)",
+   "authors": "Adonis Brozoza",
+   "year": 2020,
+   "citations": 0,
+   "abstract": "<b>Portuguese abstract:</b> O artigo destina-se à análise da possibilidade de aplicação do crime de lavagem de dinheiro a práticas de comercialização e utilização do sistema Bitcoin no Brasil. Para tanto, leva-se em conta a legislação vigente, aspectos específicos da tecnologia e o atual entendimento de órgãos reguladores sobre o tema.<br><br><b>English abstract:</b> The article aims to analyze the possibility of applying the money laundering law in commercial practices and in the use of the Bitcoin system in Brazil. To this end, it takes into account the current legislation, specific aspects of the technology and the current understanding of regulatory bodies on the subject.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "5423037",
+   "doi": "10.2139/ssrn.5423037",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5423037",
+   "title": "The Bitcoin-Fiat Hypothesis: Is Bitcoin Strengthening Fiat Systems?",
+   "authors": "Agisilaos Papadogiannis",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "6510201",
+   "doi": "10.2139/ssrn.6510201",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6510201",
+   "title": "Bitcoin Smart Accounts: Trust-Minimized Native Bitcoin DeFi Infrastructure",
+   "authors": "Matt Marshall, Cian Lalor, Antonio Russo",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "Bitcoin's limited programmability and transaction throughput have historically prevented native Bitcoin from participating in decentralized finance (DeFi) applications. Existing solutions depend on honest-majority thresholds, or centralized custodial entities that introduce significant trust requirements. This paper introduces Bitcoin Smart Accounts (BSA), a novel protocol that enables native Bitcoin to access DeFi through trust-minimized infrastructure while maintaining self-custody of funds. BSA achieves this through a combination of emulated Bitcoin covenants using Partially Signed Bitcoin Transactions (PSBTs) and Taproot scripts, a Trusted Execution Environment (TEE)-based arbitration system, and destination chain smart contracts that enable DeFi platforms to accept self-custodial Bitcoin as collateral without necessitating protocol-level modifications. The setup leverages liquidity secured by the Lombard Security Consortium which provides a twofold advantage: for a DeFi protocol, liquidators rely on fungible assets with deep liquidity to quickly exit positions, while for a depositor, the general trust assumptions of honest majority (m-of-n) are reduced to existential honesty (1-of-k). We present the complete protocol design, including the Bitcoin architecture, the TEE-based arbitration mechanism, and the Smart Account Registry for protocol management. We provide a security analysis that demonstrates the correctness, safety, and availability properties under our trust model. Our design enables native Bitcoin to serve as collateral in lending markets and other DeFi protocols without requiring users to relinquish custody of funds.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "7358159",
+   "doi": "10.2139/ssrn.7358159",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7358159",
+   "title": "Only Intraday Volatility Matters",
+   "authors": "Alexander Barinov",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "Volatility of intraday returns is negatively related to future close-to-close returns. The part of overnight volatility that is orthogonal to intraday volatility is not priced. Controlling for intraday volatility also eliminates the disagreement effect from Diether et al. (2002) and the MAX effect from Bali et al. (2011), while controlling for overnight volatility does not weaken those effects. Intraday volatility also can serve as a limits-to-arbitrage proxy, even after being orthogonalized to overnight volatility. Overnight volatility does not seem to create limits to arbitrage once intraday volatility is controlled for.",
+   "queries": [
+    "bitcoin intraday seasonality"
+   ]
+  },
+  {
+   "ssrn_id": "4010647",
+   "doi": "10.2139/ssrn.4010647",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4010647",
+   "title": "The Turn-of-The-Month Effect and Trading of Types of Investors",
+   "authors": "yu lee, Ryumi Kim",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "We examine the turn-of-the-month (TOM) effect in the Korean stock market, a representative emerging market in Asia. The returns show that the TOM effect is statistically significant and is not due to size or turn-of-the-year, turn-of-the-quarter, or index rebalancing effects. Although extant studies explain this effect as the result of individual investors’ increased liquidity and institutional window-dressing, we find that individual and institutional traders do not trade and buy more stocks at the TOM than they do in the rest of the month (ROM). Moreover, the stocks that individual traders buy relatively more tend to underperform. On the other hand, foreign investors trade and buy more stocks at the TOM than they do in the ROM, and the stocks they buy more at the TOM tend to outperform. Therefore, foreign investors partially contribute to the TOM effect in the Korean market.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "3840993",
+   "doi": "10.2139/ssrn.3840993",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3840993",
+   "title": "Turn-of-the-Month Effect, FX Influence, and Efficient Market Hypothesis: New Perspectives from the Johannesburg Stock Exchange",
+   "authors": "Evangelos Vasileiou",
+   "year": 2021,
+   "citations": 0,
+   "abstract": "This paper examines the Turn of the Month (TOM) effect in the highly capitalized emerging South African stock market. We use data from the FTSE/JSE Africa All Shares Index (JALSH) for the period 31.12.1998-31.12.2018 and we provide empirical evidence that TOM is present in both the S. African stock market and the USDZAR FX. Thus, the S. African stock market enable us to gain new perspectives on the study of the TOM effect. Specifically, we are able to identify the optimal TOM period using an optimization algorithm either we examine the JALSH in local currency (ZAR) or in USD. Moreover, we show that the performance in the USDZAR FX market has impact: (a) on the domestic stock market’s performance (JALSH in ZAR), and (b) to the TOM effect. Finally, we present some practical investment strategies based on the TOM effect which can outperform the stock market and prove beneficial for investors in USD.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "5338257",
+   "doi": "10.2139/ssrn.5338257",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5338257",
+   "title": "Temporal Category Boundaries and Investor Behavior: A Perceptual Explanation for the Turn-of-The-Month Effect",
+   "authors": "ke Peng, Haotong Jiang",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "2699571",
+   "doi": "10.2139/ssrn.2699571",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2699571",
+   "title": "Toward Solving of the Turn-of-the-Month Effect Puzzle",
+   "authors": "Lior Gal, Uri Benzion, Ahron Rosenfeld",
+   "year": 2015,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "2052124",
+   "doi": "10.2139/ssrn.2052124",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2052124",
+   "title": "The January and Turn-of-The-Month Effect on Firm Returns and Return Volatility",
+   "authors": "Susan S. Sharma, Paresh K. Narayan",
+   "year": 2011,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "2820724",
+   "doi": "10.2139/ssrn.2820724",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2820724",
+   "title": "Monthly Cyclicality in Retail Investors' Liquidity and Lottery-Type Stocks at the Turn of the Month",
+   "authors": "Yun Meng, Christos Pantzalis",
+   "year": 2016,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "7313598",
+   "doi": "10.2139/ssrn.7313598",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7313598",
+   "title": "Sectoral Intramonth Momentum Cycle <div> Exploiting Turn-of-the-Month Patterns in Sector ETF Strategies </div>",
+   "authors": "Radovan Vojtko, Cyril Dujava",
+   "year": 2026,
+   "citations": 0,
+   "abstract": "<div> <p>We document a persistent intramonth momentum cycle in U.S. sector ETFs that yields meaningful risk-adjusted returns when properly sequenced. Using the nine original Select Sector SPDR ETFs and SPY as the market benchmark from December 1998 through June 2026, we show that trailing 252-day sector momentum generates a positive spread on the first trading day of the month— and then sharply reverses on days two and three. A third, independent leg of the cycle emerges in the window from ten to five trading days before monthend, consistent with the intramonth momentum cycle recently documented at the single-stock level by Nathan et al. (2026). Stitching the three legs together into a single composite strategy delivers 5.99% annualized return at a 0.55 Sharpe ratio for the long-short variant, and 3.77% at 0.54 for the market-neutral variant—all while being invested fewer than half the trading days each month. Our contribution is twofold: we extend the calendar-anomaly literature from individual equities to sector-level portfolios, and we provide practitioners with a transparent, low-turnover framework that translates these academic patterns into actionable trade schedules. </p> </div>",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "4230561",
+   "doi": "10.2139/ssrn.4230561",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4230561",
+   "title": "Is the Turn of the Month an Anomaly on Which an Investment Strategy Could Be Based? Evidence From BitCoin and Ethereum",
+   "authors": "Evangelos Vasileiou",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "4090044",
+   "doi": "10.2139/ssrn.4090044",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4090044",
+   "title": "Turn-of-the-candle effect in Bitcoin returns",
+   "authors": "Savva Shanaev, Mikhail Vasenin, Roman Stepanov",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "This study discovers a statistically and economically significant intraday anomaly on Bitcoin markets. Positive returns of 0.58 bps per minute are disproportionately concentrated at the turn of 15-minute candles (in minutes 0, 15, 30, and 45 of each trading hour). Average returns in other trading minutes are negative. The effect is consistent across Bitcoin exchanges, in quantile regression, and TGARCH-M estimations with heavy tails. A high-frequency strategy that exploits this “turn-of-the-candle” effect can be net-outperforming with initial investment as low as $5,000. The anomaly is detected in the data starting from mid-to-late 2020, and its discovery contributes significantly to the understanding of cryptocurrency adaptive market efficiency.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "3799914",
+   "doi": "10.2139/ssrn.3799914",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3799914",
+   "title": "Turn-of-the-Year Effect in Asia Pacific Stock Markets: New Evidence",
+   "authors": "Nhan Huynh",
+   "year": 2021,
+   "citations": 0,
+   "abstract": "This paper examines a well-known seasonal anomaly - the turn-of-the-year (TOY) effect in fifteen Asia Pacific stock indices by using an updated dataset and forward-looking methods. The analysis utilizes daily dataset that spans from January 2000 to December 2018. Applying the Ordinary Least Square (OLS) regression and EGARCH approach, the results of this paper suggest that the TOY effect becomes detectable again after the GFC in developed stock markets with tax year not ending in December. Oppositely, the magnitude of this anomaly has diminished in the emerging financial markets after the GFC, which is consistent with the EMH. The evidence of the leverage effect in the unconditional volatility is proposed that volatility in negative shocks is considerably higher than that of positive shocks across examined stock indices. This phenomenon is more conspicuous in mature stock indices compared to emerging indices. The positive connection between the leverage effect and stock market volatility is propositioned as diminishing magnitude of this effect during the stable market condition after the GFC. Our findings lend reinforcement to the conclusion that some Asia Pacific stock markets satisfy the weak form of the EMH.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "3564347",
+   "doi": "10.2139/ssrn.3564347",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3564347",
+   "title": "Efectul Turn-of-the-Year pe piaţa valutară din România (The Turn-of-the-Year Effect in the Romanian Foreign Exchange Market)",
+   "authors": "Razvan Stefanescu, Ramona Dumitriu",
+   "year": 2020,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "3981957",
+   "doi": "10.2139/ssrn.3981957",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3981957",
+   "title": "The Effect Of Caffeine On The Number Of Turn Alterations Made By Armadillidium Vulgare",
+   "authors": "Sadiqah Quadery",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "The number of turn alterations made by pill bugs is closely correlated with the amount of caffeine intake, which affects the stress levels. It is not yet discovered whether or not caffeine can increase or decrease stress levels in pill bugs, therefore this experiment is being conducted to observe any changes that can potentially help pill bugs in the real world to avoid predators by increasing turn alterations. All of these groups were given different levels of caffeine, diluted with the same amount of water. The pill bugs consumed caffeine and were put into a T-maze to measure the number of turn alterations made after caffeine consumption. As the amount of caffeine consumption per group increased, the overall number of turn alterations per group increased as well. This shows a relevance between caffeine and stress levels because according to the results, an increase in caffeine led to an increase in turn alterations. Our findings suggest caffeine increases the stress levels in pill bugs causing them to make more turn alterations that can help them avoid predators quicker.<br>",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "5631030",
+   "doi": "10.2139/ssrn.5631030",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5631030",
+   "title": "The End-Of-Month Effect in Value-Growth and Real-Estate-Equity Spreads ⋆",
+   "authors": "Radovan Vojtko, Cyril Dujava",
+   "year": 2025,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "2129559",
+   "doi": "10.2139/ssrn.2129559",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2129559",
+   "title": "Month-of-the-Year, Heavy-Spending Holiday and Firm Size Effect: Asian Evidence",
+   "authors": "Mohd Edil Abd Sukor",
+   "year": 2012,
+   "citations": 0,
+   "abstract": "The results of this study indicate that the January effect has been replaced by a February effect in emerging Asian stock markets. The February effect may be a phenomenon reflecting investors’ response to the need for liquidity before the heavy-spending characteristic of the Chinese New Year, which requires investors to raise cash to finance their holiday expenditures. However, the effect exists only when the festival is in January. Contrary to the usual published studies on holiday effect, it was found that stock returns are lower before the heavy-spending holiday, followed by higher returns post holiday. I find evidence of a relationship between the February effect, heavy-spending holiday, and firm size. Analyses of the results of both month-of-the-year and heavy-spending holiday effects indicate that the anomalies are stronger among smaller firms.",
+   "queries": [
+    "turn of the month effect"
+   ]
+  },
+  {
+   "ssrn_id": "4192424",
+   "doi": "10.2139/ssrn.4192424",
+   "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4192424",
+   "title": "Turn-of-The-Candle Effect in Bitcoin Returns",
+   "authors": "Savva Shanaev, Mikhail Vasenin, Roman Stepanov",
+   "year": 2022,
+   "citations": 0,
+   "abstract": "",
+   "queries": [
+    "turn of the month effect"
+   ]
+  }
+ ]
+}
